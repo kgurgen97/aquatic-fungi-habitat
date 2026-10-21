@@ -1,0 +1,6 @@
+# derived matrices, regenerable from the scripts
+_depth.npy
+agg_*.csv
+pairs_*.tsv
+results/*.npz
+__pycache__/

@@ -1,0 +1,9 @@
+{
+ "otus": 50152,
+ "samples": 2375,
+ "paired_sites_in_table": 920,
+ "median_depth": 125,
+ "samples_under_5000_reads": 2285,
+ "otus_prev_ge10": 2774,
+ "sparsity_pct_zeros": 99.86651526727171
+}

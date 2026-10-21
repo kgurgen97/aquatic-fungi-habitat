@@ -1,0 +1,10 @@
+{
+ "pairs": 204,
+ "fungi_tested": 98,
+ "fungi_sig": 42,
+ "euk_tested": 122,
+ "euk_sig": 77,
+ "fisher_p": 0.0029134646875695726,
+ "median_effect_fungi": 0.14900362318840582,
+ "median_effect_euk": 0.24642857142857144
+}

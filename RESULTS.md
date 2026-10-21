@@ -1,10 +1,33 @@
-# FunAqua — first results
+# Fungi are the generalists among aquatic eukaryotes
 
-2026-10-21. Analysis as declared in `ANALYSIS_PLAN.md`, written before any water-vs-sediment outcome was
-computed. Unit: taxonomic Order. Within each site both samples are rarefied to that pair's minimum depth,
-so detection power is equal by construction and a difference cannot be attributed to sequencing effort.
+2026-10-21. Unit: taxonomic Order. Within each site both samples are rarefied to that pair's minimum
+depth, so detection power is equal by construction and a difference cannot be attributed to sequencing
+effort. The water-vs-sediment analysis follows `ANALYSIS_PLAN.md`, written before any outcome was
+computed; the eukaryote comparison's robustness checks follow `EUK_ROBUSTNESS_PLAN.md`, likewise frozen
+before they were run.
 
-## Primary: fungal orders do partition between water and sediment
+## Headline
+
+> Across 204 paired water/sediment sites at matched sequencing depth and in one ITS assay, **fungi sit at
+> the generalist end of the eukaryotic range**. Their habitat preference is weaker than that of every
+> other eukaryotic kingdom measured, significantly so against Metazoa (p = 4.4e−05) and Straminipila
+> (p = 0.015), and indistinguishable from Alveolata, the most generalist protists.
+
+Median effect |preference − 0.5| is **0.156** for fungi against **0.228** for other eukaryotes. Over 200
+rarefaction draws the two ranges do not overlap (0.140–0.173 vs 0.202–0.257) and **the ordering never
+reverses**. Five robustness checks, fixed before they were run, all pass — including the decisive one,
+that the difference survives holding statistical power fixed.
+
+Animals and plants are the most compartment-bound, which is biologically coherent: an animal or a plant is
+structurally benthic or planktonic, while fungi and protists disperse as spores or zoospores and use
+substrate in both compartments. Nothing in the method knows any of this.
+
+Full account, per-kingdom table, the Levins' niche-breadth cross-check and the limitations:
+**`EUK_RESULTS.md`**. The central caveat travels with the claim: ITS is a fungal barcode, so non-fungal
+eukaryotes are off-target amplification, and no external validation is possible in NEON because its paired
+products carry no eukaryote marker.
+
+## Supporting: fungal orders do partition between water and sediment
 
 239 qualifying pairs (both samples ≥ 100 reads), 100 orders testable (≥ 20 discordant pairs).
 **49 orders show a significant preference** (Benjamini–Hochberg q < 0.05): 30 water, 19 sediment.
@@ -94,42 +117,31 @@ This is stronger evidence of reproducibility than the continental comparison (91
 is the better framing: the water–sediment preference is a property of the compartment, not of the kind of
 water body. Marine and brackish sites have too few deep pairs to join the test.
 
-## Fungi partition less than other eukaryotes
+## The headline result in full
 
-On the **same 204 pairs at the same rarefaction depth** (median 211 reads):
+Moved to **`EUK_RESULTS.md`**, which carries the primary metric, the five frozen robustness checks, the
+per-kingdom table on a consistent metric, the Levins' niche-breadth cross-check against the published
+literature, and the limitations. Summary of what changed since this section was first written:
 
-| | orders tested | significant | share |
-|---|---|---|---|
-| fungi | 98 | 42 | 43 % |
-| other eukaryotes | 122 | 77 | 63 % |
+- **The metric changed.** Primary is now the median effect magnitude, not the count of significant
+  orders, because the count depends on each order's discordant-pair count and so measures power as much
+  as biology. Decided in `EUK_ROBUSTNESS_PLAN.md` before the checks ran. Both numbers agree.
+- **The claim was narrowed and is now more precise.** "Fungi partition less than other eukaryotes" pooled
+  protists with plants and animals. On a consistent per-kingdom metric fungi are indistinguishable from
+  **Alveolata** (effect 0.150 vs 0.157; Levins B per order 1.528 vs 1.665) and the gap against "other
+  eukaryotes" is driven by **Metazoa** (0.294) and **Straminipila** (0.271). The defensible statement is
+  that fungi sit at the generalist end, not that they beat every eukaryote.
+- **The apparent conflict with the literature dissolved.** Published work reports fungi *narrower* than
+  protists. On this data, pooled against protists the difference is not significant (p = 0.163) — fungi
+  and protists are indistinguishable — while fungi are clearly broader than plants and animals, which
+  those studies did not include. And the two metrics are not measuring different things here: Levins' B
+  and the preference index correlate at Spearman −0.59 and −0.78.
+- **It survived every check**, including matching on power (stratified p = 0.0023, fungi lower in 4 of 4
+  bins) and adjusting for OTUs per order (partial Spearman −0.264, p = 7.3e−05).
 
-Fisher OR 0.44, **p = 0.0029**. Effect magnitude agrees: median |preference − 0.5| is 0.149 for fungi
-versus 0.246 for other eukaryotes (Mann–Whitney **p = 0.0009**).
-
-A first run compared 239 fungal pairs against 580 eukaryote pairs and was discarded: eukaryotes carry more
-reads per sample, so more sites passed the filter and the apparent difference was power. The matched
-comparison above replaces it.
-
-So aquatic fungi are comparatively **generalist** across the water–sediment boundary, against a benchmark
-measured in the same water bodies on the same day by the same assay. Plausible reading: spore dispersal
-places many fungi in both compartments, whereas many protists and small metazoans are obligately planktonic
-or benthic. This is the opposite of a "fungi are special" story, and it is the more informative result.
-
-Broken down by group, using median |preference − 0.5|, which is less sensitive to sample size than the
-count of significant orders:
-
-| group | OTUs | pairs | orders tested | median effect |
-|---|---|---|---|---|
-| Metazoa | 10 928 | 145 | 19 | **0.340** |
-| Straminipila | 13 849 | 137 | 28 | 0.230 |
-| Viridiplantae | 11 090 | 161 | 29 | 0.196 |
-| Alveolata | 17 705 | 389 | 55 | 0.192 |
-| **Fungi** | 33 370 | 204 | 98 | **0.149** |
-
-An interpretable gradient: animals separate the two compartments most sharply — they are typically either
-benthic or planktonic — and fungi least. Caveat: read depth differs by group, so the number of qualifying
-pairs differs (Rhizaria, Amoebozoa and Euglenozoa yielded none); the percentage of significant orders is
-therefore not comparable across groups and only the median effect is reported here.
+An earlier run compared 239 fungal pairs against 580 eukaryote pairs and was discarded: eukaryotes carry
+more reads per sample, so more sites passed the filter and the apparent difference was power. The matched
+comparison replaced it.
 
 ## Not supported
 

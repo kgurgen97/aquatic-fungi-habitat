@@ -1,12 +1,26 @@
-# Do aquatic fungi specialise between the water column and the sediment?
+# Fungi are the generalists among aquatic eukaryotes
 
 FunAqua is a global paired survey — the same sites sampled in both water and sediment — and nobody had
 asked that question of the fungi in it. The closest work I could find, Malfertheiner et al. 2026 on
 community conservatism, explicitly threw out all the eukaryotic reads, so the fungi were genuinely open.
+FunAqua's own authors never ran a single hypothesis test on this; their pipeline is descriptive, and the
+words "specialisation", "preference" and "niche" appear nowhere in it.
 
-I wrote the analysis plan before computing any water-vs-sediment outcome (`ANALYSIS_PLAN.md`), got a
-positive result, and then tried to replicate it in NEON. It did not replicate. Both halves are in here,
-because the second half is the more useful one.
+I started out asking whether aquatic fungi specialise between water and sediment. They do, but that turned
+out to be the less interesting half: the per-order pattern did not replicate in NEON. What did survive,
+and what the title now says, came from the comparison I had filed as a secondary benchmark — where fungi
+sit relative to every *other* eukaryote caught by the same assay in the same samples.
+
+Across 204 paired sites at matched depth, fungi show the weakest habitat preference of any eukaryotic
+kingdom here: median effect 0.156 against 0.228 for other eukaryotes, with the two ranges not overlapping
+across 200 rarefaction draws and the ordering never reversing. Animals and plants are the most
+compartment-bound; fungi and the protists are the most spread out. Five robustness checks, written down
+before they were run, all pass. Full account in `EUK_RESULTS.md`.
+
+Two things I had to correct along the way, both in here: the claim as I first wrote it ("fungi partition
+less than other eukaryotes") pooled protists with plants and animals and was too broad — against
+Alveolata fungi are indistinguishable — and the fungal water-vs-sediment headline I had been quoting came
+from the wrong script. Details below.
 
 ## FunAqua
 

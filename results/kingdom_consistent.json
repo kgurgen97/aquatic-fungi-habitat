@@ -1,0 +1,69 @@
+{
+ "table": [
+  {
+   "kingdom": "Alveolata",
+   "n_otu": 414,
+   "n_order_B": 54,
+   "n_order_pref": 39,
+   "B_otu": 1.0713375796178342,
+   "B_order": 1.665422782793669,
+   "effect": 0.15714285714285714
+  },
+  {
+   "kingdom": "Fungi",
+   "n_otu": 368,
+   "n_order_B": 111,
+   "n_order_pref": 62,
+   "B_otu": 1.0662553799047356,
+   "B_order": 1.5283018867924527,
+   "effect": 0.14983974358974358
+  },
+  {
+   "kingdom": "Metazoa",
+   "n_otu": 142,
+   "n_order_B": 37,
+   "n_order_pref": 13,
+   "B_otu": 1.0,
+   "B_order": 1.1056636781106495,
+   "effect": 0.29411764705882354
+  },
+  {
+   "kingdom": "Rhizaria",
+   "n_otu": 5,
+   "n_order_B": 12,
+   "n_order_pref": 7,
+   "B_otu": 1.0,
+   "B_order": 1.530400491096099,
+   "effect": 0.20833333333333331
+  },
+  {
+   "kingdom": "Straminipila",
+   "n_otu": 148,
+   "n_order_B": 35,
+   "n_order_pref": 19,
+   "B_otu": 1.0,
+   "B_order": 1.4778262324892402,
+   "effect": 0.27142857142857146
+  },
+  {
+   "kingdom": "Viridiplantae",
+   "n_otu": 168,
+   "n_order_B": 45,
+   "n_order_pref": 17,
+   "B_otu": 1.0,
+   "B_order": 1.2082191780821916,
+   "effect": 0.2272727272727273
+  }
+ ],
+ "spearman_B_otu_vs_effect": [
+  -0.7775419143502353,
+  0.06872694144108958
+ ],
+ "fungi_vs_protists": {
+  "fungi_B": 1.0662553799047356,
+  "protist_B": 1.043457723193198,
+  "p": 0.1630654180176605,
+  "n_f": 368,
+  "n_p": 567
+ }
+}

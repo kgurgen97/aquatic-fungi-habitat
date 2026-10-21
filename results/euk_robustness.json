@@ -1,0 +1,104 @@
+{
+ "check1": {
+  "reversals": 0,
+  "n_draws": 200,
+  "pass": true,
+  "eff_f_median": 0.15577470400728596,
+  "eff_e_median": 0.22840590077932776,
+  "eff_f_range": [
+   0.14040404040404042,
+   0.17272727272727273
+  ],
+  "eff_e_range": [
+   0.20227272727272727,
+   0.25683665927568367
+  ]
+ },
+ "check2": {
+  "stratified_p": 0.0023000331221088074,
+  "bins": 4,
+  "bins_fungi_lower": 4,
+  "pass": true
+ },
+ "check3": {
+  "kingdoms": [
+   {
+    "kingdom": "Alveolata",
+    "n": 42,
+    "effect": 0.1594176634046152,
+    "p": 0.46410187461658925,
+    "fungi_lower": true
+   },
+   {
+    "kingdom": "Metazoa",
+    "n": 18,
+    "effect": 0.3027777777777778,
+    "p": 4.365251596851657e-05,
+    "fungi_lower": true
+   },
+   {
+    "kingdom": "Rhizaria",
+    "n": 7,
+    "effect": 0.21052631578947367,
+    "p": 0.14838785418352066,
+    "fungi_lower": true
+   },
+   {
+    "kingdom": "Straminipila",
+    "n": 21,
+    "effect": 0.2435897435897436,
+    "p": 0.015125547443307866,
+    "fungi_lower": true
+   },
+   {
+    "kingdom": "Viridiplantae",
+    "n": 22,
+    "effect": 0.233201581027668,
+    "p": 0.19515977044318367,
+    "fungi_lower": true
+   }
+  ],
+  "n_lower": 5,
+  "n_sig": 2,
+  "pass": true
+ },
+ "check4": {
+  "ranks": [
+   {
+    "rank": "Class",
+    "n_f": 43,
+    "n_e": 64,
+    "eff_f": 0.15591397849462363,
+    "eff_e": 0.2039027149321267,
+    "p": 0.017630507825091086,
+    "fungi_lower": true
+   },
+   {
+    "rank": "Order",
+    "n_f": 98,
+    "n_e": 123,
+    "eff_f": 0.14900362318840582,
+    "eff_e": 0.23913043478260865,
+    "p": 0.00036966106211272514,
+    "fungi_lower": true
+   },
+   {
+    "rank": "Family",
+    "n_f": 125,
+    "n_e": 96,
+    "eff_f": 0.16666666666666663,
+    "eff_e": 0.24280465401102266,
+    "p": 0.0011135519996932105,
+    "fungi_lower": true
+   }
+  ],
+  "pass": true
+ },
+ "check5": {
+  "partial_r": -0.26359071282968477,
+  "partial_p": 7.286993208776615e-05,
+  "overlap_p": 0.00013620165027675976,
+  "pass": true
+ },
+ "headline_allowed": true
+}

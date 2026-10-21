@@ -142,6 +142,17 @@ and presenting them as if they could would be dishonest. This result therefore r
 **Orders are not independent.** The checks address power and aggregation, not phylogenetic
 non-independence among the orders being compared.
 
+**But the two groups ARE treated at comparable taxonomic resolution** — established while checking
+metaPR2 (`METAPR2_RESULTS.md`). At the rank this analysis uses, a fungal order aggregates 0.96× as much
+diversity as a non-fungal one (145 vs 151 OTUs per label; Class 0.95, Family 0.76). So the comparison is
+not between a coarse group and a fine one. This matters because coarser aggregation demonstrably weakens
+apparent preference (Spearman −0.246 within fungi), and it is the first thing a reviewer should ask about.
+
+**Attempted external replication in metaPR2 was abandoned, deliberately.** Its 18S has the opposite
+primer bias, which would have made it the ideal test, but PR2 assigns fungi systematically coarser ranks
+than protists (1.5–2.2× more diversity per label at every usable rank), which would have manufactured
+this result rather than tested it. Full reasoning in `METAPR2_RESULTS.md`.
+
 **Rhizaria and Cryptista are thin** (5–24 OTUs) and their positions should not be quoted.
 
 **Shallow data.** Median common depth 211 reads. Presence/absence at order level is defensible;

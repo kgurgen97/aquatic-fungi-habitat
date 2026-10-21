@@ -1,0 +1,93 @@
+[
+ {
+  "phylum": "Aphelidiomycota",
+  "funaqua": 0.6036585365853658,
+  "n_funaqua": 2,
+  "neon": 0.9418604651162792,
+  "n_neon": 1
+ },
+ {
+  "phylum": "Ascomycota",
+  "funaqua": 0.4744245524296675,
+  "n_funaqua": 40,
+  "neon": 0.38409961685823757,
+  "n_neon": 46
+ },
+ {
+  "phylum": "Basidiobolomycota",
+  "funaqua": null,
+  "n_funaqua": 0,
+  "neon": 0.5769230769230769,
+  "n_neon": 1
+ },
+ {
+  "phylum": "Basidiomycota",
+  "funaqua": 0.6479166666666667,
+  "n_funaqua": 30,
+  "neon": 0.3777777777777777,
+  "n_neon": 33
+ },
+ {
+  "phylum": "Blastocladiomycota",
+  "funaqua": 0.4545454545454545,
+  "n_funaqua": 1,
+  "neon": 0.8333333333333334,
+  "n_neon": 1
+ },
+ {
+  "phylum": "Chytridiomycota",
+  "funaqua": 0.5904761904761905,
+  "n_funaqua": 11,
+  "neon": 0.8927801724137931,
+  "n_neon": 10
+ },
+ {
+  "phylum": "Glomeromycota",
+  "funaqua": 0.3018867924528302,
+  "n_funaqua": 1,
+  "neon": null,
+  "n_neon": 0
+ },
+ {
+  "phylum": "Monoblepharomycota",
+  "funaqua": 0.36,
+  "n_funaqua": 1,
+  "neon": 0.7547892720306513,
+  "n_neon": 2
+ },
+ {
+  "phylum": "Mortierellomycota",
+  "funaqua": 0.4234234234234234,
+  "n_funaqua": 1,
+  "neon": 0.1186440677966101,
+  "n_neon": 1
+ },
+ {
+  "phylum": "Mucoromycota",
+  "funaqua": 0.42558983666061706,
+  "n_funaqua": 2,
+  "neon": 0.44666666666666666,
+  "n_neon": 2
+ },
+ {
+  "phylum": "Rozellomycota",
+  "funaqua": 0.3090909090909091,
+  "n_funaqua": 9,
+  "neon": 0.5185185185185185,
+  "n_neon": 5
+ },
+ {
+  "phylum": "Sanchytriomycota",
+  "funaqua": 0.559322033898305,
+  "n_funaqua": 1,
+  "neon": 0.6190476190476191,
+  "n_neon": 1
+ },
+ {
+  "phylum": "Zoopagomycota",
+  "funaqua": 0.2,
+  "n_funaqua": 1,
+  "neon": null,
+  "n_neon": 0
+ }
+]

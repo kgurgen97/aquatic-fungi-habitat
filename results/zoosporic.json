@@ -1,0 +1,79 @@
+{
+ "plan_sha256": "e02627db39a9934cc2100f360ec534ba912c302c79864edf1b19b64fd1c8090f",
+ "replicated": false,
+ "funaqua": {
+  "dataset": "FunAqua (water vs sediment)",
+  "orders_tested": 100,
+  "n_flag": 22,
+  "n_aflag": 75,
+  "median_flag": 0.43903743315508015,
+  "median_aflag": 0.5483870967741935,
+  "mw_u": 668.5,
+  "mw_p": 0.17897890076200418,
+  "rank_biserial": -0.1896969696969697,
+  "verdict": "NOT SUPPORTED",
+  "share_flag": 0.36363636363636365,
+  "share_aflag": 0.5333333333333333,
+  "fisher_or": 0.5,
+  "fisher_p": 0.2256724071563148,
+  "stable_n_flag": 11,
+  "stable_n_aflag": 24,
+  "stable_p": 0.9010246337103467,
+  "stable_median_flag": 0.3150684931506849,
+  "stable_median_aflag": 0.7195560253699789,
+  "perm_obs": -0.10934966361911336,
+  "perm_p": 0.21777822217778223,
+  "ambiguous": [
+   {
+    "order": "Aphelidiales",
+    "phylum": "Aphelidiomycota",
+    "water_fraction": 0.7073170731707317
+   },
+   {
+    "order": "Sanchytriales",
+    "phylum": "Sanchytriomycota",
+    "water_fraction": 0.559322033898305
+   },
+   {
+    "order": "GS16",
+    "phylum": "Aphelidiomycota",
+    "water_fraction": 0.5
+   }
+  ]
+ },
+ "neon": {
+  "dataset": "NEON (water vs benthic)",
+  "orders_tested": 103,
+  "n_flag": 18,
+  "n_aflag": 83,
+  "median_flag": 0.8583959899749374,
+  "median_aflag": 0.3793103448275862,
+  "mw_u": 1361.5,
+  "mw_p": 5.059621235707669e-08,
+  "rank_biserial": 0.822623828647925,
+  "verdict": "SUPPORTED",
+  "share_flag": 0.8888888888888888,
+  "share_aflag": 0.21686746987951808,
+  "fisher_or": 28.88888888888889,
+  "fisher_p": 1.3484020037596716e-07,
+  "stable_n_flag": 5,
+  "stable_n_aflag": 17,
+  "stable_p": 0.028213153316774056,
+  "stable_median_flag": 0.7209302325581395,
+  "stable_median_aflag": 0.425531914893617,
+  "perm_obs": 0.4790856451473512,
+  "perm_p": 9.999000099990002e-05,
+  "ambiguous": [
+   {
+    "order": "Aphelidiomycota_ord_Incertae_sedis",
+    "phylum": "Aphelidiomycota",
+    "water_fraction": 0.9418604651162792
+   },
+   {
+    "order": "Sanchytriales",
+    "phylum": "Sanchytriomycota",
+    "water_fraction": 0.6190476190476191
+   }
+  ]
+ }
+}

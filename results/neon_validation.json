@@ -1,0 +1,23 @@
+{
+ "pairing_rule": "same site, within +/-7 days",
+ "pairs": 149,
+ "median_depth": 31131,
+ "orders_tested": 103,
+ "neon_significant": 37,
+ "funaqua_significant": 49,
+ "overlap_testable": 27,
+ "agree": 14,
+ "n_compared": 27,
+ "agreement": 0.5185185185185185,
+ "ci": [
+  0.33985615754952286,
+  0.6925677302378153
+ ],
+ "p": 1.0,
+ "verdict": "NOT REPLICATED (agreement not significant)",
+ "spearman": 0.28091604362990735,
+ "spearman_p": 0.1557880730486575,
+ "spearman_all": 0.1861535942777077,
+ "spearman_all_p": 0.12565101880512583,
+ "n_all": 69
+}

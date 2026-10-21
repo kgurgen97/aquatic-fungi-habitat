@@ -6,8 +6,22 @@ so detection power is equal by construction and a difference cannot be attribute
 
 ## Primary: fungal orders do partition between water and sediment
 
-239 qualifying pairs (both samples ≥ 100 reads), 99 orders testable (≥ 20 discordant pairs).
-**51 orders show a significant preference** (Benjamini–Hochberg q < 0.05): 30 water, 21 sediment.
+239 qualifying pairs (both samples ≥ 100 reads), 100 orders testable (≥ 20 discordant pairs).
+**49 orders show a significant preference** (Benjamini–Hochberg q < 0.05): 30 water, 19 sediment.
+
+> **Corrected 2026-10-21.** This read "99 orders testable, 51 significant, 30 water / 21 sediment".
+> Those came from the ≥ 100 row of `analysis_secondary.py`, not from `analysis_primary.py`. The two
+> implement the same declared endpoint with the same seed but differ in rarefaction draw, because
+> `analysis_secondary.py` consumes one module-level RNG across its four thresholds. The pre-registered
+> primary is `analysis_primary.py` (seed 20261021), which reproduces `results/primary_order.tsv`
+> bit-identically on rerun: **100 tested, 49 significant, 30 / 19**.
+>
+> **The count is draw-dependent.** Over 200 draws (`analysis_draw_stability.py`, post hoc) the number of
+> significant orders ranges **43–57** (median 51, sd 2.5), orders tested 96–103. Both stored runs fall
+> inside that range, so neither was miscoded — the single-draw design is unstable at about ±5 orders.
+> **The defensible claim is the 35 orders significant in ≥ 95 % of draws** (21 water, 14 sediment;
+> 28 in every draw), in `results/draw_stability.tsv`. Use that set, not one draw's count, in anything
+> written up.
 
 The pattern is biologically coherent, which is the strongest evidence that the pipeline works — nothing in
 the method knows about fungal biology:
@@ -22,11 +36,14 @@ the method knows about fungal biology:
 | threshold | pairs | orders tested | significant |
 |---|---|---|---|
 | ≥ 50 | 353 | 105 | 54 |
-| ≥ 100 (primary) | 239 | 99 | 51 |
+| ≥ 100 | 239 | 99 | 51 |
 | ≥ 200 | 127 | 84 | 26 |
 | ≥ 400 | 69 | 56 | 14 |
 
-The count falls with the threshold because N falls; the direction and identity of the strongest orders do not.
+These are `analysis_secondary.py`'s rows, each computed from a different point in one sequential RNG, so
+every count here carries the ±5-order draw uncertainty measured above; the ≥ 100 row is **not** the
+pre-registered primary (which is 100 tested / 49 significant). The count falls with the threshold because
+N falls; the direction and identity of the strongest orders do not.
 
 ## Habitat preference is taxonomically conserved
 
@@ -52,6 +69,12 @@ taxonomic.
 
 Of 33 orders significant overall and testable in both regions, **30 (91 %) point the same way**.
 Disagreeing: Auriculariales, Pezizales, Trechisporales.
+
+> **Caveat added 2026-10-21.** All three "disagreeing" orders are in the draw-unstable set: across 200
+> draws they are significant in only 27, 136 and 185 of 200 respectively. Their disagreement is in
+> substantial part rarefaction noise rather than biogeography, and the 91 % figure should be read as an
+> agreement among orders of mixed stability. Restricting to the draw-stable 35 would be the cleaner test
+> and has not been run.
 
 **This is not a global claim.** Only Europe (152 pairs) and North America (37) clear the threshold; at
 ≥ 50 reads Asia joins with 30 pairs. Africa, South America, Oceania and Antarctica have too few
@@ -122,8 +145,15 @@ saprotrophs 0.38 toward sediment — but the data do not support it. Reported as
 - Some "orders" are environmental clade labels (`Branch03`, `GS05`, `*_incertae_sedis`), not formal taxa.
 - Only the primary model's multiple-testing correction is applied; the regional and functional analyses are
   secondary and uncorrected across their own comparisons.
+- **The single-draw design is draw-dependent** (43–57 significant orders over 200 draws). Only the 35
+  orders significant in ≥ 95 % of draws should be treated as established.
+- **This result did not replicate in NEON.** See `NEON_RESULTS.md`: the phenomenon reproduces (37 of 103
+  orders significant in NEON's own data) but the per-order direction does not (sign agreement
+  14/27 = 51.9 %, p = 1.0). The zoosporic lineages do replicate, pre-specified and strongly. Any write-up
+  must carry this; a per-order preference table cannot be presented as a general result.
 
 ## Files
 
 `results/primary_order.tsv` · `results/regional_fractions.tsv` · `results/matched_fungi.tsv` ·
-`results/matched_euk.tsv` · `results/secondary_summary.json` · `results/matched_summary.json`
+`results/matched_euk.tsv` · `results/secondary_summary.json` · `results/matched_summary.json` ·
+`results/draw_stability.tsv` · external validation in `NEON_RESULTS.md`

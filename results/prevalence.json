@@ -1,0 +1,72 @@
+{
+ "plan_sha256": "35e1f6be2c337ffdbd62d15f2fe387166c73a6bb62b1ccb546498f1c503ba00b",
+ "measured_b": 0.485,
+ "measured_jaccard": 0.281,
+ "n_pairs": 102,
+ "n_orders": 254,
+ "n_draws": 30,
+ "rungs": [
+  100,
+  300,
+  1000,
+  3000,
+  10000
+ ],
+ "summary": {
+  "M1_pooled": {
+   "b": 0.9579847434744081,
+   "r2": 0.9996663800757309,
+   "jaccard": 0.0,
+   "n_lo": 40.0,
+   "n_hi": 96.0
+  },
+  "M2_per_pair": {
+   "b": 0.4841788579332806,
+   "r2": 0.9179396990623712,
+   "jaccard": 0.3,
+   "n_lo": 36.0,
+   "n_hi": 77.5
+  },
+  "M2b_per_pair_no_zeros": {
+   "b": 1.1827789456430735,
+   "r2": 0.989488281920976,
+   "jaccard": 0.1214574898785425,
+   "n_lo": 39.0,
+   "n_hi": 234.0
+  },
+  "M3_prevalence": {
+   "b": 0.4316146088824407,
+   "r2": 0.9611295267811938,
+   "jaccard": 0.36607142857142855,
+   "n_lo": 45.0,
+   "n_hi": 109.0
+  }
+ },
+ "verdicts": {
+  "D1": {
+   "prediction": "per-pair abundance reproduces the measured exponent",
+   "value": "b(M2) = +0.484 vs measured 0.485, off by 0.001",
+   "verdict": "CONFIRMED"
+  },
+  "D2": {
+   "prediction": "and the measured turnover",
+   "value": "jaccard(M2) = 0.300 vs measured 0.281, off by 0.019",
+   "verdict": "CONFIRMED"
+  },
+  "D3": {
+   "prediction": "CONTROL: the pooled model still fails",
+   "value": "b(M1) = +0.958 (sweep gave ~0.96)",
+   "verdict": "CONFIRMED"
+  },
+  "D4": {
+   "prediction": "structure alone suffices, without the real matrix",
+   "value": "b(M3) = +0.432",
+   "verdict": "CONFIRMED"
+  },
+  "D5": {
+   "prediction": "absences, not graded variation, are what matter",
+   "value": "b(M2b) - b(M2) = +1.183 - +0.484 = +0.699",
+   "verdict": "CONFIRMED"
+  }
+ }
+}

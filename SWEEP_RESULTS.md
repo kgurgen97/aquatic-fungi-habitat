@@ -118,11 +118,23 @@ moves the turnover, and the "level not exponent" framing is not supported as sta
 measurable taxa depend on depth, while the apparent strength of the preferences you do measure is
 essentially depth-invariant. S5 plus the ladder's 0.024 support this without qualification.
 
-**Cannot say:** that the independent-Poisson account is quantitatively right for this dataset. It
-over-predicts re-selection by about a factor of two and over-predicts turnover badly. The mechanism is
-*sufficient* to produce depth-dependent membership — that was § 3.4's simulation — but it is not
-calibrated, and the ladder's *D*^−0.485 remains an empirical measurement without a validated model behind
-it.
+**Cannot say:** that the independent-Poisson account is quantitatively right for this dataset *when
+abundance is pooled*. Pooled, it over-predicts re-selection by about a factor of two and over-predicts
+turnover badly.
+
+> **Resolved, 2026-10-23, by `PREVALENCE_PLAN.md`.** This section originally ended: "…but it is not
+> calibrated, and the ladder's *D*^−0.485 remains an empirical measurement without a validated model
+> behind it." **That was too pessimistic.** The diagnosis below was right: pooling was the entire
+> discrepancy. Representing abundance per sample instead of pooled moves *b* from 0.958 to 0.484 against
+> the measured 0.485, with Jaccard 0.300 against 0.281 — the same harness, the same orders and pairs, one
+> change. A two-parameter model keeping only each order's occupancy and its pooled abundance recovers
+> *b* = 0.432 without the observed matrix at all.
+>
+> So the mechanism *is* calibrated, with the amendment that abundance must be represented per site. See
+> `PREVALENCE_RESULTS.md`, which also explains why the near-exact match should **not** be the headline:
+> simulating detection from a sample's own read fractions is a Poisson approximation to the rarefaction
+> being modelled, so that agreement is close to arithmetic. The informative numbers are the contrasts
+> between the four variants, and the median order being present in only 9.8 % of samples.
 
 **Must not say:** that the abundance distribution's shape explains the measured exponent. It does not.
 

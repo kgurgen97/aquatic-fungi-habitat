@@ -451,15 +451,43 @@ of 0.012–0.039 against a required 0.25 (S1 failed). Site heterogeneity moves *
 distribution shape *does* explain is the **growth** of the testable set — log-uniform grows 0.96–1.01-fold
 while the empirical vector grows 2.15-fold, matching § 3.4a exactly.
 
-Reality therefore re-selects about half as much as independent-Poisson detection predicts: real taxa
-persist across depths more than the model allows. Of 240 cells only three reproduce both *b* and Jaccard
-within 0.15, all with more pairs than the experiment used and a low threshold — that is, a lower effective
-bar, letting rarer taxa qualify at low depth. The likeliest missing ingredient is structure the model
-lacks: a taxon locally abundant at a subset of sites is detected there at every depth while its pooled
-abundance stays low. Testing that needs per-site abundance and a site-level prevalence model, which is not
-in this plan and is not claimed. Until then **the *D*^−0.485 law is an empirical measurement without a
-validated mechanism**, while the depth-invariance it sits beside is both measured and general. Two further
-predictions came out inconclusive and are reported in `SWEEP_RESULTS.md`.
+Pooled, then, the model re-selects about twice as much as reality does. Of 240 cells only three reproduce
+both *b* and Jaccard within 0.15, all with a lower effective bar than the experiment used, which lets
+rarer taxa qualify at low depth. Two further predictions came out inconclusive and are in
+`SWEEP_RESULTS.md`.
+
+### 3.4c What was wrong was the pooling
+
+The discrepancy turned out to be an artefact of representing each order by a single abundance. A
+pre-registered follow-up (`PREVALENCE_PLAN.md`, frozen before its analysis existed) compared four ways of
+supplying abundance to the same detection model, on the same 102 pairs, rungs and threshold.
+
+| variant | *b* | Jaccard | testable, 100 → 10 000 |
+|---|---|---|---|
+| pooled *â*, one value per order (control) | +0.958 | 0.000 | 40 → 96 |
+| the observed per-sample abundances | **+0.484** | **0.300** | **36 → 78** |
+| per-sample, but with every zero filled in | +1.183 | 0.121 | 39 → 234 |
+| occupancy + mean abundance only, two parameters | +0.432 | 0.366 | 45 → 109 |
+
+Measured on real data: *b* = 0.485, Jaccard = 0.281, 36 → 77 orders. All five pre-registered predictions
+were confirmed, including the control, which reproduced the pooled result (0.958 against the sweep's 0.96)
+and so establishes that the two analyses agree where they should.
+
+**The near-exact match in row two is close to arithmetic and is not the result.** Simulating detection
+from a sample's own read fractions is a Poisson approximation to the rarefaction being modelled, so it
+reproduces the real procedure by construction. The informative facts are the contrasts. Changing nothing
+but whether abundance varies between samples moves the exponent from 0.958 to 0.484 — the whole gap.
+Filling in the zeros while keeping all the graded variation sends it to 1.183 and inflates the testable
+set three-fold, so it is **where a taxon is absent, not how much its abundance varies where present**,
+that decides what is measurable at low depth. The median order here is present in only **9.8 %** of the
+204 samples, 91 of 254 orders in 5 % or fewer. And two numbers per taxon suffice: occupancy plus mean
+abundance, with the observed table discarded, recovers *b* = 0.432 against 0.485.
+
+So the mechanism is quantitatively calibrated after all, with one amendment — abundance must be
+represented per site. Pooling a sparse community into one value per taxon makes every taxon look uniformly
+rare rather than locally common, which makes low-depth testability look impossible and predicts
+near-total re-selection. The limits, including that an exact zero may be a sampling zero and that
+occupancy measured on deep samples is itself depth-dependent, are in `PREVALENCE_RESULTS.md`.
 
 ### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 

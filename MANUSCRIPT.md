@@ -402,6 +402,9 @@ identical throughout; only depth changes.
 | 3 000 | 72 | 1.51 × 10⁻³ | 4.52 | 0.122 | 0.783 | 0.044 |
 | 10 000 | 77 | 1.03 × 10⁻³ | 10.30 | 0.125 | 1.000 | 0.000 |
 
+Figure 6a and 6b show the ladder: the abundance of the measurable set falling with depth, the set turning
+over, and the apparent effect size staying put.
+
 **Three results confirm the mechanism's consequence.** Depth strongly changes *which* orders are
 measurable: the testable sets at 100 and at 10 000 reads share only 28 % of their union (P4, bar < 0.6).
 The set moves down the abundance distribution, median *â* falling 10.8-fold (P1, bar ≥ 10-fold). Yet
@@ -438,7 +441,8 @@ in kind.
 
 **The depth-invariance of apparent effect size is universal.** In **239 of 239** interpretable cells the
 median |index − 0.5| moves by ≤ 0.10 across the 100-fold depth range; the largest range anywhere is
-**0.058** and the median is **0.0109**, with the ladder's observed 0.024 inside that distribution (S5).
+**0.058** and the median is **0.0109**, with the ladder's observed 0.024 inside that distribution
+(S5; Figure 6c).
 This is the claim §§ 3.3–3.4a rest on, and it holds over the whole swept space rather than at one point.
 
 **The model does not explain the measured exponent, and the explanation we first offered was wrong.** Fed
@@ -469,7 +473,8 @@ supplying abundance to the same detection model, on the same 102 pairs, rungs an
 | per-sample, but with every zero filled in | +1.183 | 0.121 | 39 → 234 |
 | occupancy + mean abundance only, two parameters | +0.432 | 0.366 | 45 → 109 |
 
-Measured on real data: *b* = 0.485, Jaccard = 0.281, 36 → 77 orders. All five pre-registered predictions
+Measured on real data: *b* = 0.485, Jaccard = 0.281, 36 → 77 orders. Figure 6a plots the four against the
+measurement and Figure 6d their exponents. All five pre-registered predictions
 were confirmed, including the control, which reproduced the pooled result (0.958 against the sweep's 0.96)
 and so establishes that the two analyses agree where they should.
 
@@ -681,11 +686,33 @@ E[index] = *P*_w(1 − *P*_s)/[*P*_w(1 − *P*_s) + *P*_s(1 − *P*_w)] with *P*
 true abundance ratios; the sediment abundance is 10⁻⁴ throughout. Dotted lines mark the two datasets'
 depths. The index a study reports depends on how deeply it sequenced, at fixed biological truth.
 (**b**) Median relative abundance of the orders that clear the ≥ 20-discordant-pairs requirement, against
-depth, in a simulated community spanning 10⁻⁶ to 10⁻¹. The threshold holds the testable set at a fixed
-position on the detection curve (median λ 0.22–0.49) while the abundance of the taxa occupying it falls
-454-fold. (**c**) Significant orders per draw in 200 simulated draws of a FunAqua-like community (239
-pairs, depth 211, observed abundance distribution), against the range observed in the real data
-(shaded, median marked).
+depth, **in a simulated community** spanning 10⁻⁶ to 10⁻¹ drawn log-uniformly. In *this* community the
+threshold holds the testable set at a fixed position on the detection curve (median λ 0.22–0.49) while the
+abundance of the taxa occupying it falls 454-fold. Real data behave differently, for a reason that turns
+out to be instructive: see § 3.4a and Figure 6. (**c**) Significant orders per draw in 200 simulated draws
+of a FunAqua-like community (239 pairs, depth 211, observed abundance distribution), against the range
+observed in the real data (shaded, median marked).
+
+**Figure 6. The mechanism in real data, and what a model has to contain to reproduce it.**
+(**a**) Median relative abundance of the orders clearing the ≥ 20-discordant-pairs threshold, against
+rarefaction depth, for the 102 NEON pairs of § 3.4a. Heavy black rings are the measurement; coloured lines
+are the same detection model supplied with abundance four different ways. The *observed per sample* line
+lies under the rings — that match is close to arithmetic, as § 3.4c explains, and is not the result. The
+result is the distance between the lines: pooling one abundance per order (orange squares) falls far too
+steeply, and filling in the zeros (orange triangles) falls more steeply still.
+(**b**) What depth changes and what it does not, on the same 102 pairs. Blue, left axis: overlap of the
+testable set with the set at the deepest rung, rising from 0.281 to 1 as depth increases. Orange, right
+axis: median |preference − 0.5| over the testable set, which moves only from 0.122 to 0.145 across the
+same 100-fold range. **The two axes differ on purpose**; drawn on one 0–1 axis the orange line is pinned
+to the floor and looks flat because Jaccard dominates the scale, which would argue the paper's claim by
+squashing rather than by evidence.
+(**c**) How general that flatness is. Distribution of the depth-range of median |preference − 0.5| across
+the 239 interpretable cells of the § 3.4b sweep — four abundance distributions, effect sizes 1× to 16×,
+three thresholds, two pair counts, site heterogeneity on and off. Solid line, the real ladder's 0.024;
+dashed line, the pre-registered bar of 0.10, which no cell approaches.
+(**d**) The re-selection exponent implied by each way of supplying abundance, against the measured 0.485
+(solid line). Occupancy plus mean abundance — two numbers per taxon, with the observed table discarded —
+lands at 0.43.
 
 **Figure 4. Agreement with FunAqua under capping of NEON's sequencing depth.** Direction agreement for
 the 49 FunAqua-significant orders (blue) and for the 35 draw-stable orders (orange), as NEON's within-pair
@@ -860,6 +887,8 @@ companion pseudogene study and is cited nowhere in this manuscript.
    | 2 | FunAqua against NEON preference index, 27 orders, agreement quadrants | `fig2_transfer_failure` |
    | 3 | median effect magnitude and Levins *B* by kingdom, two panels | `fig3_kingdoms` |
    | 4 | agreement against NEON depth cap, both comparison sets | `fig4_depth_probe` |
+   | 5 | the algebra and the idealised simulation, three panels | `fig5_simulation` |
+   | 6 | the mechanism in real data: ladder, sweep, four abundance variants | `fig6_mechanism_in_data` |
 
    Still to decide: whether Fig 4 belongs in the main text or the supplement, given that it is post hoc
    and reaches significance at no cap.

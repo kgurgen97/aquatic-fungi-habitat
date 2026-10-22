@@ -259,5 +259,108 @@ for a, L in zip(axes, "abc"):
     panel(a, L, dx=-0.30)
 save(fig, "fig5_simulation")
 
+# ---------------------------------------------------------------- Figure 6
+# The mechanism in real data: the depth ladder (3.4a), the sweep's universality
+# (3.4b) and the four ways of supplying abundance (3.4c). Figure 5 is the algebra
+# and the idealised simulation; this one is what the data say.
+dl = json.load((R / "depth_ladder.json").open())
+dlt = pd.read_csv(R / "depth_ladder.tsv", sep="\t")
+pv = json.load((R / "prevalence.json").open())
+pvt = pd.read_csv(R / "prevalence.tsv", sep="\t")
+swt = pd.read_csv(R / "sweep.tsv", sep="\t")
+
+LAD = sorted(int(k) for k in dl["per_rung"])
+lad_a = np.array([dl["per_rung"][str(d)]["median_abundance"] for d in LAD])
+lad_j = np.array([dl["per_rung"][str(d)]["jaccard_vs_top"] for d in LAD])
+lad_e = np.array([dl["per_rung"][str(d)]["median_effect"] for d in LAD])
+MEASURED_B = 0.485
+MEASURED_J = dl["per_rung"][str(LAD[0])]["jaccard_vs_top"]
+
+# The figure must not drift from the analyses it draws.
+assert abs(MEASURED_J - 0.281) < 5e-4, f"ladder jaccard moved: {MEASURED_J}"
+assert dl["n_pairs"] == pv["n_pairs"] == 102, "the two analyses used different pairs"
+
+VAR_LABEL = {
+    "M1_pooled": "pooled, one value per order",
+    "M2_per_pair": "observed per sample",
+    "M2b_per_pair_no_zeros": "per sample, zeros filled",
+    "M3_prevalence": "occupancy + mean only",
+}
+VAR_STYLE = {                      # colour, dash, marker
+    "M1_pooled": (ORANGE, (0, (3.2, 1.4)), "s"),
+    "M2_per_pair": (BLUE, "solid", "o"),
+    "M2b_per_pair_no_zeros": (ORANGE, (0, (1.1, 1.1)), "^"),
+    "M3_prevalence": (BLUE, (0, (4.5, 1.3)), "D"),
+}
+
+fig, axes = plt.subplots(2, 2, figsize=(W2, W2 * 0.62))
+(axa, axb), (axc, axd) = axes
+
+# (a) median abundance of the testable set: reality against the four models
+for v, (col, dash, mk) in VAR_STYLE.items():
+    q = pvt[pvt.variant == v].sort_values("rung")
+    axa.plot(q.rung, q.median_a, color=col, linestyle=dash, linewidth=0.8,
+             marker=mk, markersize=2.2, markerfacecolor="none",
+             markeredgewidth=0.6, label=VAR_LABEL[v], zorder=2)
+axa.plot(LAD, lad_a, color=INK, linewidth=0, marker="o", markersize=4.0,
+         markerfacecolor="none", markeredgewidth=1.1, label="measured", zorder=3)
+axa.set_xscale("log"); axa.set_yscale("log")
+axa.set_xlabel("rarefaction depth, reads per sample")
+axa.set_ylabel("median abundance of\nthe testable set")
+axa.legend(loc="lower left", ncol=1)
+
+# (b) what changes with depth and what does not.
+# Two axes on purpose. Sharing one 0-1 axis pins the effect-magnitude line to the
+# floor, which makes it look flat because Jaccard dominates the scale - and its
+# flatness is the paper's claim, so it must not be argued by squashing. On its own
+# axis the line still reads as flat, which is the honest version.
+axb.plot(LAD, lad_j, color=BLUE, marker="o", markersize=2.8)
+axb.set_xscale("log")
+axb.set_ylim(-0.03, 1.05)
+axb.set_xlabel("rarefaction depth, reads per sample")
+axb.set_ylabel("set overlap with the deepest rung\n(Jaccard)", color=BLUE)
+axb.tick_params(axis="y", colors=BLUE)
+axb.spines["left"].set_color(BLUE)
+
+axb2 = axb.twinx()
+axb2.plot(LAD, lad_e, color=ORANGE, marker="s", markersize=2.6)
+axb2.set_ylim(0, 0.30)
+axb2.set_ylabel("median |preference − 0.5|", color=ORANGE)
+axb2.tick_params(axis="y", colors=ORANGE)
+axb2.spines["right"].set_visible(True)
+axb2.spines["right"].set_color(ORANGE)
+axb2.spines["top"].set_visible(False)
+
+# (c) the sweep: is depth-invariance of apparent effect general?
+good = swt[swt.r2 >= 0.5]
+axc.hist(good.effect_range, bins=np.linspace(0, 0.12, 25), color=BLUE,
+         edgecolor="none", alpha=0.85)
+axc.axvline(lad_e.max() - lad_e.min(), color=INK, linewidth=0.9)
+axc.axvline(0.10, color=MUTED, linewidth=0.7, linestyle=(0, (2.4, 1.6)))
+axc.set_xlabel("range of median |preference − 0.5| across depth")
+axc.set_ylabel(f"parameter sets (of {len(good)})")
+
+# (d) the exponent each way of supplying abundance implies
+ys = list(range(len(VAR_STYLE)))[::-1]
+for y, (v, (col, _, mk)) in zip(ys, VAR_STYLE.items()):
+    b = pv["summary"][v]["b"]
+    axd.plot([b], [y], marker=mk, markersize=4.2, color=col,
+             markerfacecolor="none", markeredgewidth=1.1)
+    axd.text(b, y + 0.26, f"{b:.2f}", ha="center", va="bottom",
+             fontsize=6, color=INK2)
+axd.axvline(MEASURED_B, color=INK, linewidth=0.9)
+axd.set_yticks(ys)
+axd.set_yticklabels([VAR_LABEL[v] for v in VAR_STYLE])
+axd.set_ylim(-0.6, len(ys) - 0.3)
+axd.set_xlim(0.3, 1.32)
+axd.set_xlabel("re-selection exponent  $b$  in  median $a \\propto D^{-b}$")
+axd.tick_params(axis="y", length=0)
+
+for a, L in zip((axa, axb, axc, axd), "abcd"):
+    panel(a, L, dx=-0.22 if a in (axa, axc) else -0.17)
+axd.yaxis.set_tick_params(pad=1.0)
+fig.subplots_adjust(hspace=0.42, wspace=0.34)
+save(fig, "fig6_mechanism_in_data")
+
 # Counted, not typed: this message said "four" for a while after Figure 5 landed.
 print(f"\n{len(list(F.glob('fig*.png')))} figures in figures/, set in {FAM}")

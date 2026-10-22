@@ -31,7 +31,7 @@ value of 1 means a fungal label aggregates as much diversity as a non-fungal one
 where it matters (0.96 at order, 0.95 at class); metaPR2 assigns fungi 1.5–2.2× coarser labels at every
 rank coarse enough for the 44 paired coastal samples available, because Ascomycota and Basidiomycota
 collapse into six subphylum labels while chytrids keep real orders. Since coarser aggregation
-demonstrably weakens apparent preference (main text § 3.4), a test on those data would have confirmed our
+demonstrably weakens apparent preference (main text § 3.5), a test on those data would have confirmed our
 hypothesis for the wrong reason.
 
 ---

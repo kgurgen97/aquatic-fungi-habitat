@@ -12,15 +12,19 @@ Target: *Molecular Ecology Resources* (methods-leaning, Q1). Alternatives: *Envi
 
 ## Title
 
-**What transfers between amplicon datasets and what does not: habitat specialisation of aquatic fungi
-measured twice**
+**Minimum-evidence thresholds decide which taxa a metabarcoding survey can measure, not how specialised
+they look: why per-taxon habitat preferences do not transfer between datasets**
 
-Alternative, biology-led: *Fungi are generalists among aquatic eukaryotes across the water–sediment
-boundary*
+Shorter alternative, same claim: *Depth changes which taxa are measurable, not how specialised they
+appear: a mechanism for the non-transferability of per-taxon habitat preferences*
+
+Rejected, biology-led: *Fungi are generalists among aquatic eukaryotes across the water–sediment boundary*
+— § 3.5 shows fungi are indistinguishable from Alveolata and that the pooled gap is driven by Metazoa and
+Straminipila, so this title would overstate the paper's own table.
 
 ## Running title
 
-Transferability of habitat-specialisation estimates
+Thresholds decide what metabarcoding can measure
 
 ## Authors
 
@@ -37,28 +41,29 @@ Correspondence: karagurgen23@gmail.com
 *(300 words)*
 
 Metabarcoding is increasingly used to ask which taxa specialise between adjacent habitats, but such
-estimates are rarely tested for transferability. We measured habitat preference across the water–sediment
-boundary in FunAqua, a global paired survey of aquatic fungi (50 152 OTUs, 2 375 samples), rarefying both
-members of every site pair to that pair's own minimum depth, equalising detection power by
-construction. At order level, 239 qualifying pairs yielded 49 orders with a significant preference:
-zoosporic lineages in the water column, soil-derived saprotrophs in the sediment.
-
-These estimates travelled poorly. The count of significant orders is unstable to the rarefaction draw
-alone, ranging from 43 to 57 across 200 draws; only 35 are significant in ≥ 95 % of them. An
-independent paired dataset (NEON, 149 pairs, 23 US streams) reproduces habitat partitioning — 37 of 103
-orders show a significant preference — yet the direction agrees with FunAqua for only 14 of 27 comparable
-orders (51.9 %, p = 1.0). What did transfer is a group-level pattern: fungi sit at the generalist end of
-the eukaryotic range, median preference magnitude 0.156 against 0.228 for non-fungal eukaryotes in the same
-assay and samples, surviving five pre-registered robustness checks.
-
-Simulation under known truth supplies the mechanism: a minimum-evidence threshold selects taxa whose
-expected read count is near one at whatever depth is used. Across a 1000-fold depth change the testable
+estimates are rarely tested for transferability. Any such analysis needs a minimum-evidence threshold, and
+simulation under known truth shows this threshold is not a neutral filter: it admits taxa whose
+expected read count is near one, at whatever depth is used. Across a 1000-fold depth change the testable
 set's median detection parameter holds at 0.22–0.49 while its median abundance falls 454-fold. Depth
-changes which taxa are measurable, not how extreme the estimates look — the two datasets share only
-69 of 134 testable orders — so marginal distributions reproduce while per-taxon values do not.
+changes which taxa are measurable, not how specialised they appear, so marginal distributions should
+reproduce across datasets while per-taxon values should not.
+
+We tested this across the water–sediment boundary in FunAqua, a global paired survey of aquatic fungi
+(50 152 OTUs, 2 375 samples), rarefying both members of every site pair to its own minimum depth.
+Of 100 testable orders, 49 show a significant preference — zoosporic lineages in the water column,
+soil-derived saprotrophs in the sediment — but that count is unstable to the rarefaction draw alone,
+ranging from 43 to 57 across 200 draws.
+
+Both predictions hold. A paired dataset 150-fold deeper (NEON, 149 pairs, 23 US streams) reproduces
+habitat partitioning, with 37 of 103 orders significant, yet agrees with FunAqua on direction for only
+14 of 27 comparable orders (51.9 %, p = 1.0); the two datasets share just 69 of 134 testable orders. What
+carries across is a contrast between large groups: animals and plants are the most compartment-bound
+(median preference magnitude 0.294 and 0.227) while fungi and the protist groups are not, with fungi
+(0.150) indistinguishable from Alveolata (0.157). The pooled difference survives five pre-registered
+robustness checks but cannot be narrowed to single kingdoms.
 
 Per-taxon specialisation estimates from single amplicon surveys should not be treated as transferable;
-matched read depth and matched taxonomic rank are prerequisites for any cross-dataset comparison.
+matched read depth and taxonomic rank are prerequisites for any cross-dataset comparison.
 
 **Keywords:** metabarcoding; habitat specialisation; aquatic fungi; reproducibility; niche breadth;
 rarefaction
@@ -76,6 +81,23 @@ is also fragile in ways that are not usually examined. Sequencing depth differs 
 samples and between datasets; taxonomic resolution differs between reference databases and between the
 groups being compared; and presence/absence at any fixed depth is a threshold applied to a continuous
 abundance distribution.
+
+One consequence of that last point turns out to govern everything else, and it is the main result of this
+paper. Every such analysis needs a minimum-evidence rule — a taxon must appear in enough samples, or
+enough discordant pairs, before it can be tested at all. That rule is not a neutral filter. A taxon
+contributes evidence only while its detection probability sits away from both 0 and 1, which happens when
+its expected read count is near one; so the rule admits taxa whose abundance multiplied by depth is near
+one, at whatever depth is used. Raise the depth and the set that passes does not become more extreme — it
+moves down the abundance distribution to rarer taxa that now sit in the same place on the detection curve.
+Depth therefore changes *which* taxa a survey can measure rather than how specialised they appear.
+
+This predicts a specific and testable pattern: the distribution of specialisation estimates should
+reproduce between datasets of very different depth, while the estimates for individually named taxa should
+not, because the two datasets are measuring different taxa. It also says which claims from such a survey
+are safe to carry forward — aggregate contrasts between large groups, which average over whichever taxa
+happened to pass — and which are not, namely any statement about a named taxon. We derive the mechanism
+under known truth, confirm the pattern it predicts in two independent paired datasets, and show that a
+prediction we first drew from the same algebra fails, for a reason that is itself the result.
 
 Aquatic fungi are a good case in which to examine this. They are abundant in both the water column and the
 sediment, they have well-described dispersal differences — notably the flagellated zoospore of the
@@ -95,11 +117,14 @@ groups (Malard et al., 2022). That makes any opposite result worth examining car
 announcing.
 
 We set out to answer one question — do fungal clades specialise between water and sediment — and found
-that the more informative question was how far the answer travels. We report four things: the extent to
-which a single rarefaction draw determines the headline count; the failure of per-order preferences to
-replicate in an independent paired dataset; the one result that does replicate and survives
-stress-testing, namely where fungi sit relative to other eukaryotes; and a mechanism, derived under known
-truth, for why the first two hold together.
+that the measurement was more interesting than the answer. We report four things, in the order in which
+they constrain each other. The mechanism above is the first: a derivation under known truth, with the
+depth range over which the testable set holds its position on the detection curve. The second and third
+are what it accounts for in real data: a single rarefaction draw moves the headline count of specialised
+orders across a range of 14, and per-order preferences fail to replicate in an independent paired dataset
+even though that dataset reproduces habitat partitioning in aggregate. The fourth is what does carry
+across — a contrast between large groups, in which animals and plants are compartment-bound while fungi
+and the protist groups are not — together with the limits on how narrowly that contrast may be stated.
 
 **Hypotheses, and when they were fixed.** All analysis plans were written and committed to version control
 before the corresponding outcomes were computed; commit identifiers are given in § 2.7 so that the order of
@@ -119,7 +144,7 @@ sample depth is 125 reads.
 
 The fungal and non-fungal tables derive from **one amplicon, one reaction and one DNA extract**, split only
 by taxonomy: the project's own pipeline names them `fungiotu` and `eukotu` ("non-fungal eukaryotes OTU
-table"). This is the basis of the within-assay comparison in § 3.4 and also its principal limitation,
+table"). This is the basis of the within-assay comparison in § 3.5 and also its principal limitation,
 since ITS is a fungal barcode and non-fungal eukaryotes are off-target amplification (§ 4.4).
 
 Samples join to metadata on `sample_code` (2 375 of 2 375). A full stop (`.`) is FunAqua's marker for an
@@ -191,7 +216,7 @@ ITS. It was rejected on a measurable ground: PR2 assigns fungi systematically co
 Of 43 distinct fungal labels in its `order` column only 19 are genuinely order-rank; twelve are subphyla,
 and Ascomycota and Basidiomycota together collapse into six subphylum labels. ASVs per label run 1.5–2.2×
 higher for fungi at every rank coarse enough for the available 44 paired coastal samples. Since coarser
-aggregation demonstrably weakens apparent preference (§ 3.4), a test on that data would have produced a
+aggregation demonstrably weakens apparent preference (§ 3.5), a test on that data would have produced a
 spurious confirmation. For contrast, the same audit on FunAqua gives near parity — a fungal order
 aggregates 0.96× as much diversity as a non-fungal one (Class 0.95, Family 0.76).
 
@@ -296,7 +321,7 @@ undescribed environmental clade labels (GS05, GS07, GS10, GS11, Branch02, Branch
 has never been observed, so assigning them a flagellum on the strength of *Rozella* alone was weaker
 evidence than the Chytridiomycota assignment and should not have been treated as equivalent.
 
-### 3.3b Why the transfer fails: the testability threshold pins what is measured
+### 3.4 Why the transfer fails: the testability threshold pins what is measured
 
 Section 3.3 is an empirical failure. Simulation under known truth turns it into a
 mechanism (`analysis_simulation.py`; Figure 5).
@@ -322,11 +347,11 @@ a 1000-fold change in depth the median λ of the testable set holds at **0.22–
 |index − 0.5| holds at **0.304–0.350**, and the median *abundance* of that set falls **454-fold**.
 
 So depth does not change how extreme the indices look. It changes **which taxa occupy that position**.
-The two datasets test names drawn from different parts of their own abundance distributions: of 134
-orders testable in at least one dataset, only 69 are testable in both (Jaccard 0.51), with 31 unique to
-FunAqua and 34 to NEON.
+The two datasets test names drawn from different parts of their own abundance distributions: they share
+only **69 of 134** testable orders, that is, of the 134 orders testable in at least one dataset only 69
+are testable in both (Jaccard 0.51), with 31 unique to FunAqua and 34 to NEON.
 
-This resolves the apparent paradox in § 3.3 and § 3.4 — the marginal distribution of indices is
+This resolves the apparent paradox in § 3.3 and § 3.5 — the marginal distribution of indices is
 reproducible between datasets while the per-order values are not, so aggregate contrasts survive a
 comparison that per-taxon claims cannot.
 
@@ -336,7 +361,7 @@ sd 1.7) against the observed 43–57 (median 51, sd 2.5) — the same order of v
 (Figure 5c). The observed spread is somewhat wider, as expected given that the simulation assumes
 independent taxa and a simplified truth.
 
-### 3.4 What does transfer: fungi sit at the generalist end of the eukaryotic range
+### 3.5 What does transfer: animals and plants are compartment-bound, fungi and protists are not
 
 On the same 204 pairs at the same depth, the median effect magnitude is **0.156 for fungi against 0.228 for
 non-fungal eukaryotes**. Over 200 rarefaction draws the two ranges are 0.140–0.173 and 0.202–0.257 — they
@@ -379,7 +404,7 @@ Animals and plants are the most compartment-bound, which is biologically coheren
 structurally benthic or planktonic, whereas fungi and the protist groups disperse as spores or zoospores
 and use substrate in both compartments.
 
-### 3.5 The result is not an artefact of our choice of metric
+### 3.6 The result is not an artefact of our choice of metric
 
 Published niche-breadth work reports the opposite ordering — fungi *narrower* than protists in pond
 sediment (Hou et al., 2024) and smallest of four microbial groups in alpine soils (Malard et al., 2022).
@@ -407,13 +432,23 @@ two-compartment version and the across-samples version are informative.
 
 ## 4 Discussion
 
-### 4.1 Specialisation estimates are less transferable than they appear
+### 4.1 The threshold, not the biology, decides what a survey can measure
 
-The usual way to present an analysis like § 3.1 is a table of taxa with their preferred habitat. Our
-results argue against that presentation. The identity and direction of per-order preferences agreed with
-an independent paired dataset at chance (51.9 %, p = 1.0), even though both datasets independently detect
-habitat partitioning at similar rates (49/100 and 37/103). A per-order preference table from a single
-survey describes that survey.
+The mechanism in § 3.4 is the result we would carry to another dataset, because it does not depend on
+fungi, on this assay or on these habitats. Any analysis that tests taxa for habitat preference must first
+decide which taxa carry enough evidence to test, and that decision admits taxa sitting near the middle of
+the detection curve. Deeper sequencing moves the set that qualifies down the abundance distribution
+instead of sharpening the estimates for the taxa already in it. Two datasets at different depths therefore
+produce similar-looking distributions of specialisation over largely different taxa — here, 69 shared
+names out of 134.
+
+This reframes what looked like a replication failure. The usual way to present an analysis like § 3.1 is a
+table of taxa with their preferred habitat, and our results argue against that presentation: the identity
+and direction of per-order preferences agreed with an independent paired dataset at chance (51.9 %,
+p = 1.0) even though both datasets independently detect habitat partitioning at similar rates (49/100 and
+37/103). Those two facts are not in tension once the threshold is taken into account — the first is a
+statement about named taxa, the second about the marginal distribution, and the mechanism says the second
+can hold while the first does not. A per-order preference table from a single survey describes that survey.
 
 What did transfer was coarser: a group-level contrast with a large effect, measured within one assay on
 one set of samples. The practical reading is that cross-dataset claims should be pitched at the level of
@@ -434,7 +469,7 @@ to ~69 %, consistent with this being a contributor, though underpowered to confi
 **Matched rank.** The metaPR2 attempt failed for a different reason that is just as general: a reference
 database may assign systematically coarser ranks to one of the groups being compared. PR2 collapses
 Ascomycota and Basidiomycota into six subphylum labels while resolving chytrids to real orders. Because
-coarser aggregation weakens apparent preference (§ 3.4), such a test would have confirmed our hypothesis
+coarser aggregation weakens apparent preference (§ 3.5), such a test would have confirmed our hypothesis
 for the wrong reason. We report the rank-parity audit (fungi 0.96× non-fungal in FunAqua at order level)
 as a check that should accompany any between-group comparison.
 
@@ -448,14 +483,14 @@ many draws, and the reporting unit should be the set of taxa that are stable acr
 
 ### 4.4 Limitations
 
-**ITS is a fungal barcode.** This is the central limitation of § 3.4 and belongs with the claim wherever it
+**ITS is a fungal barcode.** This is the central limitation of § 3.5 and belongs with the claim wherever it
 is quoted. Non-fungal eukaryotes here are off-target amplification: their recovery efficiency is
 taxon-dependent and their ITS reference coverage is far thinner than UNITE's is for fungi. The design
 controls sample, day, assay and depth; it cannot make the two groups equally well served by the primers or
 the reference database. The claim is about what one ITS assay sees in paired water and sediment.
 Generalising it is a hypothesis for a multi-marker test.
 
-**No external validation of § 3.4 was possible.** NEON's paired products carry only 16S and ITS, and its
+**No external validation of § 3.5 was possible.** NEON's paired products carry only 16S and ITS, and its
 ITS tables are 100 % Fungi (37 493 and 16 919 rows, no other kingdom); metaPR2 fails the rank-comparability
 requirement above. Macroinvertebrate metabarcoding is benthic-only and zooplankton metabarcoding covers 7
 sites and water only — different organisms, sampling and primers. The result therefore rests on one
@@ -501,7 +536,7 @@ in each quadrant. The dashed line is 1:1. Agreement is 14 of 27 (51.9 %, 95 % CI
 exact binomial *p* = 1.0); Spearman +0.28 (*p* = 0.16). FunAqua 239 pairs, NEON 149 pairs across 23 US
 streams.
 
-**Figure 3. Fungi sit at the generalist end of the eukaryotic range, but are not distinguishable from
+**Figure 3. Animals and plants are the most compartment-bound; fungi are not distinguishable from
 Alveolata.** (**a**) Median effect magnitude |preference − 0.5| and (**b**) median Levins' niche breadth
 *B* across the two compartments, by kingdom, on the same 204 site pairs at the same per-pair rarefaction
 depth. Lower preference and higher *B* both indicate a more generalist distribution. Fungi (blue) are
@@ -623,7 +658,7 @@ companion pseudogene study and is cited nowhere in this manuscript.
    the check and are now in the text: (a) the Malfertheiner paper is *Community conservatism is widespread
    across microbial phyla and environments*, not an aquatic-specific paper, and the draft's gloss
    "leaving the fungal question open" was replaced by their own sentence, since they never mention fungi;
-   (b) § 3.5 had attributed Levins' *B* to both niche-breadth studies — Malard et al. use
+   (b) § 3.6 had attributed Levins' *B* to both niche-breadth studies — Malard et al. use
    environmental-gradient breadth, and Hou et al. use Levins only to split generalists from specialists;
    (c) Hou et al. is an indoor glass-tank experiment, not a field survey, and is now described as such;
    (d) Reñé et al. was in the list but cited nowhere, and reports the *opposite* vertical pattern, so it
@@ -632,9 +667,22 @@ companion pseudogene study and is cited nowhere in this manuscript.
    `opentree16.1`, all 77 OTT ids identical to the stored file, 70 placed in the tree — the number the
    text reports. NEON was pulled without pinning a release; the data availability statement now says so
    and shows that no provisional month entered the analysis.
-2. **Decide the framing.** The draft leads with transferability. The alternative leads with the fungal
-   generalist result and relegates the failed replications to a later section; that reads better but is
-   more exposed, because the headline would then rest on one dataset with an off-target amplicon.
+2. **Framing — decided, 2026-10-22: mechanism-led.** The biology-led alternative was rejected on the
+   paper's own evidence. Its headline would have been that fungi are generalists among eukaryotes, but
+   § 3.5 shows fungi (0.150) are indistinguishable from Alveolata (0.157) and that the pooled gap against
+   non-fungal eukaryotes is driven by Metazoa (0.294), Straminipila (0.271) and Viridiplantae (0.227); on
+   Levins' *B* pooled against protists, p = 0.163. The title would have been contradicted by the paper's
+   own table. § 3.5 also has no external validation available — NEON carries only 16S and ITS, and
+   metaPR2 failed rank-comparability — whereas the mechanism is derived under known truth and confirmed in
+   two independent datasets. The depth objection to § 3.5 does *not* hold, and that is worth keeping in
+   mind if a reviewer raises it: the comparison uses the same 204 pairs at the same per-pair depth, the
+   ≥ 20 discordant-pair rule applies identically to both groups, and robustness check (ii) leaves the
+   difference intact in 4 of 4 discordant-count bins. The mechanism in § 3.4 reinforces this rather than
+   undermining it, since both groups are filtered to the same position on the detection curve.
+   Consequently: the title, abstract, introduction and § 4.1 now lead with the mechanism; the mechanism
+   section was promoted from the interim label 3.3b to § 3.4, shifting the two sections after it; and the
+   phrase "fungi sit at the generalist end of the eukaryotic range" was replaced in the abstract, the
+   § 3.5 heading and the Figure 3 caption by what the table actually shows.
 3. **Figures — drawn.** `make_figures.py` produces all four as vector PDF and 600 dpi PNG in `figures/`,
    sized to 89 mm (single column) and 183 mm (double). Palette is categorical slots 1–2 of a validated
    default (blue `#2a78d6`, orange `#eb6834`); the validator passes all checks on all pairs, and the

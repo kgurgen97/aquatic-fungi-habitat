@@ -89,7 +89,11 @@ order of events is checkable rather than asserted:
 | Levins' *B* | `9e01ec4` (added before those outcomes were seen) | — |
 | metaPR2 replication | `eba1edf` | `b298db6` (not executed; see § S.4) |
 
-Each plan file carries its own SHA-256 in its header.
+Each plan's SHA-256 is recorded in `PLAN_HASHES.md`, alongside the commit that introduced it, and can be
+checked with `sha256sum *PLAN*.md`. The hashes are deliberately kept outside the plan files: writing a
+file's own hash into the file changes the file, so the recorded value could never match, and a frozen plan
+must not be edited for any reason. `verify_plan_hashes.py` asserts that every hash quoted anywhere in the
+repository matches the file on disk; all five plans pass.
 
 ### S.4 The metaPR2 assessment
 

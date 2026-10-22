@@ -572,8 +572,8 @@ returned RELEASE-2026 (generated 23 January 2026) together with any provisional 
 the event every site-month retrieved falls in 2018-03 to 2024-10, which RELEASE-2026 covers, so no
 provisional month entered the analysis. metaPR2 v4.0 is archived at Zenodo (10.5281/zenodo.21106507, MIT).
 The Open Tree query used synthesis `opentree16.1` (created 20 December 2025, taxonomy 3.7draft3), recorded
-in `results/opentree_version.json`. Analysis code, all frozen analysis plans with their SHA-256 hashes,
-and all result tables: `github.com/kgurgen97/aquatic-fungi-habitat`.
+in `results/opentree_version.json`. Analysis code, all frozen analysis plans with their SHA-256 hashes
+listed in `PLAN_HASHES.md`, and all result tables: `github.com/kgurgen97/aquatic-fungi-habitat`.
 
 ---
 

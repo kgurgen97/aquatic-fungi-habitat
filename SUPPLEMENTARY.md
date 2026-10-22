@@ -93,8 +93,8 @@ Each plan file carries its own SHA-256 in its header.
 
 ### S.4 The metaPR2 assessment
 
-metaPR2 v4.0 (Zenodo 10.5281/zenodo.21106507, 187 datasets, 18S rRNA, PR2 5.1.0) was obtained and
-assessed as a second external dataset, attractive because 18S carries the opposite primer bias to ITS and
+metaPR2 v4.0 (Vaulot et al., 2022; Zenodo 10.5281/zenodo.21106507, 187 datasets, 18S rRNA, annotated
+against PR² 5.1.0, Guillou et al., 2013) was obtained and assessed as a second external dataset, attractive because 18S carries the opposite primer bias to ITS and
 would therefore have tested whether the result is an artefact of the assay. It was not used, for reasons
 recorded in `METAPR2_RESULTS.md` and summarised here:
 

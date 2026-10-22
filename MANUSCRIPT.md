@@ -1,8 +1,9 @@
 # Draft manuscript
 
-**Status: first full draft, 2026-10-22.** Every number below is quoted from a file in `results/`; none is
-from memory. The reference list is incomplete and flagged as such in § References — do not submit before
-it is completed and every citation checked against the actual paper.
+**Status: first full draft, references verified, 2026-10-22.** Every number below is quoted from a file in
+`results/`; none is from memory. Every reference was checked against Crossref or the publisher's record on
+2026-10-22, and each cited finding was read in the paper itself rather than inferred from its title; the
+cross-check that no citation lacks an entry and no entry lacks a citation is in § 6.
 
 Target: *Molecular Ecology Resources* (methods-leaning, Q1). Alternatives: *Environmental Microbiology*,
 *ISME Communications*.
@@ -84,17 +85,21 @@ assembled from separate studies. Crucially, it also sequences the non-fungal euk
 primers capture, which provides a within-assay comparison group: the same samples, the same day, the same
 reaction.
 
-The closest existing work on habitat conservatism in aquatic microbial communities explicitly discarded
-all eukaryotic reads [ref: Malfertheiner et al. 2026], leaving the fungal question open. Published
-niche-breadth comparisons that do include fungi report them as *narrower* than protists, in freshwater
-sediment [ref: snail/sediment study] and in soils [ref: alpine soils study], which makes any opposite
-result worth examining carefully rather than announcing.
+The closest existing work on habitat conservatism in microbial communities is prokaryotic by design:
+Malfertheiner et al. (2026) "removed all eukaryotic reads to solely focus on the prokaryotic diversity",
+and their phylum-level analysis covers 3 archaeal and 16 bacterial phyla. They do not discuss fungi, so
+whether the pattern they describe extends to fungi is untested rather than disputed. Published
+niche-breadth comparisons that do include fungi report them as *narrower* than protists, in pond sediment
+(Hou et al., 2024) and in alpine soils, where fungi have the smallest mean niche breadth of four microbial
+groups (Malard et al., 2022). That makes any opposite result worth examining carefully rather than
+announcing.
 
 We set out to answer one question — do fungal clades specialise between water and sediment — and found
-that the more informative question was how far the answer travels. We report three things: the extent to
+that the more informative question was how far the answer travels. We report four things: the extent to
 which a single rarefaction draw determines the headline count; the failure of per-order preferences to
-replicate in an independent paired dataset; and the one result that does replicate and survives
-stress-testing, namely where fungi sit relative to other eukaryotes.
+replicate in an independent paired dataset; the one result that does replicate and survives
+stress-testing, namely where fungi sit relative to other eukaryotes; and a mechanism, derived under known
+truth, for why the first two hold together.
 
 **Hypotheses, and when they were fixed.** All analysis plans were written and committed to version control
 before the corresponding outcomes were computed; commit identifiers are given in § 2.7 so that the order of
@@ -106,7 +111,7 @@ events is checkable rather than asserted.
 
 ### 2.1 FunAqua data
 
-FunAqua [ref: data descriptor] is a global survey of aquatic eukaryotes in which the internal transcribed
+FunAqua (Prins et al., 2026) is a global survey of aquatic eukaryotes in which the internal transcribed
 spacer (ITS) region was targeted by long-read metabarcoding. The release used here contains 50 152 fungal
 OTUs and 87 656 non-fungal eukaryote OTUs across 2 375 samples (1 076 sediment, 1 299 filtered water) from
 1 452 sites in 87 countries, with water and sediment chemistry. The table is 99.87 % zeros and the median
@@ -139,7 +144,7 @@ eukaryote analysis).
 Rarefied counts are reduced to presence/absence per taxonomic Order. For each order we count the pairs in
 which it is present in water only (*w*) and in sediment only (*s*); concordant pairs carry no information
 about preference. Orders with at least 20 discordant pairs are tested by a two-sided exact binomial
-against 0.5, with Benjamini–Hochberg correction across tested orders. The **preference index** is
+against 0.5, with Benjamini–Hochberg correction (Benjamini and Hochberg, 1995) across tested orders. The **preference index** is
 *w*/(*w* + *s*), and the **effect magnitude** is |index − 0.5|.
 
 ### 2.4 Draw stability
@@ -163,7 +168,7 @@ neighbouring taxonomic ranks; (v) it must survive adjustment for the number of O
 also moved the primary metric from the count of significant orders to the median effect magnitude, on the
 grounds that the count measures power as much as biology.
 
-Levins' niche breadth *B* = 1/Σ*p*ᵢ² was computed on the same rarefied data, across the two compartments
+Levins' niche breadth *B* = 1/Σ*p*ᵢ² (Levins, 1968) was computed on the same rarefied data, across the two compartments
 and across all 408 samples, per order and per OTU, to allow comparison with the published niche-breadth
 literature on its own metric.
 
@@ -179,7 +184,8 @@ exact-date pairing yielded only 20 qualifying pairs, below the trigger of 60 fix
 pre-declared ±7-day rule applied, giving **149 pairs** across 23 sites and 128 dates. All other
 measurement was identical to § 2.2–2.3.
 
-**metaPR2 — examined and deliberately not used.** metaPR2 v4.0 (187 datasets, 18S rRNA, PR2 5.1.0) was
+**metaPR2 — examined and deliberately not used.** metaPR2 v4.0 (Vaulot et al., 2022; 187 datasets, 18S
+rRNA, annotated against PR² 5.1.0, Guillou et al., 2013) was
 obtained and assessed as a second external set, attractive because 18S has the opposite primer bias to
 ITS. It was rejected on a measurable ground: PR2 assigns fungi systematically coarser ranks than protists.
 Of 43 distinct fungal labels in its `order` column only 19 are genuinely order-rank; twelve are subphyla,
@@ -209,6 +215,13 @@ stage go to the water column — Zygophlyctidales (94 water-only against 14 sedi
 Chytridiales, Zygorhizidiales, Rozellales — while Sordariales, Microascales and Zoopagales, all soil and
 dung organisms, go to the sediment. Lulworthiales, marine and wood-degrading, is strongly sedimentary
 (index 0.074).
+
+One published vertical pattern runs the other way. Reñé et al. (2023) report that in the Gulf of Naples
+the sediment chytrid community is both more diverse and more abundant than the water-column one. That
+study is marine, single-site and based on 18S, and it measures standing diversity rather than paired
+preference, so it is not a contradiction of a paired test across 239 site pairs; but it is a reminder that
+the water-column signal we recover for zoosporic lineages is an average over those pairs, not a claim
+about any one site.
 
 Preference is conserved within taxonomic classes more than chance allows: mean within-class variance of
 the preference index is 0.0243 observed against 0.0350 expected under 10 000 permutations of order to
@@ -368,10 +381,13 @@ and use substrate in both compartments.
 
 ### 3.5 The result is not an artefact of our choice of metric
 
-Published niche-breadth work reports the opposite ordering — fungi *narrower* than protists in freshwater
-sediment and narrowest of all groups in alpine soils — using Levins' *B* across samples rather than paired
-compartment preference. The first question is therefore whether the two metrics measure the same thing
-here. **They do**: Spearman between Levins' *B* and the preference index is **−0.590** (p = 1.7 × 10⁻¹⁰)
+Published niche-breadth work reports the opposite ordering — fungi *narrower* than protists in pond
+sediment (Hou et al., 2024) and smallest of four microbial groups in alpine soils (Malard et al., 2022).
+Neither study measures what we measure. Malard et al. compute niche breadth along topoclimatic and edaphic
+gradients, not between paired compartments; Hou et al. report habitat niche breadth following Xiong et al.
+and use Levins' index only to split generalists from specialists, and their system is an indoor glass-tank
+experiment with pond-sourced sediment rather than a field survey. The first question is therefore whether
+a breadth measure and a paired-preference measure order taxa the same way on our own data. **They do**: Spearman between Levins' *B* and the preference index is **−0.590** (p = 1.7 × 10⁻¹⁰)
 within fungi and **−0.782** (p = 2.2 × 10⁻²⁶) within non-fungal eukaryotes. "These are different
 quantities" is not available as an explanation.
 
@@ -455,10 +471,12 @@ not phylogenetic non-independence.
 
 ### 4.5 Why the conservatism result is taxonomic and not phylogenetic
 
-Three routes to a resolved fungal phylogeny were attempted and all are closed. ITSx shows the amplicon
-carries a median of only ~61 bp of LSU, so neither the authors' representative sequences nor the raw reads
-(downloaded, 5.7 GB) can resolve deep fungal relationships; deep fungal phylogeny needs D1/D2, ~600 bp.
-Mapping orders onto the Open Tree of Life synthetic tree retrieved 70 orders, 47 with a preference value,
+Three routes to a resolved fungal phylogeny were attempted and all are closed. ITSx (Bengtsson-Palme
+et al., 2013) shows the amplicon carries a median of only ~61 bp of LSU, so neither the authors'
+representative sequences nor the raw reads (downloaded, 5.7 GB) can resolve deep fungal relationships;
+deep fungal phylogeny needs D1/D2, ~600 bp. Mapping orders onto the Open Tree of Life synthetic tree
+(synthesis `opentree16.1`, taxonomy 3.7draft3; Hinchliff et al., 2015; Redelings and Holder, 2017)
+matched 77 of our 100 tested order names and placed 70 of them in the tree, 47 with a preference value,
 but that tree is almost entirely polytomous — 4 resolved terminal sister pairs — and carries no branch
 lengths, so patristic distance reduces to counting nodes. On that topology phylogenetic distance does not
 predict difference in preference (Spearman +0.025, p = 0.41), which is **not** evidence against
@@ -511,50 +529,109 @@ the frozen validation plan.
 
 ## 5 Data availability
 
-FunAqua is publicly available under CC-BY [ref: data descriptor and Zenodo DOI to be inserted]. NEON data
-products DP1.20141.002 and DP1.20086.002 were obtained through the NEON API. metaPR2 v4.0 is archived at
-Zenodo (10.5281/zenodo.21106507, MIT). Analysis code, all frozen analysis plans with their SHA-256 hashes,
+FunAqua is described by Prins et al. (2026) and archived at Zenodo (10.5281/zenodo.17855266) under CC-BY.
+The two NEON products, *Surface water microbe community taxonomy* (DP1.20141.002,
+doi:10.48443/4xwg-p967) and *Benthic microbe community taxonomy* (DP1.20086.002, doi:10.48443/fe8q-qh09),
+were retrieved through the NEON Data API on 21 October 2026. The request did not pin a release, so it
+returned RELEASE-2026 (generated 23 January 2026) together with any provisional data then available; in
+the event every site-month retrieved falls in 2018-03 to 2024-10, which RELEASE-2026 covers, so no
+provisional month entered the analysis. metaPR2 v4.0 is archived at Zenodo (10.5281/zenodo.21106507, MIT).
+The Open Tree query used synthesis `opentree16.1` (created 20 December 2025, taxonomy 3.7draft3), recorded
+in `results/opentree_version.json`. Analysis code, all frozen analysis plans with their SHA-256 hashes,
 and all result tables: `github.com/kgurgen97/aquatic-fungi-habitat`.
 
 ---
 
-## 6 References — INCOMPLETE, DO NOT SUBMIT AS IS
+## 6 References
 
-These are the works the analysis actually leaned on. **Each entry still needs its full citation verified
-against the paper itself; several are recorded here only by topic and first author.** Nothing in this list
-should be cited without that check.
+Every entry below was checked against Crossref or the publisher's own record on 22 October 2026; author
+lists, volumes, article numbers and DOIs are taken from those records rather than from memory. Where a
+paper's finding is stated in the text, that finding was read in the paper's own abstract or text, not
+inferred from its title. Database entries carry the version actually used.
 
-1. FunAqua data descriptor — *needs full citation.* University of Tartu / Estonian University of Life
-   Sciences; dataset release used here distributed with `pipeline.zip` and a README describing ITS
-   long-read metabarcoding of 1 076 sediment and 1 299 filtered water samples.
-2. Malfertheiner et al. (2026) *Nature Ecology & Evolution* — community conservatism in aquatic microbial
-   communities; eukaryotic reads excluded. *Verify authors, title, volume, pages.*
-3. Reñé et al. (2023) *Marine Ecology* — vertical and temporal distribution of chytrids infecting diatoms,
-   Gulf of Naples; reports higher chytrid diversity and relative abundance in sediment than water column.
-   *Verify.*
-4. Vaulot, Geisen, Mahé, Bass — metaPR² database of eukaryotic 18S rRNA metabarcodes. *Verify journal and
-   year; the version used here is v4.0, Zenodo 10.5281/zenodo.21106507.*
-5. PR² reference database v5.1.0 — *needs citation.*
-6. Madin, J.S. et al. (2020) A synthesis of bacterial and archaeal phenotypic trait data.
-   *Scientific Data* **7**, 170. doi:10.1038/s41597-020-0497-4. *(Used in the companion pseudogene study,
-   not here — remove unless cited.)*
-7. Freshwater sediment niche-breadth comparison across bacteria, fungi and protists (snail *Bellamya
-   purificata* sediment study, MDPI *Microorganisms*, 2024) — reports bacteria < fungi < protists.
-   *Verify.*
-8. Alpine soil comparison of bacterial, archaeal, fungal and protist niche breadth
-   (*Soil Biology & Biochemistry*, 2022) — reports fungi narrowest. *Verify.*
-9. Benjamini & Hochberg (1995) — FDR control. *Standard; add full citation.*
-10. Levins, R. (1968) *Evolution in Changing Environments* — niche breadth *B*. *Add edition and pages.*
-11. ITSx — Bengtsson-Palme et al. *Add citation.*
-12. Open Tree of Life synthetic tree — *add citation and the version/date retrieved.*
-13. NEON data product documentation for DP1.20141.002 and DP1.20086.002, including the note that the
-    `.001` products were superseded from RELEASE-2025. *Add accession dates.*
+Benjamini, Y. and Hochberg, Y. (1995) Controlling the false discovery rate: a practical and powerful
+approach to multiple testing. *Journal of the Royal Statistical Society Series B* **57**, 289–300.
+doi:10.1111/j.2517-6161.1995.tb02031.x
+
+Bengtsson-Palme, J., Ryberg, M., Hartmann, M., Branco, S., Wang, Z., Godhe, A. *et al.* (2013) Improved
+software detection and extraction of ITS1 and ITS2 from ribosomal ITS sequences of fungi and other
+eukaryotes for analysis of environmental sequencing data. *Methods in Ecology and Evolution* **4**,
+914–919. doi:10.1111/2041-210X.12073  *(21 authors)*
+
+Guillou, L., Bachar, D., Audic, S., Bass, D., Berney, C., Bittner, L. *et al.* (2013) The Protist
+Ribosomal Reference database (PR2): a catalog of unicellular eukaryote Small Sub-Unit rRNA sequences with
+curated taxonomy. *Nucleic Acids Research* **41**, D597–D604. doi:10.1093/nar/gks1160  *(32 authors;
+version 5.1.0 used here)*
+
+Hinchliff, C.E., Smith, S.A., Allman, J.F., Burleigh, J.G., Chaudhary, R., Coghill, L.M. *et al.* (2015)
+Synthesis of phylogeny and taxonomy into a comprehensive tree of life. *Proceedings of the National
+Academy of Sciences* **112**, 12764–12769. doi:10.1073/pnas.1423041112  *(22 authors)*
+
+Hou, Y., Zhang, Y., Jia, R., Zhou, L., Li, B. and Zhu, J. (2024) Variations in the bacterial, fungal, and
+protist communities and their interactions within sediment affected by the benthic organism, snail
+*Bellamya purificata*. *Microorganisms* **12**, 2550. doi:10.3390/microorganisms12122550
+
+Levins, R. (1968) *Evolution in Changing Environments: Some Theoretical Explorations*. Monographs in
+Population Biology 2. Princeton, NJ: Princeton University Press, ix + 120 pp.
+
+Malard, L.A., Mod, H.K., Guex, N., Broennimann, O., Yashiro, E., Lara, E. *et al.* (2022) Comparative
+analysis of diversity and environmental niches of soil bacterial, archaeal, fungal and protist communities
+reveal niche divergences along environmental gradients in the Alps. *Soil Biology and Biochemistry*
+**169**, 108674. doi:10.1016/j.soilbio.2022.108674  *(9 authors)*
+
+Malfertheiner, L., Tackmann, J., Matias Rodrigues, J.F. and von Mering, C. (2026) Community conservatism
+is widespread across microbial phyla and environments. *Nature Ecology & Evolution* **10**, 232–245.
+doi:10.1038/s41559-025-02957-4
+
+National Ecological Observatory Network (2026) *Benthic microbe community taxonomy* (DP1.20086.002),
+RELEASE-2026. doi:10.48443/fe8q-qh09. Retrieved through the NEON Data API, 21 October 2026.
+
+National Ecological Observatory Network (2026) *Surface water microbe community taxonomy*
+(DP1.20141.002), RELEASE-2026. doi:10.48443/4xwg-p967. Retrieved through the NEON Data API,
+21 October 2026.
+
+OpenTree (2025) *Open Tree of Life synthetic tree*, synthesis release `opentree16.1` (created
+20 December 2025; Open Tree Taxonomy 3.7draft3; 2 064 source trees from 1 931 studies). Queried
+22 October 2026. doi:10.5281/zenodo.3937741
+
+Prins, V., Tedersoo, L., Mikryukov, V., Paiste, P., Sepp, M., Grossart, H.-P. *et al.* (2026) The FunAqua
+dataset of global fungal biodiversity in aquatic ecosystems. *Scientific Data* **13**, 1346.
+doi:10.1038/s41597-026-07729-8  *(240 authors; data archived at doi:10.5281/zenodo.17855266)*
+
+Redelings, B.D. and Holder, M.T. (2017) A supertree pipeline for summarizing phylogenetic and taxonomic
+information for millions of species. *PeerJ* **5**, e3058. doi:10.7717/peerj.3058
+
+Reñé, A., Timoneda, N., Sarno, D., Piredda, R., Zampicinini, G., Zingone, A. *et al.* (2023) Vertical and
+temporal distribution of chytrids infecting diatoms in the Gulf of Naples (Italy, Mediterranean Sea).
+*Marine Ecology* **44**, e12726. doi:10.1111/maec.12726  *(8 authors; published online 13 December 2022,
+issue dated 2023)*
+
+Vaulot, D., Sim, C.W.H., Ong, D., Teo, B., Biwer, C., Jamy, M. and Lopes dos Santos, A. (2022) metaPR²: a
+database of eukaryotic 18S rRNA metabarcodes with an emphasis on protists. *Molecular Ecology Resources*
+**22**, 3188–3201. doi:10.1111/1755-0998.13674  *(version 4.0 used here,
+doi:10.5281/zenodo.21106507)*
+
+**Removed from the earlier draft:** Madin et al. (2020), *Scientific Data* **7**, 170 — it belongs to the
+companion pseudogene study and is cited nowhere in this manuscript.
 
 ---
 
 ## Author's notes on what still has to happen before submission
 
-1. **Complete and verify every reference.** Nothing above is safe to cite as written.
+1. **References — done, 2026-10-22.** All 14 entries verified against Crossref or the publisher's record;
+   author lists, volumes, article numbers and DOIs come from those records. Four corrections came out of
+   the check and are now in the text: (a) the Malfertheiner paper is *Community conservatism is widespread
+   across microbial phyla and environments*, not an aquatic-specific paper, and the draft's gloss
+   "leaving the fungal question open" was replaced by their own sentence, since they never mention fungi;
+   (b) § 3.5 had attributed Levins' *B* to both niche-breadth studies — Malard et al. use
+   environmental-gradient breadth, and Hou et al. use Levins only to split generalists from specialists;
+   (c) Hou et al. is an indoor glass-tank experiment, not a field survey, and is now described as such;
+   (d) Reñé et al. was in the list but cited nowhere, and reports the *opposite* vertical pattern, so it
+   is now cited in § 3.1 as the disagreement it is. Madin et al. (2020) was removed as belonging to the
+   companion study. The Open Tree synthesis version was never recorded, so the query was re-run: synthesis
+   `opentree16.1`, all 77 OTT ids identical to the stored file, 70 placed in the tree — the number the
+   text reports. NEON was pulled without pinning a release; the data availability statement now says so
+   and shows that no provisional month entered the analysis.
 2. **Decide the framing.** The draft leads with transferability. The alternative leads with the fungal
    generalist result and relegates the failed replications to a later section; that reads better but is
    more exposed, because the headline would then rest on one dataset with an off-target amplicon.

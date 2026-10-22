@@ -259,4 +259,5 @@ for a, L in zip(axes, "abc"):
     panel(a, L, dx=-0.30)
 save(fig, "fig5_simulation")
 
-print(f"\nfour figures in figures/, set in {FAM}")
+# Counted, not typed: this message said "four" for a while after Figure 5 landed.
+print(f"\n{len(list(OUT.glob('fig*.png')))} figures in figures/, set in {FAM}")

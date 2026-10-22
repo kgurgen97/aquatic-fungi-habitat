@@ -173,6 +173,7 @@ pe = pd.read_csv(P / "results/matched_euk.tsv", sep="\t")
 Af, of_ = agg_to_order(Mf, flab); Ae, oe_ = agg_to_order(Me, elab)
 bf2 = dict(zip(of_, two_compartment(Af)))
 be2 = dict(zip(oe_, two_compartment(Ae)))
+per_order = []
 for nm, d, bmap in (("fungi", pref, bf2), ("other eukaryotes", pe, be2)):
     d = d.copy()
     d["B"] = [bmap.get(o, np.nan) for o in d.order]
@@ -181,6 +182,12 @@ for nm, d, bmap in (("fungi", pref, bf2), ("other eukaryotes", pe, be2)):
     rho, pv = stats.spearmanr(ok.B, ok.effect)
     print(f"  {nm:18s} Spearman(Levins B, |preference-0.5|) = {rho:+.3f}  p = {pv:.3g}  n={len(ok)}")
     res[f"agreement_{nm.split()[0]}"] = {"rho": float(rho), "p": float(pv), "n": int(len(ok))}
+    per_order.append(ok.assign(group=nm)[["order", "group", "frac", "effect", "B", "disc"]])
+# Saved per order so the supplementary figure can show this agreement rather than
+# only quote the two correlation coefficients.
+pd.concat(per_order, ignore_index=True).to_csv(
+    P / "results/levins_per_order.tsv", sep="\t", index=False)
+print("  wrote results/levins_per_order.tsv")
 print("  (a strong negative correlation would mean the two metrics measure the same thing)")
 
 json.dump(res, open(P / "results/levins.json", "w"), indent=1)

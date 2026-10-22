@@ -1,0 +1,6 @@
+check	statistic	value	threshold	passed
+1 draw stability	reversals of the ordering	0/200	<= 5 % of draws	True
+2 matched on power	stratified rank test p	0.0023	fungi lower in all bins (4/4)	True
+3 each kingdom	kingdoms with fungi lower	5/5	all, significant against >= 2	True
+4 neighbouring ranks	ranks with fungi lower	3/3	majority of ranks	True
+5 OTUs per order	partial Spearman p	7.287e-05	gap survives adjustment	True

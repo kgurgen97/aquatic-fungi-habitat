@@ -1,0 +1,14 @@
+table	title	rows	cols	source	script
+S1	FunAqua primary result: all 100 tested orders	100	11	results/primary_order.tsv	analysis_primary.py
+S2	Per-order significance across 200 rarefaction draws	107	6	results/draw_stability.tsv	analysis_draw_stability.py
+S3	Fungal orders on the 204 matched pairs	98	7	results/matched_fungi.tsv	analysis_euk_matched.py
+S4	Non-fungal eukaryote orders on the same 204 pairs	122	7	results/matched_euk.tsv	analysis_euk_matched.py
+S5	Per-kingdom metrics on one consistent footing	6	7	results/kingdom_consistent.tsv	analysis_kingdom_consistent.py
+S6	Levins' B and the preference index, per order	220	6	results/levins_per_order.tsv	analysis_levins.py
+S7	NEON per-order result: all 103 tested orders	103	11	results/neon_order.tsv	analysis_neon_validation.py
+S8	The 27 orders comparable between FunAqua and NEON	27	9	results/neon_vs_funaqua.tsv	analysis_neon_validation.py
+S9	The 149 NEON water/benthic pairs	149	6	results/neon_pairs.tsv	analysis_neon_validation.py
+S10	Flagellum trait assignment and preference, both datasets	203	7	results/zoosporic.tsv	analysis_zoosporic.py
+S11	Agreement under capping of NEON depth	14	11	results/neon_depth_probe.tsv	exploratory_neon_depth.py
+S12	Per-order values behind the five robustness checks	221	8	results/euk_robustness.tsv	analysis_euk_robustness.py
+S13	The five pre-registered robustness checks	5	5	results/euk_robustness.json	analysis_euk_robustness.py

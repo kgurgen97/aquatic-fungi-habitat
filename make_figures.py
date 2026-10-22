@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The four manuscript figures, in journal style. Vector PDF plus 600 dpi PNG.
+"""The manuscript figures, in journal style. Vector PDF plus 600 dpi PNG.
 
 Every value is read from a file in results/; nothing is hard-coded except summary
 numbers quoted in a label, which are read from results/*.json and named where used.
@@ -260,4 +260,4 @@ for a, L in zip(axes, "abc"):
 save(fig, "fig5_simulation")
 
 # Counted, not typed: this message said "four" for a while after Figure 5 landed.
-print(f"\n{len(list(OUT.glob('fig*.png')))} figures in figures/, set in {FAM}")
+print(f"\n{len(list(F.glob('fig*.png')))} figures in figures/, set in {FAM}")

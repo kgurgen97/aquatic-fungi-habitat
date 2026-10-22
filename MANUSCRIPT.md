@@ -474,10 +474,25 @@ should be cited without that check.
 2. **Decide the framing.** The draft leads with transferability. The alternative leads with the fungal
    generalist result and relegates the failed replications to a later section; that reads better but is
    more exposed, because the headline would then rest on one dataset with an off-target amplicon.
-3. **Figures.** None drawn yet. The four that carry the argument: (a) the draw-stability distribution with
-   the 35-order stable set marked; (b) FunAqua against NEON preference index, 27 orders, showing the
-   absence of correlation; (c) median effect magnitude by kingdom with the Levins *B* panel beside it;
-   (d) the depth-capping curve for NEON agreement.
+3. **Figures — drawn.** `make_figures.py` produces all four as vector PDF and 600 dpi PNG in `figures/`,
+   sized to 89 mm (single column) and 183 mm (double). Palette is categorical slots 1–2 of a validated
+   default (blue `#2a78d6`, orange `#eb6834`); the validator passes all checks on all pairs, and the
+   aqua slot was dropped because it warns below 3:1 against the light surface. Two layout bugs and one
+   numerical inconsistency were found by looking at the rendered output and are fixed:
+   Fig 3's mirrored layout clipped "Straminipila" to "Straminip", Fig 1 printed a blue annotation on top
+   of blue bars, and Fig 1 counted stability against the draws in which an order was *testable* rather
+   than against all 200, which made it say 36 where the text says 35. An assertion in the script now
+   fails if the figure and `draw_stability.json` ever disagree again.
+
+   | figure | panel | file |
+   |---|---|---|
+   | 1 | per-order significance frequency across 200 draws, 35-order stable set marked | `fig1_draw_stability` |
+   | 2 | FunAqua against NEON preference index, 27 orders, agreement quadrants | `fig2_transfer_failure` |
+   | 3 | median effect magnitude and Levins *B* by kingdom, two panels | `fig3_kingdoms` |
+   | 4 | agreement against NEON depth cap, both comparison sets | `fig4_depth_probe` |
+
+   Still to decide: whether Fig 4 belongs in the main text or the supplement, given that it is post hoc
+   and reaches significance at no cap.
 4. **Abstract word count** is 248; check the target journal's limit.
 5. **Statement on the corrected numbers.** § 3.2 reports that our own two implementations disagreed. Decide
    whether that belongs in the Results as written, or in a methods note. It is honest either way and a

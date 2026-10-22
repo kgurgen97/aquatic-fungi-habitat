@@ -54,15 +54,32 @@ Median *â* of the testable set falls as **D^−0.485** (R² 0.92), so median *�
 (R² 0.93). Complete re-selection — the simulation's behaviour — would be *â* ∝ D^−1 and *λ̂* flat. So in
 real data **the set re-selects about half the way.**
 
-The reason is visible in the first column: the testable set **grows 2.15-fold**, from 36 orders to 77, as
-depth rises. It is not a pure exchange of members. Deeper sequencing keeps the orders that were marginal
-at 100 reads — which by 10 000 reads sit far above λ = 1 — and *adds* newly marginal ones. The median of a
-growing, upward-drifting set rises. In the simulation of § 3.4 the community was 400 abundances spread
-log-uniformly over six orders of magnitude, so the testable count stayed roughly stable and membership was
-exchanged rather than extended; the real fungal abundance distribution is steeper, and the exponent
-changes with it.
+Part of the reason is visible in the first column: the testable set **grows 2.15-fold**, from 36 orders to
+77, as depth rises. It is not a pure exchange of members. Deeper sequencing keeps the orders that were
+marginal at 100 reads — which by 10 000 reads sit far above λ = 1 — and *adds* newly marginal ones. The
+median of a growing, upward-drifting set rises.
 
-This is the reviewer's point about the mechanism's domain, now measured rather than conceded.
+> **Correction, 2026-10-23, after `SWEEP_PLAN.md` was executed.** This section originally continued: "In
+> the simulation of § 3.4 the community was 400 abundances spread log-uniformly over six orders of
+> magnitude, so the testable count stayed roughly stable and membership was exchanged rather than
+> extended; the real fungal abundance distribution is steeper, and the exponent changes with it."
+>
+> **The sweep refutes that explanation.** Fed the empirical abundance vector, the same detection model
+> gives *b* ≈ 0.96, statistically indistinguishable from the log-uniform community's 1.00 — the shapes
+> behave alike (S1 FAILED), and neither reproduces the measured 0.485 (S2 FAILED, nearest 0.852, off by
+> 0.367). Site heterogeneity does not close the gap either.
+>
+> What survives is narrower and is kept above: distribution shape *does* explain the **growth**.
+> Log-uniform grows 0.96–1.01-fold while the empirical vector grows 2.15-fold at *r* = 4 — the same
+> 2.15-fold seen here. Shape accounts for the set getting bigger, not for it re-selecting only half way.
+>
+> The exponent *D*^−0.485 therefore stands as an **empirical measurement with no validated model behind
+> it**. `SWEEP_RESULTS.md` records what the failure points at: real low-depth testable sets contain rarer
+> taxa than independent detection from a pooled abundance allows, which is what locally abundant taxa
+> would do. That is a diagnosis awaiting a test, not a result.
+
+The turnover itself is the reviewer's point about the mechanism's domain, now measured rather than
+conceded.
 
 ## What this does and does not establish
 

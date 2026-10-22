@@ -1,0 +1,47 @@
+{
+ "plan_sha256": "2af9a5a9e4002fc02e9ee74e7cf5aa6b7e11a4e457ab51141ed105017ccf8a0a",
+ "measured_b": 0.485,
+ "n_cells": 240,
+ "n_draws": 30,
+ "rungs": [
+  100,
+  300,
+  1000,
+  3000,
+  10000
+ ],
+ "empirical_b_by_ratio": {
+  "1": 0.9606529239107183,
+  "2": 0.9890011347140536,
+  "4": 0.9629280606289071,
+  "8": 0.9314738856857306,
+  "16": 0.8520418019072127
+ },
+ "verdicts": {
+  "S1": {
+   "prediction": "the exponent is set by the abundance distribution's shape",
+   "value": "b(loguniform) - b(empirical) = +0.012 at r=2, +0.039 at r=4",
+   "verdict": "FAILED"
+  },
+  "S2": {
+   "prediction": "the empirical vector reproduces the measured b = 0.485",
+   "value": "b(empirical) = +0.961 (r=1), +0.989 (r=2), +0.963 (r=4), +0.931 (r=8), +0.852 (r=16); within 0.15 for r in none; nearest r=16 at +0.852, off by 0.367",
+   "verdict": "FAILED"
+  },
+  "S3": {
+   "prediction": "large effects escape the lambda~1 selection",
+   "value": "jaccard across r=1..16: 0.000, 0.000, 0.000, 0.000, 0.062; monotone rising: True; r16-r1 = +0.062",
+   "verdict": "INCONCLUSIVE"
+  },
+  "S4": {
+   "prediction": "the threshold sets the level, not the exponent",
+   "value": "b across thresholds 10/20/40: +0.866, +0.963, +0.993 (spread 0.127); jaccard spread 0.024",
+   "verdict": "INCONCLUSIVE"
+  },
+  "S5": {
+   "prediction": "depth-invariance of apparent effect is general",
+   "value": "100% of 239 cells with R^2>=0.5 have effect_range <= 0.10",
+   "verdict": "CONFIRMED"
+  }
+ }
+}

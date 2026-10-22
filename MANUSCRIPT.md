@@ -38,26 +38,26 @@ Correspondence: karagurgen23@gmail.com
 
 ## Abstract
 
-*(248 words)*
+*(250 words)*
 
 Metabarcoding is used to ask which taxa specialise between adjacent habitats, but such estimates are
-rarely tested for transferability. Any such analysis needs a minimum-evidence threshold, and simulation
-under known truth shows it is not neutral: it admits taxa whose expected read count is near one at any
-depth, so depth should change which taxa are measurable rather than how specialised they appear.
-Subsampling NEON's libraries down a 100-fold depth ladder, with ecosystem and samples fixed, confirms it:
-the testable sets at 100 and 10 000 reads share 28 % of their union, while median apparent effect shifts
-by 0.024.
+rarely tested for transferability. Any such analysis needs a minimum-evidence threshold, which is not
+neutral: it admits taxa whose expected read count is near one at any depth, so depth should change which
+taxa are measurable rather than how specialised they appear. Subsampling NEON's libraries down a 100-fold
+depth ladder, with ecosystem and samples fixed, confirms the consequence: the testable sets at 100 and
+10 000 reads share 28 % of their union, while median apparent effect shifts by 0.024 — the latter in all
+239 swept parameter sets.
 
 In FunAqua, a global paired survey of aquatic fungi (2 375 samples), rarefying both members of each site
 pair to its own minimum depth, 49 of 100 testable orders show a significant water–sediment preference —
 zoosporic lineages in water, soil saprotrophs in sediment — but that count ranges from 43 to 57 across
 200 draws.
 
-An independent paired dataset 150-fold deeper (NEON, 149 pairs) reproduces habitat partitioning, with
+An independent dataset 150-fold deeper (NEON, 149 pairs) reproduces habitat partitioning, with
 37 of 103 orders significant, yet directional agreement with FunAqua was **not demonstrated**: 14 of 27
-comparable orders, 51.9 % (95 % CI 34–69 %), which excludes neither chance nor moderate reproducibility.
+comparable orders, 51.9 % (95 % CI 34–69 %), excluding neither chance nor moderate reproducibility.
 
-Within FunAqua, animals and plants are most compartment-bound (0.294, 0.227) while fungi (0.150) and
+In FunAqua, animals and plants are most compartment-bound (0.294, 0.227) while fungi (0.150) and
 Alveolata (0.157) are indistinguishable; this survives five pre-registered checks but could not be tested
 externally.
 
@@ -354,11 +354,10 @@ taxa with modest habitat effects. For a taxon with a large effect — reliably d
 and essentially never in the other — discordant pairs accumulate over a much wider range of λ, including
 λ ≫ 1, so such a taxon can pass the threshold without sitting near the middle of the detection curve. The
 testable set is therefore determined jointly by both detection probabilities, the true effect, the number
-of pairs and the abundance distribution, and the clean λ ≈ 1 statement holds in the small-to-moderate
-effect regime rather than universally. Establishing where the mechanism operates and where it disappears
-needs a sweep over effect sizes, abundance distributions including heavy-tailed ones, pair counts,
-thresholds and overdispersion; that sweep is not in this paper and its absence bounds the generality of
-this section.
+of pairs and the abundance distribution. § 3.4b sweeps those axes. The escape route is real but weaker
+than this argument suggests: raising the effect from 1× to 16× lowers the re-selection exponent only from
+0.96 to 0.85 and raises turnover by 0.06, although a heavy-tailed community does drop to 0.57. The λ ≈ 1
+statement is best read as a tendency that effect size erodes slowly, not as a law with a sharp domain.
 
 So, within that regime, depth does not change how extreme the indices look. It changes **which taxa
 occupy that position**.
@@ -417,11 +416,10 @@ pre-committed confirmation band of 3-fold; the frozen rule records this as incon
 failure threshold was 10-fold, but 9.74 is three times the band and should not be read as support.
 Post hoc, the drift is a clean power law: median *â* ∝ *D*^−0.485 and median *λ̂* ∝ *D*^+0.515 (R² 0.92 and
 0.93), where complete re-selection would give *â* ∝ *D*^−1 and flat *λ̂*. **The set re-selects about half
-the way.** The reason is in the first column: the testable set *grows* 2.15-fold, from 36 orders to 77.
-Deeper sequencing is not a pure exchange of members — it retains the orders that were marginal at 100
-reads, which by 10 000 reads sit far above λ = 1, and adds newly marginal ones, so the median of a
-growing set drifts upward. The simulation's log-uniform community exchanged members at roughly constant
-size; the real fungal abundance distribution is steeper, and the exponent follows it.
+the way.** Part of the reason is in the first column: the testable set *grows* 2.15-fold, from 36 orders
+to 77. Deeper sequencing is not a pure exchange of members — it retains the orders that were marginal at
+100 reads, which by 10 000 reads sit far above λ = 1, and adds newly marginal ones, so the median of a
+growing set drifts upward.
 
 So the idealised form of the mechanism — a testable set pinned at λ ≈ 1 — is a property of that simulated
 community. What holds in real data is the consequence that matters for interpretation: **changing depth
@@ -430,6 +428,38 @@ almost untouched.** P1 and P5 cleared their thresholds narrowly, P5 rests on 25 
 deepest-sequenced pairs are not a random sample of NEON; the experiment is one dataset, one amplicon and
 one threshold value. Full verdicts, including the two narrow margins, are in
 `DEPTH_LADDER_RESULTS.md`.
+
+### 3.4b How general is this, and does the model explain the exponent?
+
+A sweep over 240 parameter combinations — four abundance distributions, effect sizes 1× to 16×, thresholds
+of 10, 20 and 40 discordant pairs, 102 and 239 pairs, with and without site heterogeneity — was
+pre-registered in `SWEEP_PLAN.md` with five predictions. It answers two questions and the answers differ
+in kind.
+
+**The depth-invariance of apparent effect size is universal.** In **239 of 239** interpretable cells the
+median |index − 0.5| moves by ≤ 0.10 across the 100-fold depth range; the largest range anywhere is
+**0.058** and the median is **0.0109**, with the ladder's observed 0.024 inside that distribution (S5).
+This is the claim §§ 3.3–3.4a rest on, and it holds over the whole swept space rather than at one point.
+
+**The model does not explain the measured exponent, and the explanation we first offered was wrong.** Fed
+the *empirical* abundance vector, the detection model predicts *b* ≈ 0.96 — near-complete re-selection —
+against the 0.485 measured, with simulated turnover near-total (Jaccard ≈ 0.000) where the ladder gave
+0.281. No effect size in 1–16 brings *b* within 0.25 of 0.485; the nearest, *r* = 16, gives **0.852**,
+off by 0.367 (S2 failed). Nor does the abundance
+distribution's shape set the exponent: log-uniform gives 1.00 and the empirical vector 0.96, a difference
+of 0.012–0.039 against a required 0.25 (S1 failed). Site heterogeneity moves *b* by at most 0.08. What
+distribution shape *does* explain is the **growth** of the testable set — log-uniform grows 0.96–1.01-fold
+while the empirical vector grows 2.15-fold, matching § 3.4a exactly.
+
+Reality therefore re-selects about half as much as independent-Poisson detection predicts: real taxa
+persist across depths more than the model allows. Of 240 cells only three reproduce both *b* and Jaccard
+within 0.15, all with more pairs than the experiment used and a low threshold — that is, a lower effective
+bar, letting rarer taxa qualify at low depth. The likeliest missing ingredient is structure the model
+lacks: a taxon locally abundant at a subset of sites is detected there at every depth while its pooled
+abundance stays low. Testing that needs per-site abundance and a site-level prevalence model, which is not
+in this plan and is not claimed. Until then **the *D*^−0.485 law is an empirical measurement without a
+validated mechanism**, while the depth-invariance it sits beside is both measured and general. Two further
+predictions came out inconclusive and are reported in `SWEEP_RESULTS.md`.
 
 ### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 

@@ -136,6 +136,14 @@ a_hat = tot / denom
 print(f"a-hat estimated at full depth over {len(pairs)} pairs, "
       f"{denom:,} reads; nonzero orders {int((a_hat > 0).sum())}")
 
+# Exported for SWEEP_PLAN.md, which asks whether this vector, fed to the detection
+# model, reproduces the exponent this script measures. Adding an output changes no
+# computation here; the run is deterministic on fixed seeds, and the commit adding
+# it records that results/depth_ladder.json came back byte-identical.
+pd.DataFrame({"order": orders, "a_hat": a_hat})[a_hat > 0].sort_values(
+    "a_hat", ascending=False).to_csv(
+    R / "sweep_empirical_abundance.tsv", sep="\t", index=False)
+
 
 def one_draw(rung, seed):
     """Rarefy both members of every pair to `rung`; return the per-order table."""

@@ -1,4 +1,10 @@
-# Fungi are the generalists among aquatic eukaryotes
+# Habitat preference of aquatic fungal orders, and where fungi sit among eukaryotes
+
+> **Framing superseded; numbers current.** Written 2026-10-21, before the simulation that became
+> `MANUSCRIPT.md` § 3.4. This file's title used to read "Fungi are the generalists among aquatic
+> eukaryotes". The manuscript no longer makes that claim: fungi (0.150) are indistinguishable from
+> Alveolata (0.157), and the pooled gap against non-fungal eukaryotes is driven by Metazoa, Straminipila
+> and Viridiplantae. Where this file and the manuscript differ, **the manuscript is authoritative.**
 
 2026-10-21. Unit: taxonomic Order. Within each site both samples are rarefied to that pair's minimum
 depth, so detection power is equal by construction and a difference cannot be attributed to sequencing

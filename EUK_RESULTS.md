@@ -1,5 +1,10 @@
 # Where fungi sit among eukaryotes across the water–sediment boundary
 
+> **Framing superseded; numbers current.** Written 2026-10-21, before the simulation in
+> `MANUSCRIPT.md` § 3.4. The phrase "fungi sit at the generalist end of the eukaryotic range" below was
+> replaced in the manuscript by what the per-kingdom table actually shows. Where this file and the
+> manuscript differ, **the manuscript is authoritative.**
+
 2026-10-21. Checks fixed in `EUK_ROBUSTNESS_PLAN.md`
 (sha256 `a12794f91b0df75b433df5fe37afb346ab3a603b5ed53152ca1a3dee85f879f8`, commit `a5c9fe6`)
 before any of them was run. Levins' niche breadth was added after that plan was frozen but before its

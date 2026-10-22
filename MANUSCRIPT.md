@@ -38,32 +38,30 @@ Correspondence: karagurgen23@gmail.com
 
 ## Abstract
 
-*(300 words)*
+*(241 words)*
 
-Metabarcoding is increasingly used to ask which taxa specialise between adjacent habitats, but such
-estimates are rarely tested for transferability. Any such analysis needs a minimum-evidence threshold, and
-simulation under known truth shows this threshold is not a neutral filter: it admits taxa whose
-expected read count is near one, at whatever depth is used. Across a 1000-fold depth change the testable
-set's median detection parameter holds at 0.22–0.49 while its median abundance falls 454-fold. Depth
-changes which taxa are measurable, not how specialised they appear, so marginal distributions should
-reproduce across datasets while per-taxon values should not.
+Metabarcoding is used to ask which taxa specialise between adjacent habitats, but such estimates are
+rarely tested for transferability. Any such analysis needs a minimum-evidence threshold, and simulation
+under known truth shows it is not a neutral filter: it admits taxa whose expected read count is near one,
+at whatever depth is used. Across a 1000-fold depth change the testable set's median detection parameter
+holds at 0.22–0.49 while its median abundance falls 454-fold. Depth changes which taxa are measurable,
+not how specialised they appear.
 
-We tested this across the water–sediment boundary in FunAqua, a global paired survey of aquatic fungi
-(50 152 OTUs, 2 375 samples), rarefying both members of every site pair to its own minimum depth.
-Of 100 testable orders, 49 show a significant preference — zoosporic lineages in the water column,
-soil-derived saprotrophs in the sediment — but that count is unstable to the rarefaction draw alone,
-ranging from 43 to 57 across 200 draws.
+In FunAqua, a global paired survey of aquatic fungi (2 375 samples), rarefying both members of each site
+pair to its own minimum depth, 49 of 100 testable orders show a significant water–sediment preference —
+zoosporic lineages in water, soil-derived saprotrophs in sediment — but that count ranges from 43 to 57
+across 200 rarefaction draws.
 
-Both predictions hold. A paired dataset 150-fold deeper (NEON, 149 pairs, 23 US streams) reproduces
-habitat partitioning, with 37 of 103 orders significant, yet agrees with FunAqua on direction for only
-14 of 27 comparable orders (51.9 %, p = 1.0); the two datasets share just 69 of 134 testable orders. What
-carries across is a contrast between large groups: animals and plants are the most compartment-bound
-(median preference magnitude 0.294 and 0.227) while fungi and the protist groups are not, with fungi
-(0.150) indistinguishable from Alveolata (0.157). The pooled difference survives five pre-registered
-robustness checks but cannot be narrowed to single kingdoms.
+An independent paired dataset 150-fold deeper (NEON, 149 pairs) reproduces habitat partitioning, with
+37 of 103 orders significant, yet directional agreement with FunAqua was **not demonstrated**: 14 of 27
+comparable orders, 51.9 % (95 % CI 34–69 %), which excludes neither chance nor moderate reproducibility.
 
-Per-taxon specialisation estimates from single amplicon surveys should not be treated as transferable;
-matched read depth and taxonomic rank are prerequisites for any cross-dataset comparison.
+Within FunAqua, animals and plants are the most compartment-bound (median preference magnitude 0.294 and
+0.227) while fungi (0.150) and Alveolata (0.157) are indistinguishable. This survives five pre-registered
+checks but could not be tested in either external dataset.
+
+Per-taxon specialisation estimates should not be assumed transferable; matched read depth and taxonomic
+rank are prerequisites for cross-dataset comparison.
 
 **Keywords:** metabarcoding; habitat specialisation; aquatic fungi; reproducibility; niche breadth;
 rarefaction
@@ -276,7 +274,7 @@ we had identified as disagreeing in direction between Europe and North America �
 and Trechisporales — are significant in only 27, 136 and 185 of 200 draws respectively, so that
 disagreement was substantially draw noise rather than biogeography.
 
-### 3.3 Per-order preferences do not transfer to an independent dataset
+### 3.3 Directional agreement with an independent dataset is not demonstrated
 
 NEON is not a null dataset. On its own it reproduces the phenomenon: of 103 orders testable across 149
 paired water/benthic samples, **37 show a significant preference** (18 water, 19 benthic), against
@@ -346,10 +344,32 @@ depth is used*. Simulating a community spanning six orders of magnitude in abund
 a 1000-fold change in depth the median λ of the testable set holds at **0.22–0.49**, the median
 |index − 0.5| holds at **0.304–0.350**, and the median *abundance* of that set falls **454-fold**.
 
-So depth does not change how extreme the indices look. It changes **which taxa occupy that position**.
+**The domain of this result is narrower than the argument above.** The simulation fixes a single
+true abundance ratio (3×) and one abundance distribution, and the selection it describes is strongest for
+taxa with modest habitat effects. For a taxon with a large effect — reliably detected in one compartment
+and essentially never in the other — discordant pairs accumulate over a much wider range of λ, including
+λ ≫ 1, so such a taxon can pass the threshold without sitting near the middle of the detection curve. The
+testable set is therefore determined jointly by both detection probabilities, the true effect, the number
+of pairs and the abundance distribution, and the clean λ ≈ 1 statement holds in the small-to-moderate
+effect regime rather than universally. Establishing where the mechanism operates and where it disappears
+needs a sweep over effect sizes, abundance distributions including heavy-tailed ones, pair counts,
+thresholds and overdispersion; that sweep is not in this paper and its absence bounds the generality of
+this section.
+
+So, within that regime, depth does not change how extreme the indices look. It changes **which taxa
+occupy that position**.
 The two datasets test names drawn from different parts of their own abundance distributions: they share
 only **69 of 134** testable orders, that is, of the 134 orders testable in at least one dataset only 69
 are testable in both (Jaccard 0.51), with 31 unique to FunAqua and 34 to NEON.
+
+**This overlap is consistent with the mechanism but does not establish it.** FunAqua and NEON differ in
+depth, but also in geography, water-body type and in what "sediment" means — river and lake sediment
+against stream benthic biofilm. Orders testable in one dataset and not the other may therefore be absent
+for ecological reasons rather than filtered out by depth, and the observed turnover cannot separate the
+two. The clean test holds ecosystem, samples and reference database fixed and varies only depth, by
+subsampling NEON's own deep libraries down a ladder of depths; it is stated here as the test this result
+requires and has not yet had. What the simulation establishes is that the mechanism is *sufficient* to
+produce such turnover under known truth, not that it is what produced this particular turnover.
 
 This resolves the apparent paradox in § 3.3 and § 3.5 — the marginal distribution of indices is
 reproducible between datasets while the per-order values are not, so aggregate contrasts survive a
@@ -361,7 +381,7 @@ sd 1.7) against the observed 43–57 (median 51, sd 2.5) — the same order of v
 (Figure 5c). The observed spread is somewhat wider, as expected given that the simulation assumes
 independent taxa and a simplified truth.
 
-### 3.5 What does transfer: animals and plants are compartment-bound, fungi and protists are not
+### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 
 On the same 204 pairs at the same depth, the median effect magnitude is **0.156 for fungi against 0.228 for
 non-fungal eukaryotes**. Over 200 rarefaction draws the two ranges are 0.140–0.173 and 0.202–0.257 — they
@@ -440,12 +460,15 @@ decide which taxa carry enough evidence to test, and that decision admits taxa s
 the detection curve. Deeper sequencing moves the set that qualifies down the abundance distribution
 instead of sharpening the estimates for the taxa already in it. Two datasets at different depths therefore
 produce similar-looking distributions of specialisation over largely different taxa — here, 69 shared
-names out of 134.
+names out of 134, although that turnover is confounded with the ecological differences between the two
+datasets and so corroborates the mechanism without isolating it (§ 3.4).
 
 This reframes what looked like a replication failure. The usual way to present an analysis like § 3.1 is a
 table of taxa with their preferred habitat, and our results argue against that presentation: the identity
-and direction of per-order preferences agreed with an independent paired dataset at chance (51.9 %,
-p = 1.0) even though both datasets independently detect habitat partitioning at similar rates (49/100 and
+and direction of per-order preferences showed no demonstrable agreement with an independent paired dataset
+(51.9 %, 95 % CI 34.0–69.3 %, p = 1.0 — an interval wide enough to contain both chance and moderate
+agreement, so the finding is a failure to demonstrate replication rather than a demonstration of its
+absence) even though both datasets independently detect habitat partitioning at similar rates (49/100 and
 37/103). Those two facts are not in tension once the threshold is taken into account — the first is a
 statement about named taxa, the second about the marginal distribution, and the mechanism says the second
 can hold while the first does not. A per-order preference table from a single survey describes that survey.
@@ -683,6 +706,35 @@ companion pseudogene study and is cited nowhere in this manuscript.
    section was promoted from the interim label 3.3b to § 3.4, shifting the two sections after it; and the
    phrase "fungi sit at the generalist end of the eukaryotic range" was replaced in the abstract, the
    § 3.5 heading and the Figure 3 caption by what the table actually shows.
+2a. **External review, 2026-10-23 — what it changed and what it leaves open.** A reviewer read the draft,
+   the results files and the figures. Four criticisms were correct and are now fixed in the text:
+   (a) § 3.5's heading read "What does transfer", which § 4.4 contradicts — no external validation of that
+   section was possible, so nothing showed it transfers; it is now "A group-level contrast within
+   FunAqua". (b) § 3.3's heading asserted non-transfer as established, and § 4.1 called the agreement
+   "at chance"; with 14 of 27 and a 95 % CI of 34.0–69.3 %, the interval contains both chance and moderate
+   agreement, so both now say replication was *not demonstrated* rather than *absent*. (c) The Jaccard
+   0.51 turnover between the two datasets is **confounded** — they differ in geography, water-body type
+   and in what "sediment" means, so orders testable in one and not the other may be ecologically absent
+   rather than filtered out by depth. § 3.4 now says the simulation shows the mechanism is *sufficient* to
+   produce such turnover, not that it produced this one. (d) The λ ≈ 1 selection was derived at a single
+   effect size (3×) and one abundance distribution; a taxon with a large effect accumulates discordant
+   pairs at λ ≫ 1, so the statement holds in the small-to-moderate effect regime, which § 3.4 now says.
+   The abstract was rewritten to 241 words, inside Molecular Ecology Resources' 250-word cap.
+
+   Still open, in the order I would do them: (i) the controlled within-NEON depth experiment —
+   `rarefied_depth` runs 232 to 425 195, so a ladder of 100/300/1 000/3 000/10 000 keeps 102–149 pairs and
+   holds ecosystem, samples and reference database fixed while varying only depth. This is the test (c)
+   requires and the one that would turn the mechanism from sufficient to demonstrated. (ii) the parameter
+   sweep for (d). (iii) a benchmark of alternative estimators — single and repeated rarefaction,
+   abundance-based paired models, hierarchical occupancy, beta-binomial — on simulated truth, comparing
+   bias, RMSE, FDR, power and coverage. (iv) sensitivity to site clustering (149 NEON pairs come from
+   23 sites) and to taxonomic non-independence among orders, neither of which the agreement test accounts
+   for. Also: the reviewer's literature check and ours agree that depth and rarefaction effects on
+   diversity metrics are known (Shirazi et al., 2021, *Ecol Evol* 11(22)), and that the closest result to
+   ours is García-Machado et al. (2023, *Environmental DNA*), who found depth strongly affected occupancy
+   *before* thresholding and not after. They read that as the threshold curing depth sensitivity; we read
+   the same phenomenon as the threshold concealing it by changing which taxa are measured. That contrast
+   is the paper's clearest novelty claim and should be stated explicitly in the introduction.
 3. **Figures — drawn.** `make_figures.py` produces all four as vector PDF and 600 dpi PNG in `figures/`,
    sized to 89 mm (single column) and 183 mm (double). Palette is categorical slots 1–2 of a validated
    default (blue `#2a78d6`, orange `#eb6834`); the validator passes all checks on all pairs, and the

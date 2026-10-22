@@ -281,6 +281,46 @@ undescribed environmental clade labels (GS05, GS07, GS10, GS11, Branch02, Branch
 has never been observed, so assigning them a flagellum on the strength of *Rozella* alone was weaker
 evidence than the Chytridiomycota assignment and should not have been treated as equivalent.
 
+### 3.3b Why the transfer fails: the testability threshold pins what is measured
+
+Section 3.3 is an empirical failure. Simulation under known truth turns it into a
+mechanism (`analysis_simulation.py`; Figure 5).
+
+A taxon at relative abundance *a*, in a sample rarefied to depth *D*, is detected with probability
+1 − (1 − *a*)^*D* ≈ 1 − e^(−λ), λ = *aD*. Writing *P*_w and *P*_s for the two compartments, the discordant
+pairs — the only ones the test uses — split as *P*_w(1 − *P*_s) and *P*_s(1 − *P*_w), so
+
+> E[index] = *P*_w(1 − *P*_s) / [ *P*_w(1 − *P*_s) + *P*_s(1 − *P*_w) ]
+
+**which depends on *D* even when the true abundances are fixed** (Figure 5a). A taxon whose true
+abundance ratio is a constant 4× has an expected index of 0.80 at FunAqua's depth and 1.00 at NEON's.
+Presence/absence at 211 reads and at 31 131 reads are not noisy measurements of one quantity.
+
+That algebra predicts that deeper data should show more extreme indices. **It does not.** NEON's median
+|index − 0.5| is 0.151 against FunAqua's 0.149 — a ratio of 1.02, Mann–Whitney *p* = 0.69 — despite the
+~150-fold difference in depth. We report the failed prediction because the reason it fails is the result.
+
+**The ≥ 20-discordant-pairs requirement is a filter.** A taxon contributes discordant pairs only when its
+detection probability lies away from 0 and 1, so the rule selects taxa whose λ is near 1 *at whatever
+depth is used*. Simulating a community spanning six orders of magnitude in abundance (Figure 5b): across
+a 1000-fold change in depth the median λ of the testable set holds at **0.22–0.49**, the median
+|index − 0.5| holds at **0.304–0.350**, and the median *abundance* of that set falls **454-fold**.
+
+So depth does not change how extreme the indices look. It changes **which taxa occupy that position**.
+The two datasets test names drawn from different parts of their own abundance distributions: of 134
+orders testable in at least one dataset, only 69 are testable in both (Jaccard 0.51), with 31 unique to
+FunAqua and 34 to NEON.
+
+This resolves the apparent paradox in § 3.3 and § 3.4 — the marginal distribution of indices is
+reproducible between datasets while the per-order values are not, so aggregate contrasts survive a
+comparison that per-taxon claims cannot.
+
+Finally, the spread in § 3.2 is not peculiar to FunAqua. Simulating 239 pairs at depth 211 with the
+observed per-order abundance distribution gives 48–57 significant orders across 200 draws (median 52,
+sd 1.7) against the observed 43–57 (median 51, sd 2.5) — the same order of variation from the draw alone
+(Figure 5c). The observed spread is somewhat wider, as expected given that the simulation assumes
+independent taxa and a simplified truth.
+
 ### 3.4 What does transfer: fungi sit at the generalist end of the eukaryotic range
 
 On the same 204 pairs at the same depth, the median effect magnitude is **0.156 for fungi against 0.228 for
@@ -447,6 +487,18 @@ Alveolata.** (**a**) Median effect magnitude |preference − 0.5| and (**b**) me
 depth. Lower preference and higher *B* both indicate a more generalist distribution. Fungi (blue) are
 lowest on preference and third on *B*; the gap against non-fungal eukaryotes as a pooled group is driven
 by Metazoa and Straminipila. Rhizaria rests on 7 orders and should not be quoted.
+
+**Figure 5. The testability threshold, not the depth itself, decides what is measured.**
+(**a**) Expected preference index against rarefaction depth, from
+E[index] = *P*_w(1 − *P*_s)/[*P*_w(1 − *P*_s) + *P*_s(1 − *P*_w)] with *P* = 1 − e^(−*aD*), for three fixed
+true abundance ratios; the sediment abundance is 10⁻⁴ throughout. Dotted lines mark the two datasets'
+depths. The index a study reports depends on how deeply it sequenced, at fixed biological truth.
+(**b**) Median relative abundance of the orders that clear the ≥ 20-discordant-pairs requirement, against
+depth, in a simulated community spanning 10⁻⁶ to 10⁻¹. The threshold holds the testable set at a fixed
+position on the detection curve (median λ 0.22–0.49) while the abundance of the taxa occupying it falls
+454-fold. (**c**) Significant orders per draw in 200 simulated draws of a FunAqua-like community (239
+pairs, depth 211, observed abundance distribution), against the range observed in the real data
+(shaded, median marked).
 
 **Figure 4. Agreement with FunAqua under capping of NEON's sequencing depth.** Direction agreement for
 the 49 FunAqua-significant orders (blue) and for the 35 draw-stable orders (orange), as NEON's within-pair

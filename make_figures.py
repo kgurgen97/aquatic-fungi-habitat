@@ -200,4 +200,63 @@ ax.set_ylabel("direction agreement")
 ax.legend(loc="upper right", bbox_to_anchor=(1.0, 1.06))
 save(fig, "fig4_depth_probe")
 
+# ---------------------------------------------------------------- Figure 5
+sim = json.load((R / "simulation.json").open())
+ss = pd.read_csv(R / "sim_self_selection.tsv", sep="\t")
+sc = pd.read_csv(R / "sim_community.tsv", sep="\t")
+ds2 = json.load((R / "draw_stability.json").open())["significant"]
+
+fig, axes = plt.subplots(1, 3, figsize=(W2, 46 * MM))
+fig.subplots_adjust(wspace=0.42)
+
+# (a) what the index means depends on depth - the algebra
+D = np.geomspace(20, 2e5, 300)
+A_S = 1e-4
+for ratio, col, dash in ((2.0, MUTED, (2, 2)), (4.0, BLUE, None), (8.0, ORANGE, None)):
+    pw, ps = 1 - np.exp(-A_S * ratio * D), 1 - np.exp(-A_S * D)
+    num = pw * (1 - ps)
+    axes[0].plot(D, num / (num + ps * (1 - pw)), color=col, linewidth=1.0,
+                 dashes=dash or (None, None), label=f"{ratio:.0f}×")
+for d, lab in ((211, "FunAqua"), (31131, "NEON")):
+    axes[0].axvline(d, color=INK, linewidth=0.5, dashes=(2, 2))
+    axes[0].text(d, 0.52, lab, rotation=90, fontsize=5.6, color=INK2,
+                 ha="right", va="bottom")
+axes[0].set_xscale("log")
+axes[0].set_xlabel("rarefaction depth (reads)")
+axes[0].set_ylabel("expected preference index")
+axes[0].set_ylim(0.45, 1.02)
+# lower left, not lower right: the rotated depth labels sit on the right and the
+# legend title collided with "NEON"
+axes[0].legend(loc="lower left", title="true ratio", title_fontsize=5.8)
+
+# (b) the testability threshold pins lambda and moves the abundance
+axb = axes[1]
+axb.plot(ss.depth, ss.med_abundance, color=BLUE, marker="o",
+         markeredgecolor="white", markeredgewidth=0.4)
+axb.set_xscale("log"); axb.set_yscale("log")
+axb.set_xlabel("rarefaction depth (reads)")
+axb.set_ylabel("median abundance of\nthe testable set")
+axt = axb.twiny()      # a second x axis is fine; this is not a second y scale
+axt.remove()
+axb.text(0.04, 0.10,
+         f"median λ holds at\n{ss.med_lambda.min():.2f}–{ss.med_lambda.max():.2f}",
+         transform=axb.transAxes, fontsize=6, color=INK2, va="bottom")
+
+# (c) simulated against observed spread
+axc = axes[2]
+bins = np.arange(min(sc.n_significant.min(), ds2["min"]) - 0.5,
+                 max(sc.n_significant.max(), ds2["max"]) + 1.5, 1)
+axc.hist(sc.n_significant, bins=bins, color=BLUE, alpha=0.75, linewidth=0,
+         label="simulated")
+axc.axvspan(ds2["min"], ds2["max"], color=ORANGE, alpha=0.22, linewidth=0,
+            label="observed range")
+axc.axvline(ds2["median"], color=ORANGE, linewidth=1.0)
+axc.set_xlabel("significant orders per draw")
+axc.set_ylabel("draws")
+axc.legend(loc="upper left")
+
+for a, L in zip(axes, "abc"):
+    panel(a, L, dx=-0.30)
+save(fig, "fig5_simulation")
+
 print(f"\nfour figures in figures/, set in {FAM}")

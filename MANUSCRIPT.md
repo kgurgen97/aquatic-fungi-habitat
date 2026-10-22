@@ -33,29 +33,31 @@ Correspondence: karagurgen23@gmail.com
 
 ## Abstract
 
-*(248 words)*
+*(300 words)*
 
-Metabarcoding surveys are increasingly used to ask which taxa specialise between adjacent habitats, but
-estimates of specialisation are rarely tested for transferability between datasets. We measured habitat
-preference across the water–sediment boundary in FunAqua, a global paired survey of aquatic fungi
-(50 152 OTUs, 2 375 samples), using a design in which both members of every site pair are rarefied to that
-pair's own minimum depth so that detection power is equal by construction. At order level, 239 qualifying
-pairs yielded 49 orders with a significant habitat preference, and the pattern was biologically coherent,
-with zoosporic lineages in the water column and soil-derived saprotrophs in the sediment.
+Metabarcoding is increasingly used to ask which taxa specialise between adjacent habitats, but such
+estimates are rarely tested for transferability. We measured habitat preference across the water–sediment
+boundary in FunAqua, a global paired survey of aquatic fungi (50 152 OTUs, 2 375 samples), rarefying both
+members of every site pair to that pair's own minimum depth, equalising detection power by
+construction. At order level, 239 qualifying pairs yielded 49 orders with a significant preference:
+zoosporic lineages in the water column, soil-derived saprotrophs in the sediment.
 
-We then tested how far these estimates travel. Three findings follow. First, the count of significant
-orders is unstable to the rarefaction draw alone: across 200 draws it ranges from 43 to 57, and only 35
-orders are significant in at least 95 % of draws. Second, the per-order preferences do not transfer. In an
-independent paired dataset (NEON surface water and benthos, 149 pairs, 23 US streams) habitat partitioning
-is reproduced — 37 of 103 orders show a significant preference — but the direction of preference agrees
-with FunAqua for only 14 of 27 comparable orders (51.9 %, p = 1.0). Third, what does transfer is a
-group-level pattern: fungi sit at the generalist end of the eukaryotic range, with a median preference
-magnitude of 0.156 against 0.228 for non-fungal eukaryotes in the same assay and samples, a difference
-that survives five pre-registered robustness checks and never reverses across 200 draws.
+These estimates travelled poorly. The count of significant orders is unstable to the rarefaction draw
+alone, ranging from 43 to 57 across 200 draws; only 35 are significant in ≥ 95 % of them. An
+independent paired dataset (NEON, 149 pairs, 23 US streams) reproduces habitat partitioning — 37 of 103
+orders show a significant preference — yet the direction agrees with FunAqua for only 14 of 27 comparable
+orders (51.9 %, p = 1.0). What did transfer is a group-level pattern: fungi sit at the generalist end of
+the eukaryotic range, median preference magnitude 0.156 against 0.228 for non-fungal eukaryotes in the same
+assay and samples, surviving five pre-registered robustness checks.
 
-We conclude that per-order specialisation estimates from single amplicon surveys should not be treated as
-transferable, and we identify matched read depth and matched taxonomic rank as prerequisites for any
-cross-dataset comparison.
+Simulation under known truth supplies the mechanism: a minimum-evidence threshold selects taxa whose
+expected read count is near one at whatever depth is used. Across a 1000-fold depth change the testable
+set's median detection parameter holds at 0.22–0.49 while its median abundance falls 454-fold. Depth
+changes which taxa are measurable, not how extreme the estimates look — the two datasets share only
+69 of 134 testable orders — so marginal distributions reproduce while per-taxon values do not.
+
+Per-taxon specialisation estimates from single amplicon surveys should not be treated as transferable;
+matched read depth and matched taxonomic rank are prerequisites for any cross-dataset comparison.
 
 **Keywords:** metabarcoding; habitat specialisation; aquatic fungi; reproducibility; niche breadth;
 rarefaction

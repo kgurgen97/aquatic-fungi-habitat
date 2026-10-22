@@ -319,7 +319,7 @@ undescribed environmental clade labels (GS05, GS07, GS10, GS11, Branch02, Branch
 has never been observed, so assigning them a flagellum on the strength of *Rozella* alone was weaker
 evidence than the Chytridiomycota assignment and should not have been treated as equivalent.
 
-### 3.4 Why the transfer fails: the testability threshold pins what is measured
+### 3.4 The testability threshold decides which taxa are measured
 
 Section 3.3 is an empirical failure. Simulation under known truth turns it into a
 mechanism (`analysis_simulation.py`; Figure 5).

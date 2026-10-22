@@ -1,0 +1,83 @@
+{
+ "plan_sha256": "b53dd38de0be59e304aa0844545d54ed79d05f1a601409574f234979b49165a5",
+ "rungs": [
+  100,
+  300,
+  1000,
+  3000,
+  10000
+ ],
+ "n_pairs": 102,
+ "n_draws": 50,
+ "min_discordant": 20,
+ "per_rung": {
+  "100": {
+   "n_testable": 36.0,
+   "median_abundance": 0.0110901338106533,
+   "median_lambda": 1.10901338106533,
+   "median_effect": 0.12940025465303526,
+   "jaccard_vs_top": 0.2808988764044944,
+   "delta_index_persistent": 0.09359217171717171
+  },
+  "300": {
+   "n_testable": 51.0,
+   "median_abundance": 0.003524412877580182,
+   "median_lambda": 1.0573238632740545,
+   "median_effect": 0.14546465770047526,
+   "jaccard_vs_top": 0.4883720930232558,
+   "delta_index_persistent": 0.07672798216276475
+  },
+  "1000": {
+   "n_testable": 66.0,
+   "median_abundance": 0.002104066769710779,
+   "median_lambda": 2.104066769710779,
+   "median_effect": 0.13333333333333336,
+   "jaccard_vs_top": 0.6705882352941176,
+   "delta_index_persistent": 0.06196013289036545
+  },
+  "3000": {
+   "n_testable": 72.0,
+   "median_abundance": 0.001507589885929988,
+   "median_lambda": 4.522769657789964,
+   "median_effect": 0.12182271557271557,
+   "jaccard_vs_top": 0.7831325301204819,
+   "delta_index_persistent": 0.04370882740447957
+  },
+  "10000": {
+   "n_testable": 77.5,
+   "median_abundance": 0.0010296084922478915,
+   "median_lambda": 10.296084922478915,
+   "median_effect": 0.125,
+   "jaccard_vs_top": 1.0,
+   "delta_index_persistent": 0.0
+  }
+ },
+ "n_persistent_orders": 25,
+ "verdicts": {
+  "P1": {
+   "prediction": "testable set moves down the abundance distribution",
+   "value": "median a-hat falls 10.8-fold from rung 100 to 10000",
+   "verdict": "CONFIRMED"
+  },
+  "P2": {
+   "prediction": "testable set holds its position on the detection curve",
+   "value": "median lambda spans 9.74-fold across rungs (1.057-10.296)",
+   "verdict": "INCONCLUSIVE"
+  },
+  "P3": {
+   "prediction": "apparent effect size is roughly depth-invariant",
+   "value": "median |index-0.5| range 0.024 (0.122-0.145)",
+   "verdict": "CONFIRMED"
+  },
+  "P4": {
+   "prediction": "the testable set turns over",
+   "value": "jaccard(rung 100, rung 10000) = 0.281",
+   "verdict": "CONFIRMED"
+  },
+  "P5": {
+   "prediction": "depth changes membership rather than a given taxon's estimate",
+   "value": "median |index(100) - index(10000)| over 25 persistent orders = 0.094",
+   "verdict": "CONFIRMED"
+  }
+ }
+}

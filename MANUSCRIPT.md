@@ -38,27 +38,28 @@ Correspondence: karagurgen23@gmail.com
 
 ## Abstract
 
-*(241 words)*
+*(248 words)*
 
 Metabarcoding is used to ask which taxa specialise between adjacent habitats, but such estimates are
 rarely tested for transferability. Any such analysis needs a minimum-evidence threshold, and simulation
-under known truth shows it is not a neutral filter: it admits taxa whose expected read count is near one,
-at whatever depth is used. Across a 1000-fold depth change the testable set's median detection parameter
-holds at 0.22–0.49 while its median abundance falls 454-fold. Depth changes which taxa are measurable,
-not how specialised they appear.
+under known truth shows it is not neutral: it admits taxa whose expected read count is near one at any
+depth, so depth should change which taxa are measurable rather than how specialised they appear.
+Subsampling NEON's libraries down a 100-fold depth ladder, with ecosystem and samples fixed, confirms it:
+the testable sets at 100 and 10 000 reads share 28 % of their union, while median apparent effect shifts
+by 0.024.
 
 In FunAqua, a global paired survey of aquatic fungi (2 375 samples), rarefying both members of each site
 pair to its own minimum depth, 49 of 100 testable orders show a significant water–sediment preference —
-zoosporic lineages in water, soil-derived saprotrophs in sediment — but that count ranges from 43 to 57
-across 200 rarefaction draws.
+zoosporic lineages in water, soil saprotrophs in sediment — but that count ranges from 43 to 57 across
+200 draws.
 
 An independent paired dataset 150-fold deeper (NEON, 149 pairs) reproduces habitat partitioning, with
 37 of 103 orders significant, yet directional agreement with FunAqua was **not demonstrated**: 14 of 27
 comparable orders, 51.9 % (95 % CI 34–69 %), which excludes neither chance nor moderate reproducibility.
 
-Within FunAqua, animals and plants are the most compartment-bound (median preference magnitude 0.294 and
-0.227) while fungi (0.150) and Alveolata (0.157) are indistinguishable. This survives five pre-registered
-checks but could not be tested in either external dataset.
+Within FunAqua, animals and plants are most compartment-bound (0.294, 0.227) while fungi (0.150) and
+Alveolata (0.157) are indistinguishable; this survives five pre-registered checks but could not be tested
+externally.
 
 Per-taxon specialisation estimates should not be assumed transferable; matched read depth and taxonomic
 rank are prerequisites for cross-dataset comparison.
@@ -339,10 +340,13 @@ That algebra predicts that deeper data should show more extreme indices. **It do
 ~150-fold difference in depth. We report the failed prediction because the reason it fails is the result.
 
 **The ≥ 20-discordant-pairs requirement is a filter.** A taxon contributes discordant pairs only when its
-detection probability lies away from 0 and 1, so the rule selects taxa whose λ is near 1 *at whatever
-depth is used*. Simulating a community spanning six orders of magnitude in abundance (Figure 5b): across
-a 1000-fold change in depth the median λ of the testable set holds at **0.22–0.49**, the median
-|index − 0.5| holds at **0.304–0.350**, and the median *abundance* of that set falls **454-fold**.
+detection probability lies away from 0 and 1, so the rule favours taxa whose λ is near 1 *at whatever
+depth is used*. In a simulated community spanning six orders of magnitude in abundance, log-uniformly
+(Figure 5b): across a 1000-fold change in depth the median λ of the testable set holds at **0.22–0.49**,
+the median |index − 0.5| holds at **0.304–0.350**, and the median *abundance* of that set falls
+**454-fold**. Those three numbers are properties of that simulated community, not measurements; § 3.4a
+reports what the same quantities do in real data, where the third holds, the second does not, and the
+reason is informative.
 
 **The domain of this result is narrower than the argument above.** The simulation fixes a single
 true abundance ratio (3×) and one abundance distribution, and the selection it describes is strongest for
@@ -366,9 +370,8 @@ are testable in both (Jaccard 0.51), with 31 unique to FunAqua and 34 to NEON.
 depth, but also in geography, water-body type and in what "sediment" means — river and lake sediment
 against stream benthic biofilm. Orders testable in one dataset and not the other may therefore be absent
 for ecological reasons rather than filtered out by depth, and the observed turnover cannot separate the
-two. The clean test holds ecosystem, samples and reference database fixed and varies only depth, by
-subsampling NEON's own deep libraries down a ladder of depths; it is stated here as the test this result
-requires and has not yet had. What the simulation establishes is that the mechanism is *sufficient* to
+two. The clean test holds ecosystem, samples and reference database fixed and varies only depth; it is
+§ 3.4a. What the simulation establishes is that the mechanism is *sufficient* to
 produce such turnover under known truth, not that it is what produced this particular turnover.
 
 This resolves the apparent paradox in § 3.3 and § 3.5 — the marginal distribution of indices is
@@ -380,6 +383,53 @@ observed per-order abundance distribution gives 48–57 significant orders acros
 sd 1.7) against the observed 43–57 (median 51, sd 2.5) — the same order of variation from the draw alone
 (Figure 5c). The observed spread is somewhat wider, as expected given that the simulation assumes
 independent taxa and a simplified truth.
+
+### 3.4a The mechanism in real data, with ecology held constant
+
+To test the mechanism without the cross-dataset confound we subsampled NEON's own libraries down a depth
+ladder. The design was fixed in `DEPTH_LADDER_PLAN.md` before the analysis script existed, with five
+predictions and explicit failure criteria. We used the **102 of 149 qualifying pairs whose within-pair
+depth reaches 10 000 reads, the same 102 at every rung** (available depth median 69 440, minimum 10 641,
+so no pair is upsampled), at rungs of 100, 300, 1 000, 3 000 and 10 000 reads per sample — a 100-fold
+range whose lower end sits below FunAqua's own depth — with 50 draws per rung on shared seeds so that
+draw noise is paired across rungs. Ecosystem, samples, reference database, pairing rule and test are
+identical throughout; only depth changes.
+
+| rung | testable orders | median *â* | median *λ̂* | median \|index − 0.5\| | Jaccard vs 10 000 | median \|Δindex\| |
+|---|---|---|---|---|---|---|
+| 100 | 36 | 1.11 × 10⁻² | 1.11 | 0.129 | **0.281** | 0.094 |
+| 300 | 51 | 3.52 × 10⁻³ | 1.06 | 0.145 | 0.488 | 0.077 |
+| 1 000 | 66 | 2.10 × 10⁻³ | 2.10 | 0.133 | 0.671 | 0.062 |
+| 3 000 | 72 | 1.51 × 10⁻³ | 4.52 | 0.122 | 0.783 | 0.044 |
+| 10 000 | 77 | 1.03 × 10⁻³ | 10.30 | 0.125 | 1.000 | 0.000 |
+
+**Three results confirm the mechanism's consequence.** Depth strongly changes *which* orders are
+measurable: the testable sets at 100 and at 10 000 reads share only 28 % of their union (P4, bar < 0.6).
+The set moves down the abundance distribution, median *â* falling 10.8-fold (P1, bar ≥ 10-fold). Yet
+depth barely changes *how specialised the measured taxa appear*: median |index − 0.5| moves by 0.024
+across the whole 100-fold range, from 0.122 to 0.145 (P3, bar ≤ 0.10) — a sixth of the difference the
+same quantity shows between FunAqua and NEON. And for the 25 orders testable at every rung the estimate
+itself is stable, median |Δindex| 0.094 between the extreme rungs (P5, bar ≤ 0.10).
+
+**One prediction did not hold, and it bounds the claim.** The selected set does *not* keep a fixed
+position on the detection curve. Median *λ̂* rises from 1.06 to 10.30, a 9.74-fold span against a
+pre-committed confirmation band of 3-fold; the frozen rule records this as inconclusive because the
+failure threshold was 10-fold, but 9.74 is three times the band and should not be read as support.
+Post hoc, the drift is a clean power law: median *â* ∝ *D*^−0.485 and median *λ̂* ∝ *D*^+0.515 (R² 0.92 and
+0.93), where complete re-selection would give *â* ∝ *D*^−1 and flat *λ̂*. **The set re-selects about half
+the way.** The reason is in the first column: the testable set *grows* 2.15-fold, from 36 orders to 77.
+Deeper sequencing is not a pure exchange of members — it retains the orders that were marginal at 100
+reads, which by 10 000 reads sit far above λ = 1, and adds newly marginal ones, so the median of a
+growing set drifts upward. The simulation's log-uniform community exchanged members at roughly constant
+size; the real fungal abundance distribution is steeper, and the exponent follows it.
+
+So the idealised form of the mechanism — a testable set pinned at λ ≈ 1 — is a property of that simulated
+community. What holds in real data is the consequence that matters for interpretation: **changing depth
+changes which taxa you can say anything about, while leaving the apparent strength of what you measure
+almost untouched.** P1 and P5 cleared their thresholds narrowly, P5 rests on 25 orders, and the 102
+deepest-sequenced pairs are not a random sample of NEON; the experiment is one dataset, one amplicon and
+one threshold value. Full verdicts, including the two narrow margins, are in
+`DEPTH_LADDER_RESULTS.md`.
 
 ### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 
@@ -461,7 +511,8 @@ the detection curve. Deeper sequencing moves the set that qualifies down the abu
 instead of sharpening the estimates for the taxa already in it. Two datasets at different depths therefore
 produce similar-looking distributions of specialisation over largely different taxa — here, 69 shared
 names out of 134, although that turnover is confounded with the ecological differences between the two
-datasets and so corroborates the mechanism without isolating it (§ 3.4).
+datasets; the depth ladder inside NEON (§ 3.4a) isolates the effect, and finds the same turnover with
+ecology held constant.
 
 This reframes what looked like a replication failure. The usual way to present an analysis like § 3.1 is a
 table of taxa with their preferred habitat, and our results argue against that presentation: the identity

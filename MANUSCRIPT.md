@@ -425,6 +425,36 @@ remains the best available evidence and the claim stays taxonomic.
 
 ---
 
+## 4a Figure captions
+
+**Figure 1. Significance is partly a property of the rarefaction draw.** Each taxonomic order tested in
+at least one of 200 independent within-pair rarefaction draws, ranked by the proportion of draws in which
+it reached a significant habitat preference (Benjamini–Hochberg *q* < 0.05). Blue marks the 35 orders
+significant in at least 95 % of draws; grey the remainder, of which 35 are never significant. Across the
+200 draws the count of significant orders ranges from 43 to 57 (median 51, sd 2.5) and the number of
+testable orders from 96 to 103. 239 site pairs, FunAqua.
+
+**Figure 2. Per-order habitat preferences do not transfer between datasets.** Water preference index
+(water-only discordant pairs / all discordant pairs) for the 27 orders significant in FunAqua and testable
+in NEON. Blue points agree in direction between the two datasets, orange disagree; numbers give the count
+in each quadrant. The dashed line is 1:1. Agreement is 14 of 27 (51.9 %, 95 % CI 34.0–69.3 %, two-sided
+exact binomial *p* = 1.0); Spearman +0.28 (*p* = 0.16). FunAqua 239 pairs, NEON 149 pairs across 23 US
+streams.
+
+**Figure 3. Fungi sit at the generalist end of the eukaryotic range, but are not distinguishable from
+Alveolata.** (**a**) Median effect magnitude |preference − 0.5| and (**b**) median Levins' niche breadth
+*B* across the two compartments, by kingdom, on the same 204 site pairs at the same per-pair rarefaction
+depth. Lower preference and higher *B* both indicate a more generalist distribution. Fungi (blue) are
+lowest on preference and third on *B*; the gap against non-fungal eukaryotes as a pooled group is driven
+by Metazoa and Straminipila. Rhizaria rests on 7 orders and should not be quoted.
+
+**Figure 4. Agreement with FunAqua under capping of NEON's sequencing depth.** Direction agreement for
+the 49 FunAqua-significant orders (blue) and for the 35 draw-stable orders (orange), as NEON's within-pair
+rarefaction depth is capped at successively lower values; "none" is the uncapped median of 31 131 reads.
+FunAqua's own pairs carry a median of 131–179 reads per sample, the regime at the left-hand end. Agreement
+rises toward matched depth but reaches significance at no cap (best *p* = 0.076). Post hoc; not part of
+the frozen validation plan.
+
 ## 5 Data availability
 
 FunAqua is publicly available under CC-BY [ref: data descriptor and Zenodo DOI to be inserted]. NEON data

@@ -494,6 +494,43 @@ rare rather than locally common, which makes low-depth testability look impossib
 near-total re-selection. The limits, including that an exact zero may be a sampling zero and that
 occupancy measured on deep samples is itself depth-dependent, are in `PREVALENCE_RESULTS.md`.
 
+### 3.4d Which estimator to use, and why the question has no single answer
+
+A warning is useful only if some estimator avoids the problem, so five were compared on the calibrated
+generator: the single-draw presence/absence test used here, the draw-stable rule of § 3.2, a paired
+Wilcoxon on proportions, a paired *t*-test on centred log-ratios, and an intercept-only overdispersed
+binomial on read counts. Each saw identical simulated counts (`BENCHMARK2_PLAN.md`, frozen beforehand).
+
+**The ranking depends on how the preference is encoded, which settles the question in the negative.**
+When a preferring taxon is only more *abundant* in water, the read-count estimator wins by 0.852 in power
+and presence/absence detects nothing at all. When it is instead more often *present* in water, that
+advantage is **−0.002** — it vanishes. Any benchmark built on one generator recommends whichever
+estimator shares its parameterisation; our own first attempt did exactly that and was discarded for it
+(`BENCHMARK_RESULTS.md`).
+
+Under the ecologically realistic encoding, where a water-preferring taxon is both more often present and
+more abundant in water, the practical ordering is clear:
+
+| estimator | orders evaluable | power | FDR |
+|---|---|---|---|
+| single draw, presence/absence | 87 | 0.920 | **0.125** |
+| draw-stable rule, ≥ 95 % of draws | 82 | 0.875 | **0.037** |
+| overdispersed binomial on counts | 126 | 0.908 | 0.050 |
+| paired *t*-test on CLR | 254 | 0.441 | 0.813 |
+| paired Wilcoxon on proportions | 161 | 0.376 | 0.755 |
+
+Three things follow. A single rarefaction draw runs at an FDR of 0.125 against a nominal 0.05. The
+draw-stable rule brings that to 0.037 for 0.045 of power — **a second and independent reason for the
+recommendation in § 3.2**, which was argued there only from reproducibility and turns out also to control
+error. And applying no evidence floor is not the same as coverage: the CLR test evaluates every one of
+the 254 orders at every depth, which looks like the remedy § 3.4a calls for, and runs an FDR above 0.8.
+
+The honest summary is that no estimator dominates, that the choice depends on an encoding one does not
+know in advance, and that between the two defensible options — the draw-stable presence/absence rule and
+an overdispersed binomial — the second sees half again as many taxa at comparable error. A
+detection-explicit occupancy model, the natural estimator for the structure § 3.4c identifies, was not
+tested and is the clearest remaining gap.
+
 ### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 
 On the same 204 pairs at the same depth, the median effect magnitude is **0.156 for fungi against 0.228 for
@@ -617,6 +654,12 @@ random draw, and our own two implementations landed at 49 and 51. Where rarefact
 paired designs with unequal depth it is the cleanest available fix — the result should be reported over
 many draws, and the reporting unit should be the set of taxa that are stable across them. We found 35 of
 100 orders stable at the 95 % level.
+
+That recommendation was made on reproducibility grounds alone, and § 3.4d supplies a second reason that
+is arguably stronger: under simulation with known truth, a single draw runs at a false discovery rate of
+**0.125** against a nominal 0.05, while requiring significance in ≥ 95 % of draws brings it to **0.037**
+at a cost of 0.045 in power. The stable set is not merely the more reproducible thing to report; it is
+the one that keeps the error rate near what is claimed for it.
 
 ### 4.4 Limitations
 
@@ -889,6 +932,16 @@ companion pseudogene study and is cited nowhere in this manuscript.
    | 4 | agreement against NEON depth cap, both comparison sets | `fig4_depth_probe` |
    | 5 | the algebra and the idealised simulation, three panels | `fig5_simulation` |
    | 6 | the mechanism in real data: ladder, sweep, four abundance variants | `fig6_mechanism_in_data` |
+
+3a. **Why § 3.4a–3.4c keep letters when § 3.3b did not.** These look like the interim label that was
+   removed earlier, and they are not the same case. "3.3b" was an independent section wedged after § 3.3
+   while it waited for a number. § 3.4a–3.4c are three parts of the single argument § 3.4 opens — the
+   algebra, then the same question in real data, then its generality and the model that reproduces it —
+   which is an ordinary convention. They are also referenced by `SWEEP_PLAN.md`, `PREVALENCE_PLAN.md` and
+   `BENCHMARK_PLAN.md`, which are frozen pre-registrations and must not be edited; renumbering the
+   manuscript would leave those references pointing at sections that no longer exist and weaken the
+   provenance trail they exist to provide. A journal copy-editor may renumber at proof stage, which is
+   the right moment for it.
 
    Still to decide: whether Fig 4 belongs in the main text or the supplement, given that it is post hoc
    and reaches significance at no cap.

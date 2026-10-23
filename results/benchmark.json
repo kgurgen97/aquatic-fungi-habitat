@@ -1,0 +1,90 @@
+{
+ "plan_sha256": "ada8cb3a0403dcce1da87dd6771f63484ee966bc5ddc90a8486cf8a5671b2844",
+ "n_pairs": 102,
+ "n_orders": 254,
+ "n_rep": 40,
+ "depths": [
+  100,
+  1000,
+  10000
+ ],
+ "ratios": [
+  2,
+  4,
+  8
+ ],
+ "per_estimator": {
+  "pa_single": {
+   "n_evaluable": 79.0,
+   "power": 0.0,
+   "fdr": 0.0,
+   "dir_acc": 0.0,
+   "bias": -0.21809832251020947,
+   "rmse": 0.24188068888820943,
+   "depth_stability": 0.34513274336283184
+  },
+  "pa_repeated": {
+   "n_evaluable": 75.0,
+   "power": 0.0,
+   "fdr": 0.0,
+   "dir_acc": 0.0,
+   "bias": -0.22598948660987547,
+   "rmse": 0.2452554500351694,
+   "depth_stability": 0.33962264150943394
+  },
+  "prop_wilcoxon": {
+   "n_evaluable": 152.0,
+   "power": 0.20930232558139536,
+   "fdr": 0.8260869565217391,
+   "dir_acc": 0.8076923076923077,
+   "bias": null,
+   "rmse": null,
+   "depth_stability": 0.44387755102040816
+  },
+  "clr_ttest": {
+   "n_evaluable": 254.0,
+   "power": 0.1839080459770115,
+   "fdr": 0.8829508960944784,
+   "dir_acc": 0.8128434065934066,
+   "bias": null,
+   "rmse": null,
+   "depth_stability": 1.0
+  },
+  "betabinom": {
+   "n_evaluable": 115.0,
+   "power": 0.8497743391360413,
+   "fdr": 0.05263157894736842,
+   "dir_acc": 0.9761904761904762,
+   "bias": -0.00025459143249673507,
+   "rmse": 0.058331447332666195,
+   "depth_stability": 0.30412371134020616
+  }
+ },
+ "verdicts": {
+  "B1": {
+   "prediction": "count-based estimators evaluate far more orders",
+   "value": "at depth 100: clr_ttest evaluates 254 vs pa_single 44 = 5.77x",
+   "verdict": "CONFIRMED"
+  },
+  "B2": {
+   "prediction": "and their evaluable set is far less depth-dependent",
+   "value": "clr_ttest stability 1.000 vs pa_single 0.345",
+   "verdict": "CONFIRMED"
+  },
+  "B3": {
+   "prediction": "repeated rarefaction controls FDR better than a single draw",
+   "value": "repeated - single FDR by depth: 100: -0.092, 1000: +0.000, 10000: +0.000",
+   "verdict": "INCONCLUSIVE"
+  },
+  "B4": {
+   "prediction": "some estimator beats pa_single on power at equal or lower FDR",
+   "value": "at depth 1000, r=4: pa_single power 0.000 FDR 0.000; beaten by none",
+   "verdict": "FAILED"
+  },
+  "B5": {
+   "prediction": "no estimator achieves nominal FDR everywhere",
+   "value": "holds FDR<=0.05 in every cell: pa_single=no, pa_repeated=no, prop_wilcoxon=no, clr_ttest=no, betabinom=no",
+   "verdict": "INCONCLUSIVE"
+  }
+ }
+}

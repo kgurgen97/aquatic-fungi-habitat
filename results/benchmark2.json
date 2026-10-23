@@ -1,0 +1,144 @@
+{
+ "plan_sha256": "9b101499c7779afa6ac9a17a8929c2b8f012d5c61e8edc27004119f7135a9719",
+ "n_cells": 27,
+ "n_rep": 30,
+ "arms": [
+  "abundance",
+  "occupancy",
+  "both"
+ ],
+ "depths": [
+  100,
+  1000,
+  10000
+ ],
+ "ratios": [
+  2,
+  4,
+  8
+ ],
+ "best_by_arm": {
+  "abundance": "betabinom",
+  "occupancy": "pa_single",
+  "both": "pa_single"
+ },
+ "per_arm_estimator": {
+  "abundance|pa_single": {
+   "n_evaluable": 79.0,
+   "power": 0.0,
+   "fdr": 0.0,
+   "dir_acc": 0.0
+  },
+  "abundance|pa_repeated": {
+   "n_evaluable": 75.5,
+   "power": 0.0,
+   "fdr": 0.0,
+   "dir_acc": 0.0
+  },
+  "abundance|prop_wilcoxon": {
+   "n_evaluable": 153.0,
+   "power": 0.21153846153846154,
+   "fdr": 0.8187294633077766,
+   "dir_acc": 0.8134463276836159
+  },
+  "abundance|clr_ttest": {
+   "n_evaluable": 254.0,
+   "power": 0.17956349206349206,
+   "fdr": 0.8804898950224952,
+   "dir_acc": 0.8117647058823529
+  },
+  "abundance|betabinom": {
+   "n_evaluable": 117.0,
+   "power": 0.8518292682926829,
+   "fdr": 0.05555555555555555,
+   "dir_acc": 0.9725975975975976
+  },
+  "occupancy|pa_single": {
+   "n_evaluable": 85.5,
+   "power": 0.38461538461538464,
+   "fdr": 0.0,
+   "dir_acc": 1.0
+  },
+  "occupancy|pa_repeated": {
+   "n_evaluable": 83.0,
+   "power": 0.3169642857142857,
+   "fdr": 0.0,
+   "dir_acc": 1.0
+  },
+  "occupancy|prop_wilcoxon": {
+   "n_evaluable": 154.0,
+   "power": 0.061553030303030304,
+   "fdr": 0.615,
+   "dir_acc": 0.4863735465116279
+  },
+  "occupancy|clr_ttest": {
+   "n_evaluable": 254.0,
+   "power": 0.12903762903762903,
+   "fdr": 0.8527000964320154,
+   "dir_acc": 0.835820895522388
+  },
+  "occupancy|betabinom": {
+   "n_evaluable": 114.0,
+   "power": 0.38278388278388276,
+   "fdr": 0.05217785843920145,
+   "dir_acc": 0.9814751286449399
+  },
+  "both|pa_single": {
+   "n_evaluable": 87.0,
+   "power": 0.92,
+   "fdr": 0.125,
+   "dir_acc": 1.0
+  },
+  "both|pa_repeated": {
+   "n_evaluable": 82.0,
+   "power": 0.875,
+   "fdr": 0.03708791208791209,
+   "dir_acc": 1.0
+  },
+  "both|prop_wilcoxon": {
+   "n_evaluable": 161.0,
+   "power": 0.3759057971014493,
+   "fdr": 0.7547087547959539,
+   "dir_acc": 0.7418010752688172
+  },
+  "both|clr_ttest": {
+   "n_evaluable": 254.0,
+   "power": 0.4408263305322129,
+   "fdr": 0.8134899583175446,
+   "dir_acc": 0.8836636636636637
+  },
+  "both|betabinom": {
+   "n_evaluable": 126.0,
+   "power": 0.9078787878787878,
+   "fdr": 0.04959016393442623,
+   "dir_acc": 0.9797794117647058
+  }
+ },
+ "verdicts": {
+  "C1": {
+   "prediction": "the ranking depends on the encoding",
+   "value": "best by power: abundance=betabinom, occupancy=pa_single, both=pa_single",
+   "verdict": "CONFIRMED"
+  },
+  "C2": {
+   "prediction": "presence/absence recovers under occupancy-encoded preference",
+   "value": "power(pa_single, occupancy arm, D=1000, r=4) = 0.754",
+   "verdict": "CONFIRMED"
+  },
+  "C3": {
+   "prediction": "betabinom's dominance was an artefact of the first generator",
+   "value": "betabinom - pa_single power: abundance arm +0.852, occupancy arm -0.002, shrinkage +0.854",
+   "verdict": "CONFIRMED"
+  },
+  "C4": {
+   "prediction": "no evidence floor means poor FDR whatever the encoding",
+   "value": "clr_ttest FDR at D=1000: abundance 0.865, occupancy 0.835, both 0.813",
+   "verdict": "CONFIRMED"
+  },
+  "C5": {
+   "prediction": "under the realistic arm something beats the paper's own method",
+   "value": "both arm, D=1000, r=4: pa_single power 0.947 FDR 0.186; beaten by ['betabinom']",
+   "verdict": "CONFIRMED"
+  }
+ }
+}

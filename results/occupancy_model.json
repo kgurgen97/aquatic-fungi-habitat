@@ -1,0 +1,56 @@
+{
+ "plan_sha256": "74178c173ef708ddbab992a8b65af2a841bcfd7e5d23b00d4e59ab58de837bbe",
+ "K": 8,
+ "n_cells": 27,
+ "n_rep": 30,
+ "per_arm": {
+  "abundance": {
+   "n_evaluable": 151.0,
+   "power": 0.016009221311475412,
+   "fdr": 0.0,
+   "dir_acc": 0.5
+  },
+  "occupancy": {
+   "n_evaluable": 152.0,
+   "power": 0.2857142857142857,
+   "fdr": 0.0,
+   "dir_acc": 1.0
+  },
+  "both": {
+   "n_evaluable": 155.0,
+   "power": 0.8333333333333334,
+   "fdr": 0.029631255487269532,
+   "dir_acc": 1.0
+  }
+ },
+ "occupancy_arm_ranking": [
+  "pa_single",
+  "betabinom",
+  "pa_repeated",
+  "occupancy",
+  "clr_ttest",
+  "prop_wilcoxon"
+ ],
+ "verdicts": {
+  "O1": {
+   "prediction": "highest power of all six in the occupancy arm",
+   "value": "power in the occupancy arm: pa_single 0.385, betabinom 0.383, pa_repeated 0.317, occupancy 0.286, clr_ttest 0.129, prop_wilcoxon 0.062  -> occupancy ranks 4 of 6",
+   "verdict": "FAILED"
+  },
+  "O2": {
+   "prediction": "near-blind in the abundance arm, by design",
+   "value": "abundance arm: power 0.016 (bar <=0.15), FDR 0.000 (bar <=0.10)",
+   "verdict": "CONFIRMED"
+  },
+  "O3": {
+   "prediction": "controls FDR better than a single presence/absence draw",
+   "value": "both arm: occupancy FDR 0.030 vs pa_single 0.125",
+   "verdict": "CONFIRMED"
+  },
+  "O4": {
+   "prediction": "evaluates at least as many orders as pa_single",
+   "value": "evaluable, occupancy vs pa_single: abundance 151/79, occupancy 152/86, both 155/87",
+   "verdict": "CONFIRMED"
+  }
+ }
+}

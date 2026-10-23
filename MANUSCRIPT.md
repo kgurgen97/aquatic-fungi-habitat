@@ -525,11 +525,32 @@ recommendation in § 3.2**, which was argued there only from reproducibility and
 error. And applying no evidence floor is not the same as coverage: the CLR test evaluates every one of
 the 254 orders at every depth, which looks like the remedy § 3.4a calls for, and runs an FDR above 0.8.
 
-The honest summary is that no estimator dominates, that the choice depends on an encoding one does not
-know in advance, and that between the two defensible options — the draw-stable presence/absence rule and
-an overdispersed binomial — the second sees half again as many taxa at comparable error. A
-detection-explicit occupancy model, the natural estimator for the structure § 3.4c identifies, was not
-tested and is the clearest remaining gap.
+**A detection-explicit occupancy model was then added**, since it is the natural estimator for the
+structure § 3.4c identifies. Occupancy models need repeated visits to separate occupancy ψ from detection
+*p*, which one sample per site does not provide; *K* = 8 rarefaction subsamples of each library supply
+them, giving a detection history per sample at no cost in data. ψ is then occupancy *in the sequenced
+library*, so the model corrects subsampling and not sequencing. Its plan (`OCCUPANCY_PLAN.md`) committed
+in advance to the reading of a failure, and it did fail its primary prediction: in the arm built for it,
+where preference acts on occupancy alone, it ranks **fourth of six** on power (0.286 against the single
+draw's 0.385). It must estimate *p* from the detection histories themselves, and where detections are
+sparse that estimate is noisy — so the correction helps where data are already plentiful and hurts where
+they are thin. **On power there is no case for it over the draw-stable rule.**
+
+It earns two things that do not depend on that. Under the realistic encoding it evaluates **155 orders
+against the draw-stable rule's 82**, 1.9 times as many, at power 0.833 against 0.875 and FDR 0.030
+against 0.037 — and unlike the CLR test's nominal 254 that is coverage *with* an evidence floor rather
+than coverage from having none. And in the abundance-only arm it is almost silent (power 0.016,
+FDR 0.000) where `betabinom` fires at 0.852: alone among the six, its answer tracks its own estimand,
+correctly reporting that occupancy does not differ when only abundance does.
+
+The honest summary is that no estimator dominates and the choice depends on an encoding one does not know
+in advance. Within the realistic encoding, the draw-stable rule gives the fewest false discoveries for
+the least machinery; the occupancy model and the overdispersed binomial assess roughly twice and 1.5
+times as many taxa at comparable error; and no method should be used without an evidence floor. The
+occupancy model's case rests on coverage, not power, and it weakens below about 1 000 reads per sample.
+Its obvious extension — a per-sample detection covariate, since detectability depends on a taxon's
+abundance in each particular sample — is untested and would most likely repair exactly the low-depth
+weakness that defeated it here.
 
 ### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 

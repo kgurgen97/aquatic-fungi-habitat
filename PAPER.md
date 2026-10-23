@@ -40,16 +40,38 @@ gap against "non-fungal eukaryotes" as a pooled group is driven by Metazoa, Stra
 Viridiplantae. On Levins' *B* pooled against protists, *p* = 0.163. The paper does **not** claim fungi are
 generalists relative to eukaryotes generally — an earlier draft did, and § 3.5 contradicts it.
 
+## The mechanism, in four pre-registered steps
+
+Added after the first draft, each with its plan frozen and hashed before its analysis existed. Together
+they are now the paper's core, and two of them failed in ways that changed what it claims.
+
+1. **Depth ladder (§ 3.4a).** NEON's own libraries subsampled to 100/300/1 000/3 000/10 000 reads on a
+   fixed set of 102 pairs, so ecology is held constant and only depth moves. The testable set turns over
+   hard (Jaccard 0.281) while apparent effect size barely shifts (0.122–0.145). Four of five predictions
+   confirmed; the fifth showed the set does *not* hold a fixed position on the detection curve.
+2. **Parameter sweep (§ 3.4b).** 240 cells. Depth-invariance of apparent effect holds in **239 of 239**
+   interpretable cells — the paper's firmest statement. But two predictions failed, and they carried my
+   explanation of the ladder's exponent, which was withdrawn.
+3. **Per-site abundance (§ 3.4c).** The failure was pooling. Representing abundance per sample moves the
+   exponent from 0.958 to 0.484 against the measured 0.485; occupancy plus mean abundance — two numbers
+   per taxon — recovers 0.432. The median order is present in only 9.8 % of samples.
+4. **Estimator benchmark (§ 3.4d).** The first attempt was discarded: its generator encoded preference as
+   a read ratio and so handed one estimator its own estimand. The replacement shows the ranking **flips**
+   with the encoding, so there is no best estimator. Under realistic encoding a single draw runs at
+   FDR 0.125, the draw-stable rule at 0.037.
+
 ## What is in this folder
 
 | item | contents |
 |---|---|
 | `MANUSCRIPT.md` | the full draft, every number quoted from a file in `results/` |
 | `SUPPLEMENTARY.md` | supplementary figures S1–S3, tables S1–S14, supplementary methods |
-| `figures/` | the **five** main figures, vector PDF and 600 dpi PNG |
+| `figures/` | the **six** main figures, vector PDF and 600 dpi PNG |
 | `supplementary/` | Table_S1…S14, Figure_S1…S3, and `table_provenance.tsv` |
-| `*_RESULTS.md` | the long-form working write-up behind each section. These predate the simulation and
-  the narrowed wording; where they differ from `MANUSCRIPT.md`, the manuscript is authoritative. |
+| `PLAN_HASHES.md` | every frozen plan's SHA-256 and the commit that introduced it |
+| `*_RESULTS.md` | the long-form write-up behind each section. The four above are current; `RESULTS.md`
+  and `EUK_RESULTS.md` predate the simulation and carry a banner saying so. Where any of them differs
+  from `MANUSCRIPT.md`, the manuscript is authoritative. |
 
 Not copied here: the frozen pre-registration plans, the analysis code and the 33 raw result tables. All
 are in the repository, which is the reproducible record.

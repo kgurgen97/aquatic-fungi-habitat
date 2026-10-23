@@ -65,9 +65,14 @@ bad = [f"line {i}: {l.strip()[:90]}"
 print("    " + ("\n    ".join(bad) if bad else "none"))
 
 print("\n=== stale counts")
+# The abstract once said "three findings" and the introduction "we report three
+# things" when the simulation made it four. Catch those two claims specifically.
+# An earlier, looser pattern also flagged "Three things follow" in 3.4d, which
+# genuinely introduces three conclusions - a count of something else entirely.
 stale = [f"line {i}: {l.strip()[:90]}"
          for i, l in enumerate(t.splitlines(), 1)
-         if re.search(r"\b(three|Three) (findings|things)\b", l)]
+         if re.search(r"\b[Tt]hree findings\b", l)
+         or re.search(r"\b(report|reports|reporting)\s+three\s+things\b", l)]
 print("    " + ("\n    ".join(stale) if stale else "none"))
 
 sys.exit(1 if (missing or uncited or bad or stale) else 0)

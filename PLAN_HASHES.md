@@ -19,3 +19,4 @@ point of freezing it. Verify with:
 | `PREVALENCE_PLAN.md` | `35e1f6be2c337ffdbd62d15f2fe387166c73a6bb62b1ccb546498f1c503ba00b` | `4ac0440` | 2026-10-23 |
 | `BENCHMARK_PLAN.md` | `ada8cb3a0403dcce1da87dd6771f63484ee966bc5ddc90a8486cf8a5671b2844` | `828f8da` | 2026-10-23 |
 | `BENCHMARK2_PLAN.md` | `9b101499c7779afa6ac9a17a8929c2b8f012d5c61e8edc27004119f7135a9719` | `6a94646` | 2026-10-23 |
+| `OCCUPANCY_PLAN.md` | `74178c173ef708ddbab992a8b65af2a841bcfd7e5d23b00d4e59ab58de837bbe` | `be9490c` | 2026-10-23 |

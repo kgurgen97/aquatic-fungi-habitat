@@ -19,7 +19,7 @@ Shorter alternative, same claim: *Depth changes which taxa are measurable, not h
 appear: a mechanism for the non-transferability of per-taxon habitat preferences*
 
 Rejected, biology-led: *Fungi are generalists among aquatic eukaryotes across the water–sediment boundary*
-— § 3.5 shows fungi are indistinguishable from Alveolata and that the pooled gap is driven by Metazoa and
+§ 3.5 shows fungi are indistinguishable from Alveolata and that the pooled gap is driven by Metazoa and
 Straminipila, so this title would overstate the paper's own table.
 
 ## Running title
@@ -45,12 +45,12 @@ rarely tested for transferability. Any such analysis needs a minimum-evidence th
 neutral: it admits taxa whose expected read count is near one at any depth, so depth should change which
 taxa are measurable rather than how specialised they appear. Subsampling NEON's libraries down a 100-fold
 depth ladder, with ecosystem and samples fixed, confirms the consequence: the testable sets at 100 and
-10 000 reads share 28 % of their union, while median apparent effect shifts by 0.024 — the latter in all
+10 000 reads share 28 % of their union, while median apparent effect shifts by 0.024, the latter in all
 239 swept parameter sets.
 
 In FunAqua, a global paired survey of aquatic fungi (2 375 samples), rarefying both members of each site
-pair to its own minimum depth, 49 of 100 testable orders show a significant water–sediment preference —
-zoosporic lineages in water, soil saprotrophs in sediment — but that count ranges from 43 to 57 across
+pair to its own minimum depth, 49 of 100 testable orders show a significant water–sediment preference (zoosporic
+lineages in water, soil saprotrophs in sediment), but that count ranges from 43 to 57 across
 200 draws.
 
 An independent dataset 150-fold deeper (NEON, 149 pairs) reproduces habitat partitioning, with
@@ -71,7 +71,7 @@ rarefaction
 
 ## 1 Introduction
 
-*(draft — tighten and add citations)*
+*(draft: tighten and add citations)*
 
 Amplicon surveys now routinely report which taxa prefer one habitat over an adjacent one, and such
 statements are used to infer dispersal strategy, substrate use and ecological strategy more broadly. The
@@ -82,27 +82,27 @@ groups being compared; and presence/absence at any fixed depth is a threshold ap
 abundance distribution.
 
 One consequence of that last point turns out to govern everything else, and it is the main result of this
-paper. Every such analysis needs a minimum-evidence rule — a taxon must appear in enough samples, or
+paper. Every such analysis needs a minimum-evidence rule: a taxon must appear in enough samples, or in
 enough discordant pairs, before it can be tested at all. That rule is not a neutral filter. A taxon
 contributes evidence only while its detection probability sits away from both 0 and 1, which happens when
 its expected read count is near one; so the rule admits taxa whose abundance multiplied by depth is near
-one, at whatever depth is used. Raise the depth and the set that passes does not become more extreme — it
+one, at whatever depth is used. Raise the depth and the set that passes does not become more extreme, it
 moves down the abundance distribution to rarer taxa that now sit in the same place on the detection curve.
 Depth therefore changes *which* taxa a survey can measure rather than how specialised they appear.
 
 This predicts a specific and testable pattern: the distribution of specialisation estimates should
 reproduce between datasets of very different depth, while the estimates for individually named taxa should
 not, because the two datasets are measuring different taxa. It also says which claims from such a survey
-are safe to carry forward — aggregate contrasts between large groups, which average over whichever taxa
-happened to pass — and which are not, namely any statement about a named taxon. We derive the mechanism
+are safe to carry forward (aggregate contrasts between large groups, which average over whichever taxa
+happened to pass) and which are not, namely any statement about a named taxon. We derive the mechanism
 under known truth, confirm the pattern it predicts in two independent paired datasets, and show that a
 prediction we first drew from the same algebra fails, for a reason that is itself the result.
 
 Aquatic fungi are a good case in which to examine this. They are abundant in both the water column and the
-sediment, they have well-described dispersal differences — notably the flagellated zoospore of the
-chytrids and their relatives — and a global paired survey now exists. FunAqua samples the same sites in
+sediment, they have well-described dispersal differences, notably the flagellated zoospore of the
+chytrids and their relatives, and a global paired survey now exists. FunAqua samples the same sites in
 both compartments across 87 countries, which removes the site-level confounding that bedevils comparisons
-assembled from separate studies. Crucially, it also sequences the non-fungal eukaryotes that the same ITS
+assembled from separate studies. It also sequences the non-fungal eukaryotes that the same ITS
 primers capture, which provides a within-assay comparison group: the same samples, the same day, the same
 reaction.
 
@@ -115,15 +115,15 @@ niche-breadth comparisons that do include fungi report them as *narrower* than p
 groups (Malard et al., 2022). That makes any opposite result worth examining carefully rather than
 announcing.
 
-We set out to answer one question — do fungal clades specialise between water and sediment — and found
+We set out to answer one question (do fungal clades specialise between water and sediment?) and found
 that the measurement was more interesting than the answer. We report four things, in the order in which
 they constrain each other. The mechanism above is the first: a derivation under known truth, with the
 depth range over which the testable set holds its position on the detection curve. The second and third
 are what it accounts for in real data: a single rarefaction draw moves the headline count of specialised
 orders across a range of 14, and per-order preferences fail to replicate in an independent paired dataset
 even though that dataset reproduces habitat partitioning in aggregate. The fourth is what does carry
-across — a contrast between large groups, in which animals and plants are compartment-bound while fungi
-and the protist groups are not — together with the limits on how narrowly that contrast may be stated.
+across: a contrast between large groups, in which animals and plants are compartment-bound while fungi
+and the protist groups are not, together with the limits on how narrowly that contrast may be stated.
 
 **Hypotheses, and when they were fixed.** All analysis plans were written and committed to version control
 before the corresponding outcomes were computed; commit identifiers are given in § 2.7 so that the order of
@@ -208,7 +208,7 @@ exact-date pairing yielded only 20 qualifying pairs, below the trigger of 60 fix
 pre-declared ±7-day rule applied, giving **149 pairs** across 23 sites and 128 dates. All other
 measurement was identical to § 2.2–2.3.
 
-**metaPR2 — examined and deliberately not used.** metaPR2 v4.0 (Vaulot et al., 2022; 187 datasets, 18S
+**metaPR2: examined and deliberately not used.** metaPR2 v4.0 (Vaulot et al., 2022; 187 datasets, 18S
 rRNA, annotated against PR² 5.1.0, Guillou et al., 2013) was
 obtained and assessed as a second external set, attractive because 18S has the opposite primer bias to
 ITS. It was rejected on a measurable ground: PR2 assigns fungi systematically coarser ranks than protists.
@@ -216,7 +216,7 @@ Of 43 distinct fungal labels in its `order` column only 19 are genuinely order-r
 and Ascomycota and Basidiomycota together collapse into six subphylum labels. ASVs per label run 1.5–2.2×
 higher for fungi at every rank coarse enough for the available 44 paired coastal samples. Since coarser
 aggregation demonstrably weakens apparent preference (§ 3.5), a test on that data would have produced a
-spurious confirmation. For contrast, the same audit on FunAqua gives near parity — a fungal order
+spurious confirmation. For contrast, the same audit on FunAqua gives near parity: a fungal order
 aggregates 0.96× as much diversity as a non-fungal one (Class 0.95, Family 0.76).
 
 ### 2.7 Pre-registration and availability
@@ -235,8 +235,8 @@ before those outcomes were seen. Code and results: `github.com/kgurgen97/aquatic
 Of 100 orders with enough discordant pairs to test, **49 show a significant habitat preference**
 (BH *q* < 0.05): 30 toward water, 19 toward sediment. The pattern is biologically coherent, which matters
 because nothing in the method has access to fungal biology. Zoosporic lineages with a motile flagellate
-stage go to the water column — Zygophlyctidales (94 water-only against 14 sediment-only pairs),
-Chytridiales, Zygorhizidiales, Rozellales — while Sordariales, Microascales and Zoopagales, all soil and
+stage go to the water column: Zygophlyctidales (94 water-only against 14 sediment-only pairs),
+Chytridiales, Zygorhizidiales and Rozellales. Sordariales, Microascales and Zoopagales, all soil and
 dung organisms, go to the sediment. Lulworthiales, marine and wood-degrading, is strongly sedimentary
 (index 0.074).
 
@@ -271,8 +271,8 @@ Per order, the instability is concentrated:
 
 **The defensible unit of reporting is therefore the set of 35 draw-stable orders** (21 water, 14 sediment),
 not any single draw's count. This has a direct consequence for our own earlier reading: the three orders
-we had identified as disagreeing in direction between Europe and North America — Auriculariales, Pezizales
-and Trechisporales — are significant in only 27, 136 and 185 of 200 draws respectively, so that
+we had identified as disagreeing in direction between Europe and North America (Auriculariales,
+Pezizales and Trechisporales) are significant in only 27, 136 and 185 of 200 draws respectively, so that
 disagreement was substantially draw noise rather than biogeography.
 
 ### 3.3 Directional agreement with an independent dataset is not demonstrated
@@ -282,7 +282,7 @@ paired water/benthic samples, **37 show a significant preference** (18 water, 19
 FunAqua's 49 of 100.
 
 What fails to transfer is which order prefers which habitat. Of the 49 FunAqua-significant orders, 27 were
-testable in NEON, and the direction agrees for **14 of 27 — 51.9 %** (95 % CI 34.0–69.3 %, two-sided exact
+testable in NEON, and the direction agrees for **14 of 27, or 51.9 %** (95 % CI 34.0–69.3 %, two-sided exact
 binomial **p = 1.0**). This was the pre-registered primary endpoint of the validation, with replication
 declared only at agreement above 50 % with p < 0.05; the agreement is at chance. The preference index
 correlates weakly and non-significantly between datasets (Spearman +0.281, p = 0.156 over the 27 compared
@@ -309,7 +309,7 @@ membership from fungal biology before any group value was computed. NEON support
 (flagellated median 0.858 against aflagellate 0.379, Mann–Whitney p = 5.1 × 10⁻⁸, rank-biserial +0.823;
 16 of 18 flagellated orders prefer water against 18 of 83 aflagellate, Fisher OR 28.9, p = 1.3 × 10⁻⁷).
 FunAqua does not, and what direction it has runs the other way (0.439 against 0.548, p = 0.179). Under the
-pre-declared rule — predicted direction with p < 0.05 in both datasets independently — the hypothesis is
+pre-declared rule (predicted direction with p < 0.05 in both datasets independently) the hypothesis is
 **not replicated**.
 
 Post hoc, the two flagellated phyla behave oppositely, and this is itself consistent across datasets:
@@ -327,7 +327,7 @@ mechanism (`analysis_simulation.py`; Figure 4).
 
 A taxon at relative abundance *a*, in a sample rarefied to depth *D*, is detected with probability
 1 − (1 − *a*)^*D* ≈ 1 − e^(−λ), λ = *aD*. Writing *P*_w and *P*_s for the two compartments, the discordant
-pairs — the only ones the test uses — split as *P*_w(1 − *P*_s) and *P*_s(1 − *P*_w), so
+pairs, the only ones the test uses, split as *P*_w(1 − *P*_s) and *P*_s(1 − *P*_w), so
 
 > E[index] = *P*_w(1 − *P*_s) / [ *P*_w(1 − *P*_s) + *P*_s(1 − *P*_w) ]
 
@@ -350,8 +350,8 @@ reason is informative.
 
 **The domain of this result is narrower than the argument above.** The simulation fixes a single
 true abundance ratio (3×) and one abundance distribution, and the selection it describes is strongest for
-taxa with modest habitat effects. For a taxon with a large effect — reliably detected in one compartment
-and essentially never in the other — discordant pairs accumulate over a much wider range of λ, including
+taxa with modest habitat effects. For a taxon with a large effect, reliably detected in one compartment
+and essentially never in the other, discordant pairs accumulate over a much wider range of λ, including
 λ ≫ 1, so such a taxon can pass the threshold without sitting near the middle of the detection curve. The
 testable set is therefore determined jointly by both detection probabilities, the true effect, the number
 of pairs and the abundance distribution. § 3.4b sweeps those axes. The escape route is real but weaker
@@ -366,20 +366,20 @@ only **69 of 134** testable orders, that is, of the 134 orders testable in at le
 are testable in both (Jaccard 0.51), with 31 unique to FunAqua and 34 to NEON.
 
 **This overlap is consistent with the mechanism but does not establish it.** FunAqua and NEON differ in
-depth, but also in geography, water-body type and in what "sediment" means — river and lake sediment
+depth, but also in geography, water-body type and in what "sediment" means: river and lake sediment
 against stream benthic biofilm. Orders testable in one dataset and not the other may therefore be absent
 for ecological reasons rather than filtered out by depth, and the observed turnover cannot separate the
 two. The clean test holds ecosystem, samples and reference database fixed and varies only depth; it is
 § 3.4a. What the simulation establishes is that the mechanism is *sufficient* to
 produce such turnover under known truth, not that it is what produced this particular turnover.
 
-This resolves the apparent paradox in § 3.3 and § 3.5 — the marginal distribution of indices is
+This resolves the apparent paradox in § 3.3 and § 3.5. The marginal distribution of indices is
 reproducible between datasets while the per-order values are not, so aggregate contrasts survive a
 comparison that per-taxon claims cannot.
 
 Finally, the spread in § 3.2 is not peculiar to FunAqua. Simulating 239 pairs at depth 211 with the
 observed per-order abundance distribution gives 48–57 significant orders across 200 draws (median 52,
-sd 1.7) against the observed 43–57 (median 51, sd 2.5) — the same order of variation from the draw alone
+sd 1.7) against the observed 43–57 (median 51, sd 2.5), the same order of variation from the draw alone
 (Figure 4c). The observed spread is somewhat wider, as expected given that the simulation assumes
 independent taxa and a simplified truth.
 
@@ -389,8 +389,8 @@ To test the mechanism without the cross-dataset confound we subsampled NEON's ow
 ladder. The design was fixed in `DEPTH_LADDER_PLAN.md` before the analysis script existed, with five
 predictions and explicit failure criteria. We used the **102 of 149 qualifying pairs whose within-pair
 depth reaches 10 000 reads, the same 102 at every rung** (available depth median 69 440, minimum 10 641,
-so no pair is upsampled), at rungs of 100, 300, 1 000, 3 000 and 10 000 reads per sample — a 100-fold
-range whose lower end sits below FunAqua's own depth — with 50 draws per rung on shared seeds so that
+so no pair is upsampled), at rungs of 100, 300, 1 000, 3 000 and 10 000 reads per sample, a 100-fold
+range whose lower end sits below FunAqua's own depth, with 50 draws per rung on shared seeds so that
 draw noise is paired across rungs. Ecosystem, samples, reference database, pairing rule and test are
 identical throughout; only depth changes.
 
@@ -409,7 +409,7 @@ over, and the apparent effect size staying put.
 measurable: the testable sets at 100 and at 10 000 reads share only 28 % of their union (P4, bar < 0.6).
 The set moves down the abundance distribution, median *â* falling 10.8-fold (P1, bar ≥ 10-fold). Yet
 depth barely changes *how specialised the measured taxa appear*: median |index − 0.5| moves by 0.024
-across the whole 100-fold range, from 0.122 to 0.145 (P3, bar ≤ 0.10) — a sixth of the difference the
+across the whole 100-fold range, from 0.122 to 0.145 (P3, bar ≤ 0.10), a sixth of the difference the
 same quantity shows between FunAqua and NEON. And for the 25 orders testable at every rung the estimate
 itself is stable, median |Δindex| 0.094 between the extreme rungs (P5, bar ≤ 0.10).
 
@@ -420,11 +420,11 @@ failure threshold was 10-fold, but 9.74 is three times the band and should not b
 Post hoc, the drift is a clean power law: median *â* ∝ *D*^−0.485 and median *λ̂* ∝ *D*^+0.515 (R² 0.92 and
 0.93), where complete re-selection would give *â* ∝ *D*^−1 and flat *λ̂*. **The set re-selects about half
 the way.** Part of the reason is in the first column: the testable set *grows* 2.15-fold, from 36 orders
-to 77. Deeper sequencing is not a pure exchange of members — it retains the orders that were marginal at
+to 77. Deeper sequencing is not a pure exchange of members; it retains the orders that were marginal at
 100 reads, which by 10 000 reads sit far above λ = 1, and adds newly marginal ones, so the median of a
 growing set drifts upward.
 
-So the idealised form of the mechanism — a testable set pinned at λ ≈ 1 — is a property of that simulated
+So the idealised form of the mechanism, a testable set pinned at λ ≈ 1, is a property of that simulated
 community. What holds in real data is the consequence that matters for interpretation: **changing depth
 changes which taxa you can say anything about, while leaving the apparent strength of what you measure
 almost untouched.** P1 and P5 cleared their thresholds narrowly, P5 rests on 25 orders, and the 102
@@ -434,8 +434,8 @@ one threshold value. Full verdicts, including the two narrow margins, are in
 
 ### 3.4b How general is this, and does the model explain the exponent?
 
-A sweep over 240 parameter combinations — four abundance distributions, effect sizes 1× to 16×, thresholds
-of 10, 20 and 40 discordant pairs, 102 and 239 pairs, with and without site heterogeneity — was
+A sweep over 240 parameter combinations (four abundance distributions, effect sizes 1× to 16×,
+thresholds of 10, 20 and 40 discordant pairs, 102 and 239 pairs, with and without site heterogeneity) was
 pre-registered in `SWEEP_PLAN.md` with five predictions. It answers two questions and the answers differ
 in kind.
 
@@ -446,13 +446,13 @@ median |index − 0.5| moves by ≤ 0.10 across the 100-fold depth range; the la
 This is the claim §§ 3.3–3.4a rest on, and it holds over the whole swept space rather than at one point.
 
 **The model does not explain the measured exponent, and the explanation we first offered was wrong.** Fed
-the *empirical* abundance vector, the detection model predicts *b* ≈ 0.96 — near-complete re-selection —
-against the 0.485 measured, with simulated turnover near-total (Jaccard ≈ 0.000) where the ladder gave
+the *empirical* abundance vector, the detection model predicts *b* ≈ 0.96, close to complete
+re-selection, against the 0.485 measured, with simulated turnover near-total (Jaccard ≈ 0.000) where the ladder gave
 0.281. No effect size in 1–16 brings *b* within 0.25 of 0.485; the nearest, *r* = 16, gives **0.852**,
 off by 0.367 (S2 failed). Nor does the abundance
 distribution's shape set the exponent: log-uniform gives 1.00 and the empirical vector 0.96, a difference
 of 0.012–0.039 against a required 0.25 (S1 failed). Site heterogeneity moves *b* by at most 0.08. What
-distribution shape *does* explain is the **growth** of the testable set — log-uniform grows 0.96–1.01-fold
+distribution shape *does* explain is the **growth** of the testable set: log-uniform grows 0.96–1.01-fold
 while the empirical vector grows 2.15-fold, matching § 3.4a exactly.
 
 Pooled, then, the model re-selects about twice as much as reality does. Of 240 cells only three reproduce
@@ -481,14 +481,14 @@ and so establishes that the two analyses agree where they should.
 **The near-exact match in row two is close to arithmetic and is not the result.** Simulating detection
 from a sample's own read fractions is a Poisson approximation to the rarefaction being modelled, so it
 reproduces the real procedure by construction. The informative facts are the contrasts. Changing nothing
-but whether abundance varies between samples moves the exponent from 0.958 to 0.484 — the whole gap.
+but whether abundance varies between samples moves the exponent from 0.958 to 0.484, which is the whole gap.
 Filling in the zeros while keeping all the graded variation sends it to 1.183 and inflates the testable
 set three-fold, so it is **where a taxon is absent, not how much its abundance varies where present**,
 that decides what is measurable at low depth. The median order here is present in only **9.8 %** of the
 204 samples, 91 of 254 orders in 5 % or fewer. And two numbers per taxon suffice: occupancy plus mean
 abundance, with the observed table discarded, recovers *b* = 0.432 against 0.485.
 
-So the mechanism is quantitatively calibrated after all, with one amendment — abundance must be
+So the mechanism is quantitatively calibrated after all, with one amendment: abundance must be
 represented per site. Pooling a sparse community into one value per taxon makes every taxon look uniformly
 rare rather than locally common, which makes low-depth testability look impossible and predicts
 near-total re-selection. The limits, including that an exact zero may be a sampling zero and that
@@ -504,7 +504,7 @@ binomial on read counts. Each saw identical simulated counts (`BENCHMARK2_PLAN.m
 **The ranking depends on how the preference is encoded, which settles the question in the negative.**
 When a preferring taxon is only more *abundant* in water, the read-count estimator wins by 0.852 in power
 and presence/absence detects nothing at all. When it is instead more often *present* in water, that
-advantage is **−0.002** — it vanishes. Any benchmark built on one generator recommends whichever
+advantage is **−0.002**; it vanishes. Any benchmark built on one generator recommends whichever
 estimator shares its parameterisation; our own first attempt did exactly that and was discarded for it
 (`BENCHMARK_RESULTS.md`).
 
@@ -520,7 +520,7 @@ more abundant in water, the practical ordering is clear:
 | paired Wilcoxon on proportions | 161 | 0.376 | 0.755 |
 
 Three things follow. A single rarefaction draw runs at an FDR of 0.125 against a nominal 0.05. The
-draw-stable rule brings that to 0.037 for 0.045 of power — **a second and independent reason for the
+draw-stable rule brings that to 0.037 for 0.045 of power. That is **a second and independent reason for the
 recommendation in § 3.2**, which was argued there only from reproducibility and turns out also to control
 error. And applying no evidence floor is not the same as coverage: the CLR test evaluates every one of
 the 254 orders at every depth, which looks like the remedy § 3.4a calls for, and runs an FDR above 0.8.
@@ -533,12 +533,12 @@ library*, so the model corrects subsampling and not sequencing. Its plan (`OCCUP
 in advance to the reading of a failure, and it did fail its primary prediction: in the arm built for it,
 where preference acts on occupancy alone, it ranks **fourth of six** on power (0.286 against the single
 draw's 0.385). It must estimate *p* from the detection histories themselves, and where detections are
-sparse that estimate is noisy — so the correction helps where data are already plentiful and hurts where
+sparse that estimate is noisy, so the correction helps where data are already plentiful and hurts where
 they are thin. **On power there is no case for it over the draw-stable rule.**
 
 It earns two things that do not depend on that. Under the realistic encoding it evaluates **155 orders
 against the draw-stable rule's 82**, 1.9 times as many, at power 0.833 against 0.875 and FDR 0.030
-against 0.037 — and unlike the CLR test's nominal 254 that is coverage *with* an evidence floor rather
+against 0.037, and unlike the CLR test's nominal 254 that is coverage *with* an evidence floor rather
 than coverage from having none. And in the abundance-only arm it is almost silent (power 0.016,
 FDR 0.000) where `betabinom` fires at 0.852: alone among the six, its answer tracks its own estimand,
 correctly reporting that occupancy does not differ when only abundance does.
@@ -548,15 +548,15 @@ in advance. Within the realistic encoding, the draw-stable rule gives the fewest
 the least machinery; the occupancy model and the overdispersed binomial assess roughly twice and 1.5
 times as many taxa at comparable error; and no method should be used without an evidence floor. The
 occupancy model's case rests on coverage, not power, and it weakens below about 1 000 reads per sample.
-Its obvious extension — a per-sample detection covariate, since detectability depends on a taxon's
-abundance in each particular sample — is untested and would most likely repair exactly the low-depth
+Its obvious extension, a per-sample detection covariate, since detectability depends on a taxon's
+abundance in each particular sample, is untested and would most likely repair exactly the low-depth
 weakness that defeated it here.
 
 ### 3.5 A group-level contrast within FunAqua: animals and plants are compartment-bound, fungi and protists are not
 
 On the same 204 pairs at the same depth, the median effect magnitude is **0.156 for fungi against 0.228 for
-non-fungal eukaryotes**. Over 200 rarefaction draws the two ranges are 0.140–0.173 and 0.202–0.257 — they
-do not overlap — and **the ordering reverses in 0 of 200 draws**. By the count metric, 42 of 98 fungal
+non-fungal eukaryotes**. Over 200 rarefaction draws the two ranges are 0.140–0.173 and 0.202–0.257, they
+do not overlap, and **the ordering reverses in 0 of 200 draws**. By the count metric, 42 of 98 fungal
 orders are significant (43 %) against 77 of 122 non-fungal (63 %), Fisher p = 0.0029.
 
 All five pre-registered checks pass:
@@ -574,7 +574,7 @@ they have, and that alone sets statistical power; stratifying into quantile bins
 the difference intact in every bin.
 
 The aggregation check disposes of the obvious artefact. Within fungi, orders built from more OTUs do show
-weaker apparent preference (Spearman −0.246, p = 0.0144) — saturation is real. But non-fungal eukaryote
+weaker apparent preference (Spearman −0.246, p = 0.0144), saturation is real. But non-fungal eukaryote
 orders carry *more* OTUs per order (median 256 against 142) while showing *stronger* preference, so
 saturation cannot produce the gap; adjusting for it widens the gap.
 
@@ -597,7 +597,7 @@ and use substrate in both compartments.
 
 ### 3.6 The result is not an artefact of our choice of metric
 
-Published niche-breadth work reports the opposite ordering — fungi *narrower* than protists in pond
+Published niche-breadth work reports the opposite ordering, fungi *narrower* than protists in pond
 sediment (Hou et al., 2024) and smallest of four microbial groups in alpine soils (Malard et al., 2022).
 Neither study measures what we measure. Malard et al. compute niche breadth along topoclimatic and edaphic
 gradients, not between paired compartments; Hou et al. report habitat niche breadth following Xiong et al.
@@ -610,8 +610,8 @@ quantities" is not available as an explanation.
 On Levins' own formulation across all 408 samples, fungi are broader per OTU (1.888 against 1.652,
 p = 5.6 × 10⁻⁴) and non-significantly broader per order (7.328 against 6.736, p = 0.082). Per kingdom,
 per OTU: Alveolata 2.057, Straminipila 1.888, **Fungi 1.888**, Cryptista 1.639, Viridiplantae 1.264,
-Metazoa 1.142. **Pooled against protists the difference is not significant (p = 0.163)** — fungi and
-protists are indistinguishable here — while fungi are clearly broader than plants and animals, which those
+Metazoa 1.142. **Pooled against protists the difference is not significant (p = 0.163)**, fungi and
+protists are indistinguishable here, while fungi are clearly broader than plants and animals, which those
 studies did not include. The apparent conflict with the literature therefore dissolves rather than
 requiring explanation.
 
@@ -630,7 +630,7 @@ fungi, on this assay or on these habitats. Any analysis that tests taxa for habi
 decide which taxa carry enough evidence to test, and that decision admits taxa sitting near the middle of
 the detection curve. Deeper sequencing moves the set that qualifies down the abundance distribution
 instead of sharpening the estimates for the taxa already in it. Two datasets at different depths therefore
-produce similar-looking distributions of specialisation over largely different taxa — here, 69 shared
+produce similar-looking distributions of specialisation over largely different taxa, here, 69 shared
 names out of 134, although that turnover is confounded with the ecological differences between the two
 datasets; the depth ladder inside NEON (§ 3.4a) isolates the effect, and finds the same turnover with
 ecology held constant.
@@ -638,10 +638,10 @@ ecology held constant.
 This reframes what looked like a replication failure. The usual way to present an analysis like § 3.1 is a
 table of taxa with their preferred habitat, and our results argue against that presentation: the identity
 and direction of per-order preferences showed no demonstrable agreement with an independent paired dataset
-(51.9 %, 95 % CI 34.0–69.3 %, p = 1.0 — an interval wide enough to contain both chance and moderate
+(51.9 %, 95 % CI 34.0–69.3 %, p = 1.0, an interval wide enough to contain both chance and moderate
 agreement, so the finding is a failure to demonstrate replication rather than a demonstration of its
 absence) even though both datasets independently detect habitat partitioning at similar rates (49/100 and
-37/103). Those two facts are not in tension once the threshold is taken into account — the first is a
+37/103). Those two facts are not in tension once the threshold is taken into account, the first is a
 statement about named taxa, the second about the marginal distribution, and the mechanism says the second
 can hold while the first does not. A per-order preference table from a single survey describes that survey.
 
@@ -671,8 +671,8 @@ as a check that should accompany any between-group comparison.
 ### 4.3 Single-draw rarefaction is not a reporting unit
 
 The count of significant orders moved between 43 and 57 on the same data under nothing but a different
-random draw, and our own two implementations landed at 49 and 51. Where rarefaction is used — and for
-paired designs with unequal depth it is the cleanest available fix — the result should be reported over
+random draw, and our own two implementations landed at 49 and 51. Where rarefaction is used, and for
+paired designs with unequal depth it is the cleanest available fix, the result should be reported over
 many draws, and the reporting unit should be the set of taxa that are stable across them. We found 35 of
 100 orders stable at the 95 % level.
 
@@ -694,7 +694,7 @@ Generalising it is a hypothesis for a multi-marker test.
 **No external validation of § 3.5 was possible.** NEON's paired products carry only 16S and ITS, and its
 ITS tables are 100 % Fungi (37 493 and 16 919 rows, no other kingdom); metaPR2 fails the rank-comparability
 requirement above. Macroinvertebrate metabarcoding is benthic-only and zooplankton metabarcoding covers 7
-sites and water only — different organisms, sampling and primers. The result therefore rests on one
+sites and water only, different organisms, sampling and primers. The result therefore rests on one
 dataset, and the obvious next step is a paired survey carrying ITS and 18S on the same DNA.
 
 **Shallow data.** Median common depth 211 reads. Presence/absence at order level is defensible;
@@ -713,7 +713,7 @@ representative sequences nor the raw reads (downloaded, 5.7 GB) can resolve deep
 deep fungal phylogeny needs D1/D2, ~600 bp. Mapping orders onto the Open Tree of Life synthetic tree
 (synthesis `opentree16.1`, taxonomy 3.7draft3; Hinchliff et al., 2015; Redelings and Holder, 2017)
 matched 77 of our 100 tested order names and placed 70 of them in the tree, 47 with a preference value,
-but that tree is almost entirely polytomous — 4 resolved terminal sister pairs — and carries no branch
+but that tree is almost entirely polytomous, 4 resolved terminal sister pairs, and carries no branch
 lengths, so patristic distance reduces to counting nodes. On that topology phylogenetic distance does not
 predict difference in preference (Spearman +0.025, p = 0.41), which is **not** evidence against
 conservatism but a statement that the test is uninformative. The class-level permutation (p = 0.0041)
@@ -761,7 +761,7 @@ observed in the real data (shaded, median marked).
 (**a**) Median relative abundance of the orders clearing the ≥ 20-discordant-pairs threshold, against
 rarefaction depth, for the 102 NEON pairs of § 3.4a. Heavy black rings are the measurement; coloured lines
 are the same detection model supplied with abundance four different ways. The *observed per sample* line
-lies under the rings — that match is close to arithmetic, as § 3.4c explains, and is not the result. The
+lies under the rings, that match is close to arithmetic, as § 3.4c explains, and is not the result. The
 result is the distance between the lines: pooling one abundance per order (orange squares) falls far too
 steeply, and filling in the zeros (orange triangles) falls more steeply still.
 (**b**) What depth changes and what it does not, on the same 102 pairs. Blue, left axis: overlap of the
@@ -771,11 +771,11 @@ same 100-fold range. **The two axes differ on purpose**; drawn on one 0–1 axis
 to the floor and looks flat because Jaccard dominates the scale, which would argue the paper's claim by
 squashing rather than by evidence.
 (**c**) How general that flatness is. Distribution of the depth-range of median |preference − 0.5| across
-the 239 interpretable cells of the § 3.4b sweep — four abundance distributions, effect sizes 1× to 16×,
+the 239 interpretable cells of the § 3.4b sweep, four abundance distributions, effect sizes 1× to 16×,
 three thresholds, two pair counts, site heterogeneity on and off. Solid line, the real ladder's 0.024;
 dashed line, the pre-registered bar of 0.10, which no cell approaches.
 (**d**) The re-selection exponent implied by each way of supplying abundance, against the measured 0.485
-(solid line). Occupancy plus mean abundance — two numbers per taxon, with the observed table discarded —
+(solid line). Occupancy plus mean abundance, two numbers per taxon, with the observed table discarded,
 lands at 0.43.
 
 
@@ -863,7 +863,7 @@ database of eukaryotic 18S rRNA metabarcodes with an emphasis on protists. *Mole
 **22**, 3188–3201. doi:10.1111/1755-0998.13674  *(version 4.0 used here,
 doi:10.5281/zenodo.21106507)*
 
-**Removed from the earlier draft:** Madin et al. (2020), *Scientific Data* **7**, 170 — it belongs to the
+**Removed from the earlier draft:** Madin et al. (2020), *Scientific Data* **7**, 170; it belongs to the
 companion pseudogene study and is cited nowhere in this manuscript.
 
 ---

@@ -77,11 +77,13 @@ def panel(ax, letter, dx=-0.16, dy=1.04):
             fontweight="bold", va="bottom", ha="left", color=INK)
 
 
-def save(fig, name):
+def save(fig, name, where=None):
+    out = where if where is not None else F
+    out.mkdir(exist_ok=True)
     for ext in ("pdf", "png"):
-        fig.savefig(F / f"{name}.{ext}", dpi=600 if ext == "png" else None)
+        fig.savefig(out / f"{name}.{ext}", dpi=600 if ext == "png" else None)
     plt.close(fig)
-    print(f"  {name}.pdf / .png")
+    print(f"  {out.name}/{name}.pdf / .png")
 
 
 # ---------------------------------------------------------------- Figure 1
@@ -175,7 +177,11 @@ for a in axes:
 panel(axes[0], "a", dx=-0.42); panel(axes[1], "b", dx=-0.06)
 save(fig, "fig3_kingdoms")
 
-# ---------------------------------------------------------------- Figure 4
+# -------------------------------------------------- Supplementary Figure S4
+# The depth probe moved to the supplement: post hoc, outside the frozen
+# validation plan, significant at no cap, and never cited in the body. It is
+# drawn here because its data sit with the main results, but it writes to
+# supplementary/ and does not count toward the main figures.
 dp = pd.read_csv(R / "neon_depth_probe.tsv", sep="\t")
 dp["capn"] = pd.to_numeric(dp.cap, errors="coerce")
 UNCAP = dp.capn.max() * 3.0
@@ -198,9 +204,9 @@ ax.set_ylim(0.47, 0.72); ax.set_yticks([0.5, 0.6, 0.7])   # was 0.42-0.76, half 
 ax.set_xlabel("NEON within-pair depth cap (reads)")
 ax.set_ylabel("direction agreement")
 ax.legend(loc="upper right", bbox_to_anchor=(1.0, 1.06))
-save(fig, "fig4_depth_probe")
+save(fig, "Figure_S4_depth_probe", where=P / "supplementary")
 
-# ---------------------------------------------------------------- Figure 5
+# ---------------------------------------------------------------- Figure 4
 sim = json.load((R / "simulation.json").open())
 ss = pd.read_csv(R / "sim_self_selection.tsv", sep="\t")
 sc = pd.read_csv(R / "sim_community.tsv", sep="\t")
@@ -257,11 +263,11 @@ axc.legend(loc="upper left")
 
 for a, L in zip(axes, "abc"):
     panel(a, L, dx=-0.30)
-save(fig, "fig5_simulation")
+save(fig, "fig4_simulation")
 
-# ---------------------------------------------------------------- Figure 6
+# ---------------------------------------------------------------- Figure 5
 # The mechanism in real data: the depth ladder (3.4a), the sweep's universality
-# (3.4b) and the four ways of supplying abundance (3.4c). Figure 5 is the algebra
+# (3.4b) and the four ways of supplying abundance (3.4c). Figure 4 is the algebra
 # and the idealised simulation; this one is what the data say.
 dl = json.load((R / "depth_ladder.json").open())
 dlt = pd.read_csv(R / "depth_ladder.tsv", sep="\t")
@@ -360,7 +366,7 @@ for a, L in zip((axa, axb, axc, axd), "abcd"):
     panel(a, L, dx=-0.22 if a in (axa, axc) else -0.17)
 axd.yaxis.set_tick_params(pad=1.0)
 fig.subplots_adjust(hspace=0.42, wspace=0.34)
-save(fig, "fig6_mechanism_in_data")
+save(fig, "fig5_mechanism_in_data")
 
-# Counted, not typed: this message said "four" for a while after Figure 5 landed.
+# Counted, not typed: this message said "four" for a while after Figure 4 landed.
 print(f"\n{len(list(F.glob('fig*.png')))} figures in figures/, set in {FAM}")

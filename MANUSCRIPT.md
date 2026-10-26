@@ -323,7 +323,7 @@ evidence than the Chytridiomycota assignment and should not have been treated as
 ### 3.4 The testability threshold decides which taxa are measured
 
 Section 3.3 is an empirical failure. Simulation under known truth turns it into a
-mechanism (`analysis_simulation.py`; Figure 5).
+mechanism (`analysis_simulation.py`; Figure 4).
 
 A taxon at relative abundance *a*, in a sample rarefied to depth *D*, is detected with probability
 1 − (1 − *a*)^*D* ≈ 1 − e^(−λ), λ = *aD*. Writing *P*_w and *P*_s for the two compartments, the discordant
@@ -331,7 +331,7 @@ pairs — the only ones the test uses — split as *P*_w(1 − *P*_s) and *P*_s(
 
 > E[index] = *P*_w(1 − *P*_s) / [ *P*_w(1 − *P*_s) + *P*_s(1 − *P*_w) ]
 
-**which depends on *D* even when the true abundances are fixed** (Figure 5a). A taxon whose true
+**which depends on *D* even when the true abundances are fixed** (Figure 4a). A taxon whose true
 abundance ratio is a constant 4× has an expected index of 0.80 at FunAqua's depth and 1.00 at NEON's.
 Presence/absence at 211 reads and at 31 131 reads are not noisy measurements of one quantity.
 
@@ -342,7 +342,7 @@ That algebra predicts that deeper data should show more extreme indices. **It do
 **The ≥ 20-discordant-pairs requirement is a filter.** A taxon contributes discordant pairs only when its
 detection probability lies away from 0 and 1, so the rule favours taxa whose λ is near 1 *at whatever
 depth is used*. In a simulated community spanning six orders of magnitude in abundance, log-uniformly
-(Figure 5b): across a 1000-fold change in depth the median λ of the testable set holds at **0.22–0.49**,
+(Figure 4b): across a 1000-fold change in depth the median λ of the testable set holds at **0.22–0.49**,
 the median |index − 0.5| holds at **0.304–0.350**, and the median *abundance* of that set falls
 **454-fold**. Those three numbers are properties of that simulated community, not measurements; § 3.4a
 reports what the same quantities do in real data, where the third holds, the second does not, and the
@@ -380,7 +380,7 @@ comparison that per-taxon claims cannot.
 Finally, the spread in § 3.2 is not peculiar to FunAqua. Simulating 239 pairs at depth 211 with the
 observed per-order abundance distribution gives 48–57 significant orders across 200 draws (median 52,
 sd 1.7) against the observed 43–57 (median 51, sd 2.5) — the same order of variation from the draw alone
-(Figure 5c). The observed spread is somewhat wider, as expected given that the simulation assumes
+(Figure 4c). The observed spread is somewhat wider, as expected given that the simulation assumes
 independent taxa and a simplified truth.
 
 ### 3.4a The mechanism in real data, with ecology held constant
@@ -402,7 +402,7 @@ identical throughout; only depth changes.
 | 3 000 | 72 | 1.51 × 10⁻³ | 4.52 | 0.122 | 0.783 | 0.044 |
 | 10 000 | 77 | 1.03 × 10⁻³ | 10.30 | 0.125 | 1.000 | 0.000 |
 
-Figure 6a and 6b show the ladder: the abundance of the measurable set falling with depth, the set turning
+Figure 5a and 6b show the ladder: the abundance of the measurable set falling with depth, the set turning
 over, and the apparent effect size staying put.
 
 **Three results confirm the mechanism's consequence.** Depth strongly changes *which* orders are
@@ -442,7 +442,7 @@ in kind.
 **The depth-invariance of apparent effect size is universal.** In **239 of 239** interpretable cells the
 median |index − 0.5| moves by ≤ 0.10 across the 100-fold depth range; the largest range anywhere is
 **0.058** and the median is **0.0109**, with the ladder's observed 0.024 inside that distribution
-(S5; Figure 6c).
+(S5; Figure 5c).
 This is the claim §§ 3.3–3.4a rest on, and it holds over the whole swept space rather than at one point.
 
 **The model does not explain the measured exponent, and the explanation we first offered was wrong.** Fed
@@ -473,8 +473,8 @@ supplying abundance to the same detection model, on the same 102 pairs, rungs an
 | per-sample, but with every zero filled in | +1.183 | 0.121 | 39 → 234 |
 | occupancy + mean abundance only, two parameters | +0.432 | 0.366 | 45 → 109 |
 
-Measured on real data: *b* = 0.485, Jaccard = 0.281, 36 → 77 orders. Figure 6a plots the four against the
-measurement and Figure 6d their exponents. All five pre-registered predictions
+Measured on real data: *b* = 0.485, Jaccard = 0.281, 36 → 77 orders. Figure 5a plots the four against the
+measurement and Figure 5d their exponents. All five pre-registered predictions
 were confirmed, including the control, which reproduced the pooled result (0.958 against the sweep's 0.96)
 and so establishes that the two analyses agree where they should.
 
@@ -744,7 +744,7 @@ depth. Lower preference and higher *B* both indicate a more generalist distribut
 lowest on preference and third on *B*; the gap against non-fungal eukaryotes as a pooled group is driven
 by Metazoa and Straminipila. Rhizaria rests on 7 orders and should not be quoted.
 
-**Figure 5. The testability threshold, not the depth itself, decides what is measured.**
+**Figure 4. The testability threshold, not the depth itself, decides what is measured.**
 (**a**) Expected preference index against rarefaction depth, from
 E[index] = *P*_w(1 − *P*_s)/[*P*_w(1 − *P*_s) + *P*_s(1 − *P*_w)] with *P* = 1 − e^(−*aD*), for three fixed
 true abundance ratios; the sediment abundance is 10⁻⁴ throughout. Dotted lines mark the two datasets'
@@ -753,11 +753,11 @@ depths. The index a study reports depends on how deeply it sequenced, at fixed b
 depth, **in a simulated community** spanning 10⁻⁶ to 10⁻¹ drawn log-uniformly. In *this* community the
 threshold holds the testable set at a fixed position on the detection curve (median λ 0.22–0.49) while the
 abundance of the taxa occupying it falls 454-fold. Real data behave differently, for a reason that turns
-out to be instructive: see § 3.4a and Figure 6. (**c**) Significant orders per draw in 200 simulated draws
+out to be instructive: see § 3.4a and Figure 5. (**c**) Significant orders per draw in 200 simulated draws
 of a FunAqua-like community (239 pairs, depth 211, observed abundance distribution), against the range
 observed in the real data (shaded, median marked).
 
-**Figure 6. The mechanism in real data, and what a model has to contain to reproduce it.**
+**Figure 5. The mechanism in real data, and what a model has to contain to reproduce it.**
 (**a**) Median relative abundance of the orders clearing the ≥ 20-discordant-pairs threshold, against
 rarefaction depth, for the 102 NEON pairs of § 3.4a. Heavy black rings are the measurement; coloured lines
 are the same detection model supplied with abundance four different ways. The *observed per sample* line
@@ -778,12 +778,6 @@ dashed line, the pre-registered bar of 0.10, which no cell approaches.
 (solid line). Occupancy plus mean abundance — two numbers per taxon, with the observed table discarded —
 lands at 0.43.
 
-**Figure 4. Agreement with FunAqua under capping of NEON's sequencing depth.** Direction agreement for
-the 49 FunAqua-significant orders (blue) and for the 35 draw-stable orders (orange), as NEON's within-pair
-rarefaction depth is capped at successively lower values; "none" is the uncapped median of 31 131 reads.
-FunAqua's own pairs carry a median of 131–179 reads per sample, the regime at the left-hand end. Agreement
-rises toward matched depth but reaches significance at no cap (best *p* = 0.076). Post hoc; not part of
-the frozen validation plan.
 
 ## 5 Data availability
 
@@ -950,9 +944,8 @@ companion pseudogene study and is cited nowhere in this manuscript.
    | 1 | per-order significance frequency across 200 draws, 35-order stable set marked | `fig1_draw_stability` |
    | 2 | FunAqua against NEON preference index, 27 orders, agreement quadrants | `fig2_transfer_failure` |
    | 3 | median effect magnitude and Levins *B* by kingdom, two panels | `fig3_kingdoms` |
-   | 4 | agreement against NEON depth cap, both comparison sets | `fig4_depth_probe` |
-   | 5 | the algebra and the idealised simulation, three panels | `fig5_simulation` |
-   | 6 | the mechanism in real data: ladder, sweep, four abundance variants | `fig6_mechanism_in_data` |
+   | 5 | the algebra and the idealised simulation, three panels | `fig4_simulation` |
+   | 6 | the mechanism in real data: ladder, sweep, four abundance variants | `fig5_mechanism_in_data` |
 
 3a. **Why § 3.4a–3.4c keep letters when § 3.3b did not.** These look like the interim label that was
    removed earlier, and they are not the same case. "3.3b" was an independent section wedged after § 3.3

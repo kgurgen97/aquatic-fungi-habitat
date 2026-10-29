@@ -1,0 +1,11 @@
+endpoint	n_orders	min_k_for_p05	min_agreement_for_p05	true_agreement	power	n_for_80pct_power
+published endpoint (tie-corrected)	26	19	0.730769	0.6	0.122208	199
+published endpoint (tie-corrected)	26	19	0.730769	0.65	0.259727	90
+published endpoint (tie-corrected)	26	19	0.730769	0.7	0.460498	49
+published endpoint (tie-corrected)	26	19	0.730769	0.75	0.685155	30
+published endpoint (tie-corrected)	26	19	0.730769	0.8	0.868709	20
+all orders testable in both	65	41	0.630769	0.6	0.355074	199
+all orders testable in both	65	41	0.630769	0.65	0.679031	90
+all orders testable in both	65	41	0.630769	0.7	0.910044	49
+all orders testable in both	65	41	0.630769	0.75	0.988656	30
+all orders testable in both	65	41	0.630769	0.8	0.999537	20

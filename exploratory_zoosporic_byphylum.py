@@ -11,7 +11,8 @@ from pathlib import Path
 import numpy as np, pandas as pd
 from scipy import stats
 
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 d = pd.read_csv(P / "results/zoosporic.tsv", sep="\t")
 
 print("=== median water_fraction by phylum, both datasets")

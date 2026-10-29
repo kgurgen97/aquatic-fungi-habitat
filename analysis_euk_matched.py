@@ -8,8 +8,9 @@ import numpy as np, pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 pd.set_option("display.width", 200)
-D = Path.home() / "research/datasets/funaqua"
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = FUNAQUA_DIR
+P = REPO_ROOT
 SEED, UNASSIGNED = 20261021, {".", "", "unidentified", "unassigned", "NA"}
 rng = np.random.default_rng(SEED)
 

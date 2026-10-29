@@ -49,7 +49,8 @@ import pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 R = P / "results"
 RNG = np.random.default_rng(20261022)
 out = {}

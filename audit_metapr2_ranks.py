@@ -11,7 +11,8 @@ import collections, re
 from pathlib import Path
 import pandas as pd
 
-D = Path.home() / "research/datasets/metapr2/extract"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = METAPR2_DIR
 asv = pd.read_excel(D / "asv.xlsx")
 
 mask = pd.Series(False, index=asv.index)

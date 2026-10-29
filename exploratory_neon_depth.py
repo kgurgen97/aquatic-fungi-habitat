@@ -17,8 +17,9 @@ import numpy as np, pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-D = Path.home() / "research/datasets/neon2"
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = NEON_DIR
+P = REPO_ROOT
 MIN_CONF, MIN_READS, MIN_DISCORDANT, SEED = 0.80, 100, 20, 20261021
 WINDOW = 7
 CAPS = [130, 300, 1000, 3000, 10000, 30000, None]

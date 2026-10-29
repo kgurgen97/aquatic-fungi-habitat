@@ -10,8 +10,9 @@ import numpy as np, pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-D = Path.home() / "research/datasets/neon2"
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = NEON_DIR
+P = REPO_ROOT
 (P / "results").mkdir(exist_ok=True)
 
 MIN_CONF = 0.80          # plan 3.2

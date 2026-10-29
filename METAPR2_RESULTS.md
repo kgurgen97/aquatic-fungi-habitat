@@ -8,8 +8,8 @@ as one." This is that outcome, for a reason worse than pair count.
 
 ## Verdict
 
-> The pre-registered primary — paired freshwater water/sediment — has **zero** pairs in metaPR2.
-> The declared secondary — all aquatic ecosystems — has 54 paired coastal sites, 44 of them on a single
+> The pre-registered primary, paired freshwater water/sediment, has **zero** pairs in metaPR2.
+> The declared secondary, all aquatic ecosystems, has 54 paired coastal sites, 44 of them on a single
 > amplicon region. But PR2's 18S taxonomy applies **systematically coarser ranks to fungi than to
 > protists**, in exactly the direction that would manufacture the result being tested. Running it would
 > have produced a spurious confirmation.
@@ -63,19 +63,19 @@ largest single dataset holds 33 % of the sites, so study independence would have
 Gene region splits V4 917 / V9 35 among those samples, and mixing V4 with V9 would compare different
 amplicons, so the usable set is ~44 V4 coastal pairs.
 
-That alone would have made the test thin — an order must be discordant in ≥ 20 of 44 pairs, i.e. 45 % of
+That alone would have made the test thin, an order must be discordant in ≥ 20 of 44 pairs, i.e. 45 % of
 them, to be testable at all. But it is not the reason the test was abandoned.
 
 ## The reason: PR2 does not give fungi and protists the same rank
 
 PR2's `order` column holds 43 distinct labels for all fungi. Of those, only **19 are genuinely
-order-rank** names. Twelve are **subphyla** — Agaricomycotina, Pezizomycotina, Saccharomycotina,
+order-rank** names. Twelve are **subphyla**, Agaricomycotina, Pezizomycotina, Saccharomycotina,
 Pucciniomycotina, Ustilaginomycotina, Taphrinomycotina, Glomeromycotina, Mucoromycotina,
-Blastocladiomycotina, Entomophthoromycotina, Kickxellomycotina, Zoopagomycotina — eight are placeholders
+Blastocladiomycotina, Entomophthoromycotina, Kickxellomycotina, Zoopagomycotina, eight are placeholders
 (`Rozellomycota_X`, `Ascomycota_X`, `Fungi_XX`, …), one is a family (Mortierellaceae) and two are classes.
 
-The effect is concentrated where it does most damage. **Ascomycota and Basidiomycota — 263 of FunAqua's
-346 named fungal orders — collapse into six subphylum labels plus two placeholders.** Meanwhile the
+The effect is concentrated where it does most damage. **Ascomycota and Basidiomycota, 263 of FunAqua's
+346 named fungal orders, collapse into six subphylum labels plus two placeholders.** Meanwhile the
 chytrids keep real orders: Chytridiales, Rhizophydiales, Spizellomycetales, Lobulomycetales,
 Zygophlyctidales, Zygorhizidiales.
 
@@ -93,13 +93,13 @@ Granularity, measured as ASVs per label:
 At every rank coarse enough for 44 pairs, a fungal label aggregates 1.5–2.2× more diversity than a
 non-fungal one. At the one rank with rough parity (genus, 0.66) the units are far too fine for 44 pairs.
 There is no usable rank-matched option. (An automatic search for "closest to parity" returns
-*supergroup* at 1.17 — but there is exactly **one** fungal supergroup, so that is an artefact of ranking
+*supergroup* at 1.17, but there is exactly **one** fungal supergroup, so that is an artefact of ranking
 by ratio alone, not an answer.)
 
 **Why this is disqualifying rather than merely awkward.** `EUK_RESULTS.md` establishes, by measurement,
 that coarser aggregation weakens apparent habitat preference: within FunAqua's fungi, orders built from
 more OTUs show weaker preference (Spearman −0.246, p = 0.0144). PR2 aggregates fungi more coarsely than
-protists. A test on this data would therefore push fungi toward looking generalist **by construction** —
+protists. A test on this data would therefore push fungi toward looking generalist **by construction**,
 reproducing the claim for the wrong reason. That is worse than no test, because it would read as
 independent confirmation.
 
@@ -116,23 +116,23 @@ The same audit run on FunAqua shows **near-perfect rank parity** between the two
 
 At the rank the analysis actually uses, a fungal order aggregates 0.96× as much diversity as a
 non-fungal one. This answers directly the reviewer question "were your two groups treated at comparable
-taxonomic resolution?" — they were, to within 4 %. It is new evidence in favour of
+taxonomic resolution?"; they were, to within 4 %. It is new evidence in favour of
 `EUK_RESULTS.md` and was not available before this check.
 
 ## Where external validation could still come from
 
 Honestly, not from anything already assembled:
 
-1. **NEON: ruled out.** No 18S anywhere — not in the aquatic marker-gene products, not in soil, not in
-   any of the 203 catalogue entries. Only 16S and ITS. Its metagenomes (302 benthic + 2 568 water
-   site-months) do contain SSU reads, so extracting eukaryotic SSU from shotgun data is a genuine
-   possibility, but that is a project on terabytes, not a validation run.
+1. **NEON: ruled out.** No 18S anywhere, not in the aquatic marker-gene products, not in soil, not in
+ any of the 203 catalogue entries. Only 16S and ITS. Its metagenomes (302 benthic + 2 568 water
+ site-months) do contain SSU reads, so extracting eukaryotic SSU from shotgun data is a genuine
+ possibility, but that is a project on terabytes, not a validation run.
 2. **metaPR2: ruled out above.**
 3. **Reprocessing raw 18S reads** from the paired coastal studies with a rank-consistent reference, so
-   fungi and protists are assigned at the same level. This is the only route that would give a clean
-   test on existing public data, and it is a substantial piece of work.
+ fungi and protists are assigned at the same level. This is the only route that would give a clean
+ test on existing public data, and it is a substantial piece of work.
 4. **A new paired survey with two markers** (ITS and 18S on the same DNA) would settle it properly and
-   is the right thing to propose rather than to improvise.
+ is the right thing to propose rather than to improvise.
 
 Until one of those exists, `EUK_RESULTS.md` rests on one dataset, and the paper must say so.
 

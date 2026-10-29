@@ -1,4 +1,4 @@
-# NEON external validation — result
+# NEON external validation, result
 
 2026-10-21. Analysis as fixed in `NEON_VALIDATION_PLAN.md`
 (sha256 `85fd8aa2c9f8a14dc30c9bded5858d4f39dd0d6801f01753531fda0ef75fb939`, committed `bbc9892`
@@ -30,7 +30,7 @@ NEON is not a null dataset. On its own it reproduces the *phenomenon* strongly:
 So habitat partitioning of fungal orders is real in both datasets. What fails to transfer is **which order
 prefers which habitat**.
 
-Secondary 1 — the preference index correlates weakly and non-significantly:
+Secondary 1, the preference index correlates weakly and non-significantly:
 **Spearman +0.281 (p = 0.156)** over the 27 compared orders, **+0.186 (p = 0.126)** over all 69 orders
 testable in both. Positive in sign, but indistinguishable from no relationship.
 
@@ -43,14 +43,14 @@ result was known.
 |---|---|---|---|---|
 | Zygophlyctidales | 0.870 | **0.875** | 1.8e−04 | agrees, significant |
 | Chytridiales | 0.752 | **0.933** | 2.3e−11 | agrees, significant |
-| Zygorhizidiales | 0.984 | — | — | not testable in NEON |
-| Rozellales | 0.725 | — | — | not testable in NEON |
+| Zygorhizidiales | 0.984 | none | none | not testable in NEON |
+| Rozellales | 0.725 | none | none | not testable in NEON |
 | Microascales | 0.150 | 0.323 | 0.022 | agrees, significant |
 | Sordariales | 0.168 | 0.491 | 1.0 | no preference in NEON |
-| Zoopagales | 0.198 | — | — | not testable in NEON |
+| Zoopagales | 0.198 | none | none | not testable in NEON |
 
 Both testable zoosporic orders replicate, with the two strongest q-values in the whole NEON table. With
-n = 2 there is no formal test, so this is a consistent observation, not a demonstrated effect — but the
+n = 2 there is no formal test, so this is a consistent observation, not a demonstrated effect, but the
 mechanistically specific part of FunAqua's claim (flagellate dispersal stage → water column) is the part
 that survived, while the broad order-level pattern did not.
 
@@ -60,7 +60,7 @@ NEON); **GS11** 0.277 → 0.721 (sediment in FunAqua, water in NEON).
 
 ## Secondary 4 (pre-specified): sensitivity
 
-Agreement is flat at chance across every threshold — this is not a knife-edge result.
+Agreement is flat at chance across every threshold; this is not a knife-edge result.
 
 | min reads | pairs | tested | significant | agreement |
 |---|---|---|---|---|
@@ -77,19 +77,19 @@ Agreement is flat at chance across every threshold — this is not a knife-edge 
 
 ## Which pairing rule fired, and why it matters
 
-Same-site **same-date** pairing gave only **20** qualifying pairs — below the trigger of 60 fixed in plan
-section 4 — so the primary became the declared **±7-day** fallback: **149 pairs**, 23 sites, 128 dates.
+Same-site **same-date** pairing gave only **20** qualifying pairs, below the trigger of 60 fixed in plan
+section 4, so the primary became the declared **±7-day** fallback: **149 pairs**, 23 sites, 128 dates.
 Offsets: 20 pairs at 0 days, 48 at 1–2, 81 at 3–7. NEON samples water and benthos in the same field bout
 but not always on the same day.
 
 This is the rule the plan said to use in exactly this situation. It was not chosen after seeing an outcome.
 
-## Why the replication may have failed — read as hypotheses, not findings
+## Why the replication may have failed, read as hypotheses, not findings
 
 **1. Sequencing depth differs by ~200×, and that changes what "present" means.**
 FunAqua's pairs carry a median of 131–179 reads per sample; NEON's within-pair rarefaction depth is a
 median of **31,131** reads (IQR 2,672–93,876). Within-pair rarefaction equalises detection power *inside*
-each pair — which is what the design needs — but it cannot make presence/absence mean the same thing
+each pair, which is what the design needs, but it cannot make presence/absence mean the same thing
 across the two datasets. At ~130 reads, "present" means "among the most abundant sequences"; at 31,000 it
 means "detectable at all". The discordant pairs that drive the test are therefore a different slice of the
 community in each dataset.
@@ -106,7 +106,7 @@ FunAqua-like depths:
 | 10 000 | 93 | 15/27 = 55.6 % | 0.701 | 13/22 = 59.1 % |
 | none (31 131) | 103 | 14/27 = 51.9 % | 1.0 | 13/22 = 59.1 % |
 
-Agreement rises monotonically as NEON is brought toward FunAqua's depth — 51.9 % → 69 % — which is the
+Agreement rises monotonically as NEON is brought toward FunAqua's depth, 51.9 % → 69 %, which is the
 direction the hypothesis predicts. **But it never reaches significance** (best p = 0.0755), and capping
 shrinks the comparison to 16–26 orders, so the probe is underpowered to confirm its own suggestion. It
 makes depth mismatch a credible explanation worth designing for; it does not establish it, and it does not
@@ -121,9 +121,9 @@ same order.
 239 pairs are dominated by Europe (152) with North America second (37). The comparison is not
 like-for-like in either biome or region.
 
-**4. FunAqua's own comparison set is soft.** See below — the count of significant orders in FunAqua moves
+**4. FunAqua's own comparison set is soft.** See below: the count of significant orders in FunAqua moves
 between 43 and 57 depending only on the rarefaction draw. Repeating the endpoint against FunAqua's
-draw-stable set instead of its single-draw set raises agreement from 51.9 % to 59.1 % (13/22, p = 0.52) —
+draw-stable set instead of its single-draw set raises agreement from 51.9 % to 59.1 % (13/22, p = 0.52),
 still not significant.
 
 ## A problem found in FunAqua's own results while running this
@@ -141,7 +141,7 @@ is miscoded. `analysis_secondary.py` consumes one module-level RNG across its fo
 | orders tested | 100 | 96 – 103 |
 | orders significant (BH q < 0.05) | 51 | **43 – 57** (mean 50.6, sd 2.5) |
 
-Both stored runs sit inside that range, so neither was wrong — **the declared single-draw design is
+Both stored runs sit inside that range, so neither was wrong; **the declared single-draw design is
 draw-dependent at roughly ±5 orders.** Per-order:
 
 - **35 orders significant in ≥ 95 % of draws** (21 water, 14 sediment); 28 in every single draw.
@@ -152,7 +152,7 @@ draw-dependent at roughly ±5 orders.** Per-order:
 `RESULTS.md` has been corrected accordingly.
 
 One consequence worth noting: the three orders `RESULTS.md` reported as disagreeing between Europe and
-North America — **Auriculariales, Pezizales, Trechisporales** — are all in the unstable set
+North America, **Auriculariales, Pezizales, Trechisporales**, are all in the unstable set
 (27/200, 136/200, 185/200 draws significant). That reported disagreement was in substantial part draw
 noise, not biogeography.
 
@@ -161,15 +161,15 @@ noise, not biogeography.
 The honest framing, and the one the evidence supports:
 
 1. Fungal orders partition between the water column and the benthos. This is now shown in **two
-   independent datasets** — FunAqua (49 of 100 orders, single draw; 35 stable) and NEON (37 of 103) —
-   with different operators, primers, pipelines and substrate definitions. That is the robust claim.
+ independent datasets**, FunAqua (49 of 100 orders, single draw; 35 stable) and NEON (37 of 103),
+ with different operators, primers, pipelines and substrate definitions. That is the robust claim.
 2. The **identity** of which order prefers which habitat does not transfer between the two. Reporting a
-   per-order preference table as a general result is not supportable on this evidence.
+ per-order preference table as a general result is not supportable on this evidence.
 3. The **zoosporic lineages do transfer**, pre-specified and with the strongest statistics in NEON. That
-   is the mechanistic hypothesis worth taking forward: a motile flagellate stage predicts water-column
-   preference.
+ is the mechanistic hypothesis worth taking forward: a motile flagellate stage predicts water-column
+ preference.
 4. Depth mismatch is a credible but unproven explanation for (2), and it is a design requirement for any
-   future comparison: datasets must be compared at matched read depth, not merely rarefied within pairs.
+ future comparison: datasets must be compared at matched read depth, not merely rarefied within pairs.
 
 ## Files
 

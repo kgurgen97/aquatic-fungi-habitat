@@ -1,4 +1,4 @@
-# There is no best estimator — the ranking flips with how preference is encoded
+# There is no best estimator, the ranking flips with how preference is encoded
 
 2026-10-23. Analysis as fixed in `BENCHMARK2_PLAN.md` (sha256 `9b101499c7779afa…`, full value in
 `PLAN_HASHES.md`, commit `6a94646`, frozen before `analysis_benchmark2.py` existed).
@@ -43,7 +43,7 @@ Medians over each arm:
 ## What this settles
 
 **C3 vindicates the decision to throw the first benchmark away.** `betabinom` beat `pa_single` by 0.852
-in power under the first generator and by **−0.002** — nothing at all — once preference acts on occupancy
+in power under the first generator and by **−0.002**, nothing at all, once preference acts on occupancy
 instead of only on abundance. Its apparent dominance was the generator handing it its own estimand. Had
 the first benchmark been published as it stood, it would have recommended an estimator on the strength of
 a modelling choice.
@@ -54,35 +54,35 @@ using one generator will recommend whichever estimator shares its parameterisati
 
 ## What a practitioner should take from it
 
-Under `both` — the only arm where a water-preferring taxon behaves as one ecologically, being both more
-often present and more abundant in water — three things hold:
+Under `both`, the only arm where a water-preferring taxon behaves as one ecologically, being both more
+often present and more abundant in water, three things hold:
 
 1. **A single rarefaction draw inflates FDR.** `pa_single` reaches power 0.920 but FDR **0.125**, against
-   a nominal 0.05.
-2. **The draw-stable rule fixes that, and costs little.** `pa_repeated` — significant in ≥ 95 % of draws
-   — gives FDR **0.037** for power 0.875. Trading 0.045 of power for a threefold reduction in false
-   discoveries. **This is a second, independent reason for § 3.2's recommendation**, which was argued
-   there only from reproducibility; it also controls error.
+ a nominal 0.05.
+2. **The draw-stable rule fixes that, and costs little.** `pa_repeated`, significant in ≥ 95 % of draws
+gives FDR **0.037** for power 0.875. Trading 0.045 of power for a threefold reduction in false
+ discoveries. **This is a second, independent reason for § 3.2's recommendation**, which was argued
+ there only from reproducibility; it also controls error.
 3. **An overdispersed binomial on read counts is the other defensible choice**: power 0.908 at FDR 0.050,
-   and it evaluates 126 orders against 87. It is not uniformly better — it loses badly in the occupancy
-   arm's low-depth cells — but it is competitive under realistic encoding and sees more taxa.
+ and it evaluates 126 orders against 87. It is not uniformly better; it loses badly in the occupancy
+ arm's low-depth cells, but it is competitive under realistic encoding and sees more taxa.
 
 And a clear negative: **applying no evidence floor is not coverage.** `clr_ttest` evaluates all 254
 orders at every depth, which looked like a virtue in the first benchmark, and runs an FDR of 0.81–0.88.
-`prop_wilcoxon` is poor throughout, with direction accuracy of 0.486 in the occupancy arm — no better
+`prop_wilcoxon` is poor throughout, with direction accuracy of 0.486 in the occupancy arm, no better
 than a coin.
 
 ## Limits
 
 - Three encodings are not all encodings. Preference could act on dispersion or seasonality; neither is
-  modelled.
+ modelled.
 - Occupancy is odds-scaled; a logit-additive effect would give different numbers.
 - `betabinom` is intercept-only, not hierarchical. **A detection-explicit occupancy model remains the
-  clearest gap in this project** — it is the natural estimator for exactly the structure
-  `PREVALENCE_RESULTS.md` found, and it is not tested here.
+ clearest gap in this project**; it is the natural estimator for exactly the structure
+ `PREVALENCE_RESULTS.md` found, and it is not tested here.
 - Poisson sampling, independent taxa, independent compartments within a pair; real libraries are
-  compositional with a fixed total, which is the setting `clr_ttest` is designed for and this generator
-  does not produce, so its showing here is not a fair test of CLR methods in general.
+ compositional with a fixed total, which is the setting `clr_ttest` is designed for and this generator
+ does not produce, so its showing here is not a fair test of CLR methods in general.
 - Nothing was run on the real FunAqua or NEON data. These are recommendations to test, not a re-analysis.
 
 ## Files

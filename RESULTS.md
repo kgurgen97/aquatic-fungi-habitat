@@ -21,7 +21,7 @@ before they were run.
 
 Median effect |preference − 0.5| is **0.156** for fungi against **0.228** for other eukaryotes. Over 200
 rarefaction draws the two ranges do not overlap (0.140–0.173 vs 0.202–0.257) and **the ordering never
-reverses**. Five robustness checks, fixed before they were run, all pass — including the decisive one,
+reverses**. Five robustness checks, fixed before they were run, all pass, including the decisive one,
 that the difference survives holding statistical power fixed.
 
 Animals and plants are the most compartment-bound, which is biologically coherent: an animal or a plant is
@@ -47,17 +47,17 @@ products carry no eukaryote marker.
 >
 > **The count is draw-dependent.** Over 200 draws (`analysis_draw_stability.py`, post hoc) the number of
 > significant orders ranges **43–57** (median 51, sd 2.5), orders tested 96–103. Both stored runs fall
-> inside that range, so neither was miscoded — the single-draw design is unstable at about ±5 orders.
+> inside that range, so neither was miscoded, the single-draw design is unstable at about ±5 orders.
 > **The defensible claim is the 35 orders significant in ≥ 95 % of draws** (21 water, 14 sediment;
 > 28 in every draw), in `results/draw_stability.tsv`. Use that set, not one draw's count, in anything
 > written up.
 
-The pattern is biologically coherent, which is the strongest evidence that the pipeline works — nothing in
+The pattern is biologically coherent, which is the strongest evidence that the pipeline works, nothing in
 the method knows about fungal biology:
 
 | prefers the water column | prefers the sediment |
 |---|---|
-| Zygophlyctidales (94 vs 14 pairs), Chytridiales, Zygorhizidiales, Rozellales — **zoosporic lineages with a motile flagellate stage** | Sordariales, Microascales, Zoopagales — soil and dung saprotrophs, amoeba parasites, i.e. lineages of terrestrial origin |
+| Zygophlyctidales (94 vs 14 pairs), Chytridiales, Zygorhizidiales, Rozellales, **zoosporic lineages with a motile flagellate stage** | Sordariales, Microascales, Zoopagales, soil and dung saprotrophs, amoeba parasites, i.e. lineages of terrestrial origin |
 | Taphrinales, Pucciniales, Dothideales, Mycosphaerellales | Lulworthiales (marine, wood-degrading) |
 
 **Sensitivity to the read threshold**
@@ -86,7 +86,7 @@ Reported as **taxonomic**, not phylogenetic. Three routes to a real phylogeny we
 |---|---|
 | ask the authors for representative sequences | would not help: ITSx shows the amplicon carries only ~61 bp of LSU |
 | derive sequences ourselves from the raw reads (downloaded, 5.7 GB) | same amplicon limit |
-| map orders onto a published tree (Open Tree of Life) | 70 orders retrieved, 47 with a preference value, but the synthetic fungal tree is almost entirely polytomous — only 4 resolved terminal sister pairs |
+| map orders onto a published tree (Open Tree of Life) | 70 orders retrieved, 47 with a preference value, but the synthetic fungal tree is almost entirely polytomous, only 4 resolved terminal sister pairs |
 
 On that Open Tree topology, phylogenetic distance does not predict difference in preference
 (Spearman +0.025, p = 0.41). This is **not** evidence against conservatism: the tree has no branch lengths,
@@ -130,20 +130,20 @@ per-kingdom table on a consistent metric, the Levins' niche-breadth cross-check 
 literature, and the limitations. Summary of what changed since this section was first written:
 
 - **The metric changed.** Primary is now the median effect magnitude, not the count of significant
-  orders, because the count depends on each order's discordant-pair count and so measures power as much
-  as biology. Decided in `EUK_ROBUSTNESS_PLAN.md` before the checks ran. Both numbers agree.
+ orders, because the count depends on each order's discordant-pair count and so measures power as much
+ as biology. Decided in `EUK_ROBUSTNESS_PLAN.md` before the checks ran. Both numbers agree.
 - **The claim was narrowed and is now more precise.** "Fungi partition less than other eukaryotes" pooled
-  protists with plants and animals. On a consistent per-kingdom metric fungi are indistinguishable from
-  **Alveolata** (effect 0.150 vs 0.157; Levins B per order 1.528 vs 1.665) and the gap against "other
-  eukaryotes" is driven by **Metazoa** (0.294) and **Straminipila** (0.271). The defensible statement is
-  that fungi sit at the generalist end, not that they beat every eukaryote.
+ protists with plants and animals. On a consistent per-kingdom metric fungi are indistinguishable from
+ **Alveolata** (effect 0.150 vs 0.157; Levins B per order 1.528 vs 1.665) and the gap against "other
+ eukaryotes" is driven by **Metazoa** (0.294) and **Straminipila** (0.271). The defensible statement is
+ that fungi sit at the generalist end, not that they beat every eukaryote.
 - **The apparent conflict with the literature dissolved.** Published work reports fungi *narrower* than
-  protists. On this data, pooled against protists the difference is not significant (p = 0.163) — fungi
-  and protists are indistinguishable — while fungi are clearly broader than plants and animals, which
-  those studies did not include. And the two metrics are not measuring different things here: Levins' B
-  and the preference index correlate at Spearman −0.59 and −0.78.
+ protists. On this data, pooled against protists the difference is not significant (p = 0.163), fungi
+ and protists are indistinguishable, while fungi are clearly broader than plants and animals, which
+ those studies did not include. And the two metrics are not measuring different things here: Levins' B
+ and the preference index correlate at Spearman −0.59 and −0.78.
 - **It survived every check**, including matching on power (stratified p = 0.0023, fungi lower in 4 of 4
-  bins) and adjusting for OTUs per order (partial Spearman −0.264, p = 7.3e−05).
+ bins) and adjusting for OTUs per order (partial Spearman −0.264, p = 7.3e−05).
 
 An earlier run compared 239 fungal pairs against 580 eukaryote pairs and was discarded: eukaryotes carry
 more reads per sample, so more sites passed the filter and the apparent difference was power. The matched
@@ -152,23 +152,23 @@ comparison replaced it.
 ## Not supported
 
 Functional lifestyle (FungalTraits `primary_lifestyle`) does **not** significantly predict preference
-(Kruskal–Wallis p = 0.32). The ordering is suggestive — algal parasites 0.73 toward water, litter
-saprotrophs 0.38 toward sediment — but the data do not support it. Reported as an observation only.
+(Kruskal–Wallis p = 0.32). The ordering is suggestive, algal parasites 0.73 toward water, litter
+saprotrophs 0.38 toward sediment, but the data do not support it. Reported as an observation only.
 
 ## Limitations
 
 - Shallow data: median rarefaction depth 211 reads. Presence/absence at the order level is defensible;
-  abundance-based inference is not.
+ abundance-based inference is not.
 - 239 of 920 paired sites survive the depth filter. The paper must state the usable N, not the headline one.
 - Some "orders" are environmental clade labels (`Branch03`, `GS05`, `*_incertae_sedis`), not formal taxa.
 - Only the primary model's multiple-testing correction is applied; the regional and functional analyses are
-  secondary and uncorrected across their own comparisons.
+ secondary and uncorrected across their own comparisons.
 - **The single-draw design is draw-dependent** (43–57 significant orders over 200 draws). Only the 35
-  orders significant in ≥ 95 % of draws should be treated as established.
+ orders significant in ≥ 95 % of draws should be treated as established.
 - **This result did not replicate in NEON.** See `NEON_RESULTS.md`: the phenomenon reproduces (37 of 103
-  orders significant in NEON's own data) but the per-order direction does not (sign agreement
-  14/27 = 51.9 %, p = 1.0). The zoosporic lineages do replicate, pre-specified and strongly. Any write-up
-  must carry this; a per-order preference table cannot be presented as a general result.
+ orders significant in NEON's own data) but the per-order direction does not (sign agreement
+ 14/27 = 51.9 %, p = 1.0). The zoosporic lineages do replicate, pre-specified and strongly. Any write-up
+ must carry this; a per-order preference table cannot be presented as a general result.
 
 ## Files
 

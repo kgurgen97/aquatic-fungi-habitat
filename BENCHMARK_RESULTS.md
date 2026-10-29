@@ -1,4 +1,4 @@
-# The benchmark as frozen cannot compare these estimators — my generator decided the winner
+# The benchmark as frozen cannot compare these estimators, my generator decided the winner
 
 2026-10-23. Analysis as fixed in `BENCHMARK_PLAN.md` (sha256 `ada8cb3a0403dcce…`, full value in
 `PLAN_HASHES.md`, commit `828f8da`, frozen before `analysis_benchmark.py` existed).
@@ -15,8 +15,8 @@ flaw is itself worth recording.
 |---|---|---|---|---|---|---|---|
 | `pa_single` | 79 | **0.000** | 0.000 | 0.000 | −0.218 | 0.242 | 0.345 |
 | `pa_repeated` | 75 | **0.000** | 0.000 | 0.000 | −0.226 | 0.245 | 0.340 |
-| `prop_wilcoxon` | 152 | 0.209 | 0.826 | 0.808 | — | — | 0.444 |
-| `clr_ttest` | 254 | 0.184 | 0.883 | 0.813 | — | — | 1.000 |
+| `prop_wilcoxon` | 152 | 0.209 | 0.826 | 0.808 | none | none | 0.444 |
+| `clr_ttest` | 254 | 0.184 | 0.883 | 0.813 | none | none | 1.000 |
 | `betabinom` | 115 | **0.850** | **0.053** | 0.976 | −0.000 | 0.058 | 0.304 |
 
 | # | prediction | verdict | observed |
@@ -43,7 +43,7 @@ Probing the generator directly, for a taxon whose true index is 0.800:
 | 1 000 | 0.576 | 0.424 | 0.407 vs 0.366 |
 | 10 000 | **0.500** | 0.485 | 0.378 vs 0.368 |
 
-The signal does not merely weaken with depth — it **disappears**. Once detection saturates, two
+The signal does not merely weaken with depth; it **disappears**. Once detection saturates, two
 compartments with identical occupancy are indistinguishable, so the index collapses to 0.5. That is the
 opposite of how presence/absence behaves on real data, where deeper sequencing makes more orders testable
 (§ 3.4a). The null taxa are also off-centre at low depth (0.381, not 0.5), which inflates FDR for every
@@ -54,7 +54,7 @@ the generator varies. Its bias of −0.000 and RMSE of 0.058 are not evidence of
 evidence that it was handed its own estimand.
 
 So the generator pre-decided the comparison. One family was given the truth in the form it measures, the
-other in a form it cannot see. B1 and B2 "confirmed" are hollow for the same reason — `clr_ttest`
+other in a form it cannot see. B1 and B2 "confirmed" are hollow for the same reason, `clr_ttest`
 evaluates all 254 orders and has perfect depth stability because it tests every order regardless of
 evidence, which is a property of applying no evidence floor rather than a virtue.
 
@@ -70,16 +70,16 @@ separately labelled analysis with a corrected generator, pre-registered afresh: 
 ## What the corrected version must do differently
 
 1. **Preference must act on occupancy as well as abundance.** Otherwise presence/absence methods are
-   being asked to detect something invisible to them.
-2. **Encode preference three ways and compare across them** — abundance-only (this generator, kept as a
-   known-biased arm), occupancy-only, and both — because the honest question is not "which estimator
-   wins" but "which estimator wins under which kind of preference". A single generator always flatters
-   whichever estimator shares its parameterisation, which is the lesson of this attempt.
+ being asked to detect something invisible to them.
+2. **Encode preference three ways and compare across them**, abundance-only (this generator, kept as a
+ known-biased arm), occupancy-only, and both, because the honest question is not "which estimator
+ wins" but "which estimator wins under which kind of preference". A single generator always flatters
+ whichever estimator shares its parameterisation, which is the lesson of this attempt.
 3. **Make direction-based metrics primary.** With preference acting on two quantities there is no single
-   scalar estimand that all five estimators target, so bias on an index scale is only meaningful for
-   named estimators against a named estimand.
+ scalar estimand that all five estimators target, so bias on an index scale is only meaningful for
+ named estimators against a named estimand.
 4. **Keep an evidence floor comparison honest.** `clr_ttest` testing all 254 orders is not coverage in
-   the sense § 3.4a cares about; it is an absence of filtering, and it shows up as an FDR of 0.883.
+ the sense § 3.4a cares about; it is an absence of filtering, and it shows up as an FDR of 0.883.
 
 ## Files
 

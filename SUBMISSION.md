@@ -319,7 +319,7 @@ abundance ratio is a constant 4× has an expected index of 0.80 at FunAqua's dep
 Presence/absence at 211 reads and at 31 131 reads are not noisy measurements of one quantity.
 
 That algebra predicts that deeper data should show more extreme indices. **It does not.** NEON's median
-|index − 0.5| is 0.151 against FunAqua's 0.149 — a ratio of 1.02, Mann–Whitney *p* = 0.69 — despite the
+|index − 0.5| is 0.151 against FunAqua's 0.149 (a ratio of 1.02, Mann–Whitney *p* = 0.69), despite the
 ~150-fold difference in depth. We report the failed prediction because the reason it fails is the result.
 
 **The ≥ 20-discordant-pairs requirement is a filter.** A taxon contributes discordant pairs only when its

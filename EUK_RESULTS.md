@@ -17,7 +17,7 @@ results were seen (commit `9e01ec4`), to confront the published literature on it
 > measured here, significantly so against Metazoa and Straminipila, and **indistinguishable from
 > Alveolata**, the most generalist protists.
 
-The earlier phrasing — "fungi partition less than other eukaryotes" — is withdrawn as imprecise. It pools
+The earlier phrasing, "fungi partition less than other eukaryotes", is withdrawn as imprecise. It pools
 protists with plants and animals, and the per-kingdom analysis below shows that is what produced the gap.
 Against protists specifically there is no significant difference.
 
@@ -61,7 +61,7 @@ they have, and that alone sets statistical power. Stratifying into quantile bins
 testing within bins leaves the difference intact in every bin.
 
 Check 5 disposes of the aggregation worry. Within fungi, orders built from more OTUs do show weaker
-apparent preference (Spearman −0.246, p = 0.0144) — real saturation. But non-fungal eukaryote orders carry
+apparent preference (Spearman −0.246, p = 0.0144), real saturation. But non-fungal eukaryote orders carry
 *more* OTUs (median 256 vs 142) while showing *stronger* preference, so saturation cannot be producing the
 gap; adjusting for it widens the gap rather than closing it.
 
@@ -80,17 +80,17 @@ Same 204 pairs, same depth, two compartments. Levins' B: 1 = found in one compar
 | Metazoa | 13 | **0.294** | 37 | **1.106** |
 
 On the preference metric fungi rank first of six, most generalist. On Levins' B per order they rank third,
-behind Alveolata and Rhizaria — but Rhizaria rests on 12 orders and 5 OTUs, so it carries little weight.
+behind Alveolata and Rhizaria, but Rhizaria rests on 12 orders and 5 OTUs, so it carries little weight.
 The two metrics rank the kingdoms similarly (Spearman −0.78) though with six kingdoms that is p ≈ 0.07.
 
 The biologically coherent part: **animals and land-plant-related lineages are the most
-compartment-bound** — structurally, an animal or a plant is benthic or planktonic — while fungi and the
+compartment-bound**, structurally, an animal or a plant is benthic or planktonic, while fungi and the
 protist groups, which disperse as spores or zoospores and use dissolved and particulate substrate in both
 compartments, are the most spread out. Nothing in the method knows this.
 
 ## Levins' niche breadth: the literature's metric, on the same data
 
-The published niche-breadth work reports the opposite ordering — in freshwater sediment,
+The published niche-breadth work reports the opposite ordering, in freshwater sediment,
 bacteria < fungi < protists, i.e. fungi *narrower* than protists; in alpine soils fungi narrowest of all
 groups. Those studies use Levins' B across samples, not paired compartment preference, so the first
 question is whether the two metrics are even measuring the same thing here.
@@ -124,7 +124,7 @@ ordering, but neither does it significantly contradict it: fungi and protists ar
 What the data does show clearly is fungi broader than **plants and animals**, which those studies did not
 include.
 
-Methodological note: the *two-compartment* per-OTU Levins B is floored — most OTUs with ≥ 20 reads occur
+Methodological note: the *two-compartment* per-OTU Levins B is floored, most OTUs with ≥ 20 reads occur
 in only one compartment, so B = 1.000 for four of six kingdoms and the statistic cannot discriminate. Only
 the per-order two-compartment version and the across-samples version are informative. The per-OTU
 two-compartment column is reported above for completeness and should not be read as a ranking.
@@ -141,13 +141,13 @@ hypothesis for a multi-marker test, not a settled fact.
 **No external validation is possible in NEON.** Checked: NEON's paired water/benthic taxonomy products
 carry only 16S and ITS, and the ITS tables are 100 % Fungi (37 493 and 16 919 rows, no other kingdom).
 Macroinvertebrate metabarcoding is benthic-only and zooplankton metabarcoding covers 7 sites and water
-only — different organisms, different sampling, different primers. They cannot replicate this contrast,
+only, different organisms, different sampling, different primers. They cannot replicate this contrast,
 and presenting them as if they could would be dishonest. This result therefore rests on one dataset.
 
 **Orders are not independent.** The checks address power and aggregation, not phylogenetic
 non-independence among the orders being compared.
 
-**But the two groups ARE treated at comparable taxonomic resolution** — established while checking
+**But the two groups ARE treated at comparable taxonomic resolution**, established while checking
 metaPR2 (`METAPR2_RESULTS.md`). At the rank this analysis uses, a fungal order aggregates 0.96× as much
 diversity as a non-fungal one (145 vs 151 OTUs per label; Class 0.95, Family 0.76). So the comparison is
 not between a coarse group and a fine one. This matters because coarser aggregation demonstrably weakens

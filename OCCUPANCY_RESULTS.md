@@ -1,4 +1,4 @@
-# The occupancy model does not justify itself on power — but it nearly doubles coverage
+# The occupancy model does not justify itself on power, but it nearly doubles coverage
 
 2026-10-23. Analysis as fixed in `OCCUPANCY_PLAN.md` (sha256 `74178c173ef708dd…`, full value in
 `PLAN_HASHES.md`, commit `be9490c`, frozen before `analysis_occupancy.py` existed).
@@ -31,7 +31,7 @@ applied below rather than argued around.
 
 | # | prediction | observed | verdict |
 |---|---|---|---|
-| O1 | highest power of all six in the occupancy arm | ranks **4 of 6** — 0.286 against `pa_single`'s 0.385 | **FAILED** |
+| O1 | highest power of all six in the occupancy arm | ranks **4 of 6**, 0.286 against `pa_single`'s 0.385 | **FAILED** |
 | O2 | near-blind in the abundance arm, by design | power 0.016, FDR 0.000 | CONFIRMED |
 | O3 | controls FDR better than a single presence/absence draw | 0.030 against 0.125 in the `both` arm | CONFIRMED |
 | O4 | evaluates at least as many orders as `pa_single` | 151/79, 152/86, 155/87 across the three arms | CONFIRMED |
@@ -48,7 +48,7 @@ manuscript says so.
 and 0.900 at *D* = 10 000 with *r* = 8. The model must estimate the detection probability *p* from the
 detection histories themselves, and where detections are sparse that estimate is noisy, so the correction
 costs more precision than it buys. The extra machinery helps where data are already plentiful and hurts
-where they are thin — the opposite of where a detection correction would be most wanted. A simple
+where they are thin, the opposite of where a detection correction would be most wanted. A simple
 discordant-pair test makes no such demand on the data and wins at low depth.
 
 ## What it does earn, stated separately so it does not disguise the failure
@@ -56,7 +56,7 @@ discordant-pair test makes no such demand on the data and wins at low depth.
 Two results stand on their own and do not depend on O1.
 
 **It nearly doubles coverage at better error (O3, O4).** Under the realistic `both` encoding it evaluates
-**155 orders against the draw-stable rule's 82** — 1.9× — at power 0.833 against 0.875 and FDR 0.030
+**155 orders against the draw-stable rule's 82**, 1.9×, at power 0.833 against 0.875 and FDR 0.030
 against 0.037. That speaks directly to § 3.4a's problem, which is not that preferences are mis-estimated
 but that too few taxa can be assessed at all. Trading 0.042 of power for 73 more evaluable orders at no
 cost in FDR is a real option, and unlike `clr_ttest`'s nominal 254 it is coverage with an evidence floor
@@ -65,7 +65,7 @@ rather than coverage by having none.
 **It is correctly silent when occupancy does not differ (O2).** In the `abundance` arm, where a
 preferring taxon is more abundant in water but no more often present, it calls almost nothing: power
 0.016, FDR 0.000. Every other estimator either sees nothing at all (`pa_single`, `pa_repeated`) or fires
-hard (`betabinom`, 0.852). The occupancy model is the only one whose answer tracks its own estimand —
+hard (`betabinom`, 0.852). The occupancy model is the only one whose answer tracks its own estimand,
 it reports that occupancy does not differ, because it does not. Under this benchmark's definition of
 truth that scores as missed power; the plan pre-committed to reading it as correct behaviour, and it is.
 
@@ -75,9 +75,9 @@ No single recommendation survives all three encodings, which was already
 `BENCHMARK2_RESULTS.md`'s conclusion and is unchanged. Within the realistic arm:
 
 - **For the fewest false discoveries with the least machinery:** the draw-stable rule. FDR 0.037,
-  power 0.875, 82 orders.
+ power 0.875, 82 orders.
 - **To assess roughly twice as many taxa at comparable error:** the occupancy model (155 orders,
-  FDR 0.030) or the overdispersed binomial (126, FDR 0.050).
+ FDR 0.030) or the overdispersed binomial (126, FDR 0.050).
 - **Never without an evidence floor:** `clr_ttest` reaches all 254 orders at FDR 0.813.
 
 The occupancy model's case rests on coverage, not on power, and it fails below about 1 000 reads per
@@ -86,10 +86,10 @@ sample where its detection estimate becomes unstable.
 ## Limits
 
 - ψ is occupancy **in the sequenced library**, not at the site, as the plan stated before the run. The
-  model corrects subsampling, not sequencing, and cannot recover a taxon the library missed.
-- *p* is constant across samples within a compartment, which is wrong — detectability depends on a
-  taxon's abundance in each particular sample. A per-sample detection covariate is the obvious next
-  step and would likely fix the low-depth weakness that sank O1.
+ model corrects subsampling, not sequencing, and cannot recover a taxon the library missed.
+- *p* is constant across samples within a compartment, which is wrong; detectability depends on a
+ taxon's abundance in each particular sample. A per-sample detection covariate is the obvious next
+ step and would likely fix the low-depth weakness that sank O1.
 - Subsamples are drawn with replacement from one library: exchangeable, not independent visits.
 - Single-season, two-group, no covariates, no random effects, *K* = 8 fixed.
 - The generator's limits from `BENCHMARK2_PLAN.md` § 7 are inherited unchanged.

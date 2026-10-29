@@ -22,8 +22,8 @@ for orders in flagellated (zoosporic) versus aflagellate fungal phyla, assigned 
 before any group value was computed, in (**a**) FunAqua and (**b**) NEON. Horizontal bars are group
 medians; the dashed line is no preference. NEON supports the predicted direction emphatically
 (*p* = 5.1 × 10⁻⁸, rank-biserial +0.823); FunAqua does not, and what direction it has runs the other way
-(*p* = 0.179). Under the pre-declared rule — predicted direction with *p* < 0.05 in both datasets
-independently — the hypothesis is not replicated.
+(*p* = 0.179). Under the pre-declared rule (predicted direction with *p* < 0.05 in both datasets
+independently), the hypothesis is not replicated.
 
 **Figure S3. Why metaPR2 could not serve as a second external dataset.** Sequences per taxonomic label,
 fungi divided by non-fungal eukaryotes, at four ranks in FunAqua (ITS) and metaPR2 (18S, PR2 5.1.0). A
@@ -62,7 +62,7 @@ hypothesis for the wrong reason.
 ### S.1 Why the `.001` NEON products were rejected
 
 NEON's superseded surface water (`DP1.20141.001`) and benthic (`DP1.20086.001`) community composition
-products assign a taxonomic order to only **5.2 % of reads** — 104 837 of 2 032 229 across 123 files we
+products assign a taxonomic order to only **5.2 % of reads**, 104 837 of 2 032 229 across 123 files we
 measured before abandoning them. Order-level analysis is not possible on that basis. The current
 products, `DP1.20141.002` and `DP1.20086.002`, emit a rank name for every sequence regardless of support
 (one probed sample: median `orderConfidence` 0.69, minimum 0), so the 0.80 confidence cutoff is a
@@ -83,10 +83,10 @@ order of events is checkable rather than asserted:
 | plan | frozen at | result at |
 |---|---|---|
 | NEON validation | `bbc9892` | `3d130c3` |
-| NEON implementation | `69ce33d` (before the download finished) | — |
+| NEON implementation | `69ce33d` (before the download finished) | none |
 | Flagellum trait test | `a12b677` | `9dec095` |
 | Eukaryote robustness checks | `a5c9fe6` | `ab5a24e` |
-| Levins' *B* | `9e01ec4` (added before those outcomes were seen) | — |
+| Levins' *B* | `9e01ec4` (added before those outcomes were seen) | none |
 | metaPR2 replication | `eba1edf` | `b298db6` (not executed; see § S.4) |
 
 Each plan's SHA-256 is recorded in `PLAN_HASHES.md`, alongside the commit that introduced it, and can be
@@ -123,7 +123,7 @@ the single-draw design is unstable at roughly ±5 orders, and the draw-stable se
 unit of reporting.
 
 A consequence worth recording: three orders previously reported as disagreeing in direction between
-Europe and North America — Auriculariales, Pezizales, Trechisporales — are significant in only 27, 136
+Europe and North America (Auriculariales, Pezizales, Trechisporales) are significant in only 27, 136
 and 185 of 200 draws, so that reported disagreement was substantially draw noise.
 
 ---

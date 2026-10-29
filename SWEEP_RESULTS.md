@@ -4,8 +4,8 @@
 `PLAN_HASHES.md`, commit `7a0d398`, frozen before `analysis_sweep.py` existed). The script asserts the
 plan still matches that hash before computing anything.
 
-240 cells — 4 abundance distributions × effect sizes 1–16 × thresholds 10/20/40 × 102 and 239 pairs ×
-site heterogeneity σ = 0 and 1 — each at five depth rungs with 30 draws on shared seeds.
+240 cells, 4 abundance distributions × effect sizes 1–16 × thresholds 10/20/40 × 102 and 239 pairs ×
+site heterogeneity σ = 0 and 1, each at five depth rungs with 30 draws on shared seeds.
 
 **Two of five pre-registered predictions FAILED, and they are the two that carried my explanation of the
 depth-ladder result. One prediction was confirmed so completely that it is now the paper's firmest
@@ -19,8 +19,8 @@ real NEON ladder gave **0.024**, sitting inside that distribution.
 
 This holds across every effect size from 1× to 16×, all four abundance distributions including a
 heavy-tailed Pareto, all three thresholds, both pair counts, and with or without site heterogeneity. It is
-the claim the manuscript relies on — *changing depth leaves the apparent strength of what you measure
-almost untouched* — and it is now supported over the whole parameter space rather than at one point in it.
+the claim the manuscript relies on, *changing depth leaves the apparent strength of what you measure
+almost untouched*, and it is now supported over the whole parameter space rather than at one point in it.
 
 ## S1 FAILED: the abundance distribution does not set the exponent
 
@@ -39,8 +39,8 @@ The prediction required *b*(log-uniform) − *b*(empirical) ≥ 0.25. Observed: 
 
 ## S2 FAILED: the detection model does not reproduce the measured exponent
 
-This was the point of the analysis. Fed the real abundance vector, the model predicts *b* ≈ **0.96** —
-essentially complete re-selection — against the **0.485** the NEON ladder measured. No effect size in
+This was the point of the analysis. Fed the real abundance vector, the model predicts *b* ≈ **0.96**,
+essentially complete re-selection, against the **0.485** the NEON ladder measured. No effect size in
 1–16 brings it within 0.25; the nearest, *r* = 16, gives 0.852, off by **0.367**. Simulated turnover is
 also near-total (Jaccard ≈ 0.000) where the real ladder gave **0.281**.
 
@@ -63,11 +63,11 @@ only half way.
 ### What the failure points at
 
 Site heterogeneity was the plan's first named candidate and is in the grid. It is **not** the answer:
-σ = 1 moves *b* from 0.961 to 0.970 at *r* = 1 and from 0.852 to 0.772 at *r* = 16 — too little, in a
+σ = 1 moves *b* from 0.961 to 0.970 at *r* = 1 and from 0.852 to 0.772 at *r* = 16, too little, in a
 grid where the gap to close is 0.48.
 
 Scanning all 240 cells, only **3** reproduce both *b* and Jaccard within 0.15 of the measured values, and
-all three use the empirical vector with **239 pairs** — more than the 102 the real experiment used — with
+all three use the empirical vector with **239 pairs**, more than the 102 the real experiment used, with
 a large effect and a low threshold (closest: empirical, *r* = 16, threshold 10, 239 pairs, σ = 0, giving
 *b* = 0.565 and Jaccard 0.315). Raising the pair count at a fixed threshold lowers the effective bar, so
 rarer taxa qualify at low depth and the set is less depth-determined.
@@ -84,15 +84,15 @@ pooled, and a generative model with site-level taxon prevalence. Not in this pla
 
 ## S3 INCONCLUSIVE: large effects barely escape the selection
 
-The reviewer's counterexample — a taxon reliably detected in one compartment and essentially never in the
-other passes the threshold at λ ≫ 1 — predicts turnover should fall as effect size rises. Direction is
+The reviewer's counterexample, a taxon reliably detected in one compartment and essentially never in the
+other passes the threshold at λ ≫ 1, predicts turnover should fall as effect size rises. Direction is
 right, magnitude is small: Jaccard goes 0.000 → 0.062 from *r* = 1 to *r* = 16 at σ = 0, and 0.000 →
 0.128 at σ = 1. The confirmation bar was a rise of ≥ 0.15.
 
 The exponent does respond: *b* falls from 0.961 at *r* = 1 to 0.852 at *r* = 16 for the empirical vector,
 and the power-law community drops to 0.574. So large effects partially escape, but at these parameters the
-λ ≈ 1 selection is more robust to effect size than § 3.4's caveat implies. The caveat is kept — it is
-correct in principle, and the power-law column shows it can matter — but it is no longer presented as the
+λ ≈ 1 selection is more robust to effect size than § 3.4's caveat implies. The caveat is kept; it is
+correct in principle, and the power-law column shows it can matter, but it is no longer presented as the
 main limit on the mechanism.
 
 ## S4 INCONCLUSIVE: the threshold mostly sets the level
@@ -126,7 +126,7 @@ turnover badly.
 > calibrated, and the ladder's *D*^−0.485 remains an empirical measurement without a validated model
 > behind it." **That was too pessimistic.** The diagnosis below was right: pooling was the entire
 > discrepancy. Representing abundance per sample instead of pooled moves *b* from 0.958 to 0.484 against
-> the measured 0.485, with Jaccard 0.300 against 0.281 — the same harness, the same orders and pairs, one
+> the measured 0.485, with Jaccard 0.300 against 0.281, the same harness, the same orders and pairs, one
 > change. A two-parameter model keeping only each order's occupancy and its pooled abundance recovers
 > *b* = 0.432 without the observed matrix at all.
 >

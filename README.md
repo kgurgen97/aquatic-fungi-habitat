@@ -1,135 +1,134 @@
-# Fungi are the generalists among aquatic eukaryotes
+# The threshold decides which taxa you can measure
 
-FunAqua is a global paired survey — the same sites sampled in both water and sediment — and nobody had
-asked that question of the fungi in it. The closest work I could find, Malfertheiner et al. 2026 on
-community conservatism, explicitly threw out all the eukaryotic reads, so the fungi were genuinely open.
-FunAqua's own authors never ran a single hypothesis test on this; their pipeline is descriptive, and the
-words "specialisation", "preference" and "niche" appear nowhere in it.
+Every metabarcoding analysis that tests taxa for habitat preference has to decide first which taxa
+carry enough evidence to test at all. That rule is usually a minimum count of informative samples, it is
+usually treated as a neutral piece of bookkeeping, and it is not neutral. It admits taxa whose expected
+read count sits near one at whatever depth the study happens to use. Change the depth and you change
+*which* taxa the survey can measure, not how specialised they look.
 
-I started out asking whether aquatic fungi specialise between water and sediment. They do, but that turned
-out to be the less interesting half: the per-order pattern did not replicate in NEON. What did survive,
-and what the title now says, came from the comparison I had filed as a secondary benchmark — where fungi
-sit relative to every *other* eukaryote caught by the same assay in the same samples.
+That is what this repository is about. The paper built from it is in `SUBMISSION.md`.
 
-Across 204 paired sites at matched depth, fungi show the weakest habitat preference of any eukaryotic
-kingdom here: median effect 0.156 against 0.228 for other eukaryotes, with the two ranges not overlapping
-across 200 rarefaction draws and the ordering never reversing. Animals and plants are the most
-compartment-bound; fungi and the protists are the most spread out. Five robustness checks, written down
-before they were run, all pass. Full account in `EUK_RESULTS.md`.
+## How I got here, including the part that failed
 
-Two things I had to correct along the way, both in here: the claim as I first wrote it ("fungi partition
-less than other eukaryotes") pooled protists with plants and animals and was too broad — against
-Alveolata fungi are indistinguishable — and the fungal water-vs-sediment headline I had been quoting came
-from the wrong script. Details below.
+I started somewhere else. FunAqua is a global paired survey, the same sites sampled in both water and
+sediment, and nobody had asked whether the fungi in it specialise between the two. They do: at order
+level, 100 orders have enough discordant pairs to test and about 49 show a significant preference, split
+coherently between zoosporic lineages going to the water column and soil and dung organisms going to the
+sediment. Nothing in the method knows any fungal biology, so that split is a real check on it.
 
-## FunAqua
+Then I tried to replicate the per-order table in NEON and it did not replicate. Agreement in sign came
+out at 14 of 27, 51.9 %, exact binomial p = 1.0, against a rule I had written down in advance. A coin
+flip.
 
-239 sites have both a water and a sediment sample deep enough to use. Sediment samples are systematically
-deeper than water samples (median 179 reads against 131, p 1.5e-13) and richness tracks depth at Spearman
-0.84, so any naive comparison would mostly measure sequencing effort. The fix is in the design: both
-samples of a pair are rarefied down to that pair's own minimum before anything is counted, which makes
-detection power equal inside every pair by construction.
+NEON is not a null dataset, which is what makes the failure interesting. On its own it finds 37 of 103
+orders with a significant preference. So habitat partitioning is real in both datasets, measured by
+different people with different primers. What does not transfer is which order prefers which habitat.
 
-At order level, 100 orders have enough discordant pairs to test and 49 show a significant habitat
-preference, 30 toward water and 19 toward sediment. The split is biologically coherent, which matters
-because nothing in the method knows any fungal biology: the zoosporic lineages with a motile flagellate
-stage — Zygophlyctidales, Chytridiales, Zygorhizidiales, Rozellales — go to the water column, while
-Sordariales, Microascales and Zoopagales, all soil and dung organisms, go to the sediment.
+The two datasets differ about 150-fold in sequencing depth. Working out why that should matter is what
+turned an empirical failure into the paper.
 
-Preference is also conserved within classes more than chance allows (permutation p 0.0041). I am careful
-to call this *taxonomic* and not phylogenetic conservatism. I tried three routes to a real phylogeny and
-all three are closed: the amplicon carries only about 61 bp of LSU by ITSx, so neither the authors'
-representative sequences nor the raw reads can resolve deep fungal relationships, and the Open Tree
-synthetic fungal tree is almost entirely polytomous — 4 resolved sister pairs out of 70 orders.
+## The mechanism
 
-One result I did not expect: fungi partition *less* than other eukaryotes. On the same 204 pairs at the
-same depth, 43 % of fungal orders show a preference against 63 % of non-fungal eukaryote orders
-(Fisher p 0.0029), and the median effect is smaller too. My first attempt at this compared 239 fungal
-pairs against 580 eukaryote pairs and I threw it away — eukaryotes carry more reads, so more sites passed
-the filter and the "difference" was power. The matched version survives.
+A taxon at relative abundance *a* in a sample rarefied to depth *D* is detected with probability
+1 − (1 − *a*)^*D*, which is about 1 − e^−λ with λ = *aD*. The preference index is built from discordant
+pairs only, so its expectation depends on *D* even when the true abundances are fixed. A taxon whose
+true abundance ratio is a constant 4× has an expected index of 0.80 at FunAqua's depth and 1.00 at
+NEON's. Presence at 211 reads and presence at 31 131 reads are not noisy measurements of the same thing.
 
-## The count depends on the random draw, and I nearly published the wrong number
+That algebra predicts deeper data should show more extreme indices. **It does not happen.** NEON's
+median |index − 0.5| is 0.151 against FunAqua's 0.149, a ratio of 1.02 at p = 0.69, despite the depth
+gap. The prediction failed and the reason it failed is the result: the minimum-evidence rule re-selects
+the testable set at every depth, so the marginal distribution of indices stays put while the membership
+of the set turns over underneath it.
 
-While setting up the NEON comparison I noticed that `analysis_primary.py` and `analysis_secondary.py`
-implement the same declared endpoint, at the same threshold, with the same seed, and disagree: 100 orders
-tested and 49 significant against 99 and 51. Neither is miscoded. `analysis_secondary.py` creates one RNG
-at module level and consumes it across its four read thresholds, so by the time it reaches the ≥100 row
-its rarefaction draw differs from the primary's fresh RNG. `RESULTS.md` had been quoting the secondary
-script's row as the primary result.
+## What I got wrong along the way, all of it still in here
 
-So I ran the primary over 200 draws (`analysis_draw_stability.py`). The number of significant orders
-ranges from 43 to 57, median 51, sd 2.5. Both stored runs sit inside that range, which means neither was
-wrong — the single-draw design is just unstable at about ±5 orders. What is stable is the set:
-**35 orders are significant in at least 95 % of draws** (21 water, 14 sediment) and 28 in every single
-draw. That set is what belongs in a paper, not any one draw's count.
+This is the part I would want to read in someone else's repository, so it stays.
 
-This also cost me a result I had already written down. The three orders I reported as disagreeing between
-Europe and North America — Auriculariales, Pezizales, Trechisporales — turn out to be significant in only
-27, 136 and 185 of 200 draws. That disagreement was substantially draw noise, not biogeography.
+**An explanation I gave was refuted by my own next analysis.** I had an account of why the median
+abundance of the testable set falls with a particular exponent. The parameter sweep in
+`SWEEP_RESULTS.md` tested it and both predictions, S1 and S2, failed. The explanation is withdrawn in
+two files with the original sentence quoted, rather than quietly edited out.
 
-`results/quarantine/` holds a third results file whose provenance I can't establish; it contradicts the
-deterministic primary and no script in here regenerates it. Kept so the discrepancy stays on record.
+**A whole benchmark was discarded.** The first estimator comparison encoded preference only as
+abundance given presence, which handed one estimator its own estimand and scored a competitor at power
+0.000. The generator was deciding the winner. It was thrown away and replaced by the three-arm design in
+`BENCHMARK2_PLAN.md`, where no estimator dominates because the ranking flips with how preference is
+encoded. That is the honest answer to "which estimator should I use" and it is not a satisfying one.
 
-## NEON: not replicated
+**The headline count was unstable and I nearly published one draw of it.** Two scripts implementing the
+same endpoint at the same threshold with the same seed disagreed, 49 significant orders against 51.
+Neither was miscoded: one consumed a module-level RNG across four thresholds. Running the primary over
+200 draws gives a range of 43 to 57, median 51, sd 2.5. What is stable is the set, not the count: 35
+orders are significant in at least 95 % of draws. Single-draw rarefaction is not a reporting unit.
 
-Plan frozen in `NEON_VALIDATION_PLAN.md` and committed before the data finished downloading, with one
-pre-committed number: of the FunAqua-significant orders also testable in NEON, the fraction agreeing in
-sign, tested by exact binomial against 0.5. Replication only if agreement beat 50 % with p < 0.05.
+**A result I had written down evaporated.** Three orders I reported as disagreeing between Europe and
+North America are significant in only 27, 136 and 185 of 200 draws. That was draw noise, not
+biogeography.
 
-Agreement came out at **14 of 27, 51.9 %, p = 1.0**. That is a coin flip. By the rule I wrote down in
-advance, this is not replicated, and that is the headline.
+**A claim as first written was too broad.** "Fungi partition less than other eukaryotes" pooled protists
+with plants and animals. Against Alveolata specifically, fungi are indistinguishable. The group-level
+contrast in the paper is stated at the resolution the data actually support.
 
-Worth being precise about what failed, though, because NEON is not a null dataset. On its own it finds 37
-of 103 orders with a significant preference, 18 water and 19 benthic, against FunAqua's 49 of 100. So
-habitat partitioning of fungal orders is real in both datasets, measured by different people with
-different primers and a different pipeline. What does not transfer is *which* order prefers *which*
-habitat. A per-order preference table cannot be presented as a general result on this evidence.
+`results/quarantine/` holds a third results file whose provenance I cannot establish. No script in here
+regenerates it and it contradicts the deterministic primary. Kept so the discrepancy stays on record.
 
-The part that did replicate was pre-specified, in section 7.3 of the plan, before I saw anything:
-Zygophlyctidales goes 0.870 → 0.875 (q 1.8e-4) and Chytridiales 0.752 → 0.933 (q 2.3e-11) — the two
-strongest q-values in the whole NEON table. Microascales agrees too (q 0.022). Sordariales doesn't
-(q 1.0), and the other named lineages weren't testable. With two zoosporic orders there's no formal test
-to run, so this is a consistent observation rather than a demonstrated effect — but the mechanistically
-specific part of the claim is the part that survived, while the broad pattern didn't.
+## Pre-registration
 
-Why it might have failed, as hypotheses rather than findings. The sequencing depth differs by about 200×
-(FunAqua 131–179 reads per sample, NEON a median of 31,131), and within-pair rarefaction equalises power
-inside a pair without making "present" mean the same thing in both datasets — at 130 reads it means
-"abundant", at 31,000 it means "detectable". Capping NEON toward FunAqua's depth does raise agreement from
-51.9 % to around 69 % (`exploratory_neon_depth.py`), which is the direction the hypothesis predicts, but
-it never reaches significance and the overlap shrinks to 16–26 orders, so the probe is too underpowered to
-confirm its own suggestion. Separately, NEON's second habitat is benthic biofilm, not sediment, and it is
-23 US wadeable streams with no lakes. I wrote both of those down in the plan before the result, so they
-are limitations rather than excuses.
+Eleven analysis plans were committed before the corresponding outcomes were computed. Their SHA-256
+hashes live in `PLAN_HASHES.md`, outside the plan files, together with the commit that introduced each
+one, and the analysis scripts assert the hash at run time before computing anything.
+`verify_plan_hashes.py` checks all eleven.
 
-## Where I think this goes
+The rule I held to: a frozen plan is never edited because of a result. Where a frozen decision turned
+out to be wrong, the fix is a new analysis under a new label, not a revision of the old one.
 
-The defensible claim is that fungal orders partition between water column and benthos, now shown in two
-independent datasets. The per-order table goes in a supplement with an explicit note that it doesn't
-transfer. And the thing actually worth building a paper around is the zoosporic hypothesis — a motile
-flagellate stage predicts water-column preference — because it was predicted in advance, it replicated,
-and it has a mechanism.
+## Layout
 
-Any future cross-dataset comparison of this kind needs matched read depth, not just within-pair
-rarefaction. That is the methodological lesson and it was not obvious to me beforehand.
+Plans and their outcomes pair up by name: `ANALYSIS_PLAN.md`, `NEON_VALIDATION_PLAN.md`,
+`EUK_ROBUSTNESS_PLAN.md`, `ZOOSPORIC_PLAN.md`, `METAPR2_REPLICATION_PLAN.md`, `DEPTH_LADDER_PLAN.md`,
+`SWEEP_PLAN.md`, `PREVALENCE_PLAN.md`, `BENCHMARK_PLAN.md`, `BENCHMARK2_PLAN.md`, `OCCUPANCY_PLAN.md`,
+each with a matching `*_RESULTS.md`.
 
-## Running it
+`SUBMISSION.md` is the paper. `SUPPLEMENTARY.md` is its supplement. `MANUSCRIPT.md` is the same text
+with my working notes attached, and `SUBMISSION_NOTES.md` holds what did not belong in a paper.
+`RESULTS.md` and `PAPER.md` are earlier write-ups from before the reframing, kept for the record.
 
-Analyses are plain Python, needing numpy, pandas, scipy and statsmodels. Each script is standalone and
+Analyses are plain Python needing numpy, pandas, scipy and statsmodels. Each script is standalone and
 writes into `results/`.
 
-    analysis_primary.py           the pre-registered FunAqua primary (seed 20261021, deterministic)
-    analysis_secondary.py         thresholds, conservatism, regions, FungalTraits, eukaryote benchmark
-    analysis_euk_matched.py       the depth- and pair-matched eukaryote comparison
-    analysis_biome_kingdom.py     rivers vs lakes, and the per-kingdom breakdown
-    analysis_draw_stability.py    200 draws; post hoc, added after finding the RNG problem
-    analysis_neon_validation.py   the pre-registered NEON test
-    exploratory_neon_depth.py     the depth probe; post hoc
+    analysis_primary.py          the pre-registered FunAqua primary, seed 20261021, deterministic
+    analysis_secondary.py        thresholds, conservatism, regions, traits, eukaryote benchmark
+    analysis_draw_stability.py   200 draws; post hoc, added after the RNG discrepancy
+    analysis_neon_validation.py  the pre-registered NEON test
+    analysis_depth_ladder.py     the controlled within-NEON depth experiment
+    analysis_simulation.py       detection, re-selection and the index under known truth
+    analysis_sweep.py            the parameter sweep that refuted my exponent explanation
+    analysis_prevalence.py       local prevalence against global abundance
+    analysis_benchmark2.py       the three-arm estimator comparison
+    analysis_occupancy.py        the detection-explicit occupancy model
+    analysis_euk_matched.py      the depth- and pair-matched eukaryote comparison
+    analysis_euk_robustness.py   five robustness checks, written down before they were run
+    analysis_levins.py           niche breadth as an alternative metric
+    analysis_zoosporic.py        the pre-specified motile-stage prediction
+    analysis_biome_kingdom.py    rivers against lakes, and the per-kingdom breakdown
+    make_figures.py              the five main figures and the supplementary ones
+    make_supplementary.py        tables S1 to S14
+    verify_plan_hashes.py        asserts all eleven frozen plans
 
-FunAqua's OTU tables go in `~/research/datasets/funaqua/`, FungalTraits in
-`~/research/datasets/fungaltraits/`. The NEON tables come from the API and need a token in
-`~/.neon_token` — DP1.20141.002 for surface water and DP1.20086.002 for benthic. Do not use the `.001`
-versions of those products; they are superseded and assign only about 5 % of reads to an order, which I
-found out the slow way.
+In the supplementary tables and the per-order results, an em dash in a `prefers` column means the taxon
+showed no significant preference. It is a placeholder, not a missing value.
 
-Nothing larger than the metadata is committed here.
+## Data
+
+FunAqua's OTU tables go in `~/research/datasets/funaqua/` and the trait table in
+`~/research/datasets/fungaltraits/`. The NEON tables come from the API and need a personal token in
+`~/.neon_token`, read from there and sent as a header, never written into any script here. Use
+DP1.20141.002 for surface water and DP1.20086.002 for benthic. Do not use the `.001` versions: they are
+superseded and assign only about 5 % of reads to an order, which I found out the slow way.
+
+Nothing larger than the metadata is committed.
+
+## Licence
+
+Code under the MIT licence, see `LICENSE`. Text, figures and derived tables under CC BY 4.0.

@@ -1,12 +1,14 @@
 # The threshold decides which taxa you can measure
 
+> **Journal submission:** The current scientific manuscript is [MANUSCRIPT.md](MANUSCRIPT.md), with [SUPPLEMENTARY.md](SUPPLEMENTARY.md) and tables S1–S20 in [supplementary/](supplementary/). A draft for *Journal of Microbiological Methods* is prepared under [submission/JMM/](submission/JMM/). Do not make this repository public until the updated figure-generation scripts and all figure assets have been synchronized from the local analysis workspace and both authors have approved the release.
+
 Every metabarcoding analysis that tests taxa for habitat preference has to decide first which taxa
 carry enough evidence to test at all. That rule is usually a minimum count of informative samples, it is
 usually treated as a neutral piece of bookkeeping, and it is not neutral. It admits taxa whose expected
 read count sits near one at whatever depth the study happens to use. Change the depth and you change
 *which* taxa the survey can measure, not how specialised they look.
 
-That is what this repository is about. The paper built from it is in `SUBMISSION.md`.
+The manuscript and analyses are maintained in this repository. The journal-facing files are listed above.
 
 ## How I got here, including the part that failed
 
@@ -112,8 +114,8 @@ writes into `results/`.
     analysis_levins.py           niche breadth as an alternative metric
     analysis_zoosporic.py        the pre-specified motile-stage prediction
     analysis_biome_kingdom.py    rivers against lakes, and the per-kingdom breakdown
-    make_figures.py              the five main figures and the supplementary ones
-    make_supplementary.py        tables S1 to S14
+    make_figures.py              figure generator (the latest six-figure version must be synchronized)
+    make_supplementary.py        original supplementary tables S1 to S14
     verify_plan_hashes.py        asserts all eleven frozen plans
 
 In the supplementary tables and the per-order results, an em dash in a `prefers` column means the taxon
@@ -127,7 +129,7 @@ FunAqua's OTU tables go in `~/research/datasets/funaqua/` and the trait table in
 DP1.20141.002 for surface water and DP1.20086.002 for benthic. Do not use the `.001` versions: they are
 superseded and assign only about 5 % of reads to an order, which I found out the slow way.
 
-Nothing larger than the metadata is committed.
+Derived result tables are committed. Raw sequence matrices are obtained from the cited FunAqua and NEON sources and are not copied into this repository.
 
 ## Licence
 

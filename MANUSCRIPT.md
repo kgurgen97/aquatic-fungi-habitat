@@ -965,7 +965,7 @@ This research was supported by the Higher Education and Science Committee of the
 
 ## Declaration of competing interests
 
-The authors must review and complete Elsevier's Declaration of Interests form before submission.
+Declaration to be completed by both authors in Elsevier's submission system before submission.
 
 ## Declaration of generative AI and AI-assisted technologies in manuscript preparation
 
@@ -1043,27 +1043,3 @@ database of eukaryotic 18S rRNA metabarcodes with an emphasis on protists. *Mole
 **22**, 3188–3201. doi:10.1111/1755-0998.13674  *(version 4.0 used here,
 doi:10.5281/zenodo.21106507)*
 
----
-
-## 7 Author contributions
-
-G.K. conceived the study, wrote all analysis code and analysis plans, performed the analyses and wrote the
-manuscript.
-
-## 8 Acknowledgements
-
-*[to be completed]* — the FunAqua consortium for releasing the dataset under CC-BY, and the National
-Ecological Observatory Network, a programme sponsored by the US National Science Foundation and operated
-under cooperative agreement by Battelle, for the aquatic microbe community products used here.
-
-## 9 Competing interests
-
-The author declares no competing interests.
-
-## 10 Funding
-
-*[to be completed]*
-
-## 11 ORCID
-
-*[to be completed]*

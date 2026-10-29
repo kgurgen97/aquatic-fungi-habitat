@@ -26,7 +26,7 @@ import pandas as pd
 from scipy import stats
 
 import pathlib
-SUP = str(pathlib.Path(__file__).resolve().parent.parent / "supplementary")
+SUP = str(pathlib.Path(__file__).resolve().parent / "supplementary")
 Z95, Z90 = 1.959963985, 1.6448536269
 
 
@@ -39,24 +39,25 @@ def wilson(k, n, z=Z95):
     return (c - h) * 100, (c + h) * 100
 
 
-def exact_power(n, pi, alpha=0.05):
-    """Power of a two-sided exact binomial test of H0: pi = 0.5, at true pi."""
-    ks = np.arange(n + 1)
-    rej = np.array([stats.binomtest(int(k), n, 0.5).pvalue < alpha for k in ks])
-    return float(stats.binom.pmf(ks, n, pi)[rej].sum())
-
-
 def min_k(n, alpha=0.05):
-    """Fewest agreements out of n that reach p < alpha."""
-    return next(k for k in range(n // 2, n + 1) if stats.binomtest(k, n, 0.5).pvalue < alpha)
+    """Upper rejection threshold for the two-sided exact binomial test."""
+    return int(stats.binom.isf(alpha / 2, n, 0.5)) + 1
+
+
+def exact_power(n, pi, alpha=0.05):
+    """Exact two-sided power, evaluated from the upper and lower binomial tails."""
+    k = min_k(n, alpha)
+    return float(stats.binom.sf(k - 1, n, pi) + stats.binom.cdf(n - k, n, pi))
 
 
 def cluster_ci(df, pcts, B=20000, seed=11):
-    """Bootstrap resampling PHYLA, not orders, so orders within a phylum stay together."""
+    """Bootstrap whole phyla rather than individual orders."""
     rng = np.random.default_rng(seed)
-    groups = [g for _, g in df.groupby("phylum")]
-    out = [pd.concat([groups[i] for i in rng.integers(0, len(groups), len(groups))]).agree.mean()
-           for _ in range(B)]
+    g = df.groupby("phylum")["agree"].agg(["sum", "count"])
+    successes = g["sum"].to_numpy(dtype=float)
+    sizes = g["count"].to_numpy(dtype=float)
+    draw = rng.integers(0, len(g), size=(B, len(g)))
+    out = successes[draw].sum(axis=1) / sizes[draw].sum(axis=1)
     return tuple(np.percentile(out, pcts) * 100)
 
 

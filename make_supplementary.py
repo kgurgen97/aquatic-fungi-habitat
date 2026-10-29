@@ -20,7 +20,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 R, S = P / "results", P / "supplementary"
 S.mkdir(exist_ok=True)
 
@@ -183,7 +184,7 @@ save(fig, "Figure_S2_flagellum_trait")
 # taxonomies so the panel cannot drift from the claim it supports.
 print("\n=== rank granularity audit for Figure S3")
 UN = {".", "", "unidentified", "unassigned", "NA"}
-FD = Path.home() / "research/datasets/funaqua"
+FD = FUNAQUA_DIR
 ft = pd.read_csv(FD / "FunAqua_fungi_tax.csv", index_col=0, dtype=str, keep_default_na=False)
 et = pd.read_csv(FD / "FunAqua_euk_tax.csv", index_col=0, dtype=str, keep_default_na=False)
 et = et[et.Kingdom.str.strip() != "Fungi"]
@@ -195,7 +196,7 @@ for rank in ("Phylum", "Class", "Order", "Family"):
                         fungi=len(ft) / max(fv.nunique(), 1),
                         other=len(et) / max(ev.nunique(), 1)))
 
-pr2_path = Path.home() / "research/datasets/metapr2/extract/asv.xlsx"
+pr2_path = METAPR2_DIR / "asv.xlsx"
 pr_rows = []
 if pr2_path.exists():
     asv = pd.read_excel(pr2_path)

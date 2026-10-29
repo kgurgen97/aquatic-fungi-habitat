@@ -8,7 +8,8 @@ import pathlib
 import re
 import sys
 
-ROOT = pathlib.Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+ROOT = REPO_ROOT
 t = (ROOT / "MANUSCRIPT.md").read_text()
 
 head, _, reflist = t.partition("## 6 References")

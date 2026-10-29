@@ -31,7 +31,8 @@ import numpy as np
 import pandas as pd
 from matplotlib.ticker import PercentFormatter
 
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 R, F = P / "results", P / "figures"
 F.mkdir(exist_ok=True)
 

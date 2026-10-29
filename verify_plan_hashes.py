@@ -10,7 +10,8 @@ import pathlib
 import re
 import sys
 
-ROOT = pathlib.Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+ROOT = REPO_ROOT
 # Plan filenames contain digits (METAPR2_...), so the character class needs \w.
 PAT = re.compile(r"`?(\w*PLAN\w*\.md)`?[^\n]*?([0-9a-f]{64})")
 

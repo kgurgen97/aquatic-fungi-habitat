@@ -18,8 +18,9 @@ import numpy as np, pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-D = Path.home() / "research/datasets/funaqua"
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = FUNAQUA_DIR
+P = REPO_ROOT
 RANK, MIN_READS, MIN_DISCORDANT = "Order", 100, 20
 N_DRAWS = 200
 UNASSIGNED = {".", "", "unidentified", "unassigned", "NA"}

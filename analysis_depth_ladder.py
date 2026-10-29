@@ -22,7 +22,8 @@ import sys
 import numpy as np
 import pandas as pd
 
-P = pathlib.Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 R = P / "results"
 
 # ----------------------------------------------------------------- frozen plan

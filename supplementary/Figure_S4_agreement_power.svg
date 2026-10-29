@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="570" viewBox="0 0 1200 570" role="img" aria-label="Figure S4. Directional agreement and exact binomial power.">
+<rect width="1200" height="570" fill="white"/>
+<g font-family="Arial,Helvetica,sans-serif" fill="#111" font-size="17"><text x="36" y="38" font-weight="bold" font-size="24">a</text><text x="670" y="38" font-weight="bold" font-size="24">b</text></g>
+<line x1="245" x2="245" y1="95" y2="450" stroke="#555" stroke-width="2"/>
+<line x1="245" x2="600" y1="450" y2="450" stroke="#555" stroke-width="2"/>
+<line x1="245" x2="245" y1="450" y2="458" stroke="#555"/><text x="245" y="483" text-anchor="middle" font-size="17" font-family="Arial">0</text>
+<line x1="316" x2="316" y1="450" y2="458" stroke="#555"/><text x="316" y="483" text-anchor="middle" font-size="17" font-family="Arial">20</text>
+<line x1="387" x2="387" y1="450" y2="458" stroke="#555"/><text x="387" y="483" text-anchor="middle" font-size="17" font-family="Arial">40</text>
+<line x1="458" x2="458" y1="450" y2="458" stroke="#555"/><text x="458" y="483" text-anchor="middle" font-size="17" font-family="Arial">60</text>
+<line x1="529" x2="529" y1="450" y2="458" stroke="#555"/><text x="529" y="483" text-anchor="middle" font-size="17" font-family="Arial">80</text>
+<line x1="600" x2="600" y1="450" y2="458" stroke="#555"/><text x="600" y="483" text-anchor="middle" font-size="17" font-family="Arial">100</text>
+<line x1="422.5" y1="95" x2="422.5" y2="450" stroke="#999" stroke-width="2"/><text x="429.5" y="91" fill="#666" font-family="Arial" font-size="15">chance</text>
+<text x="229" y="136" text-anchor="end" font-family="Arial" font-size="16">All testable in both (65)</text>
+<line x1="393.57957" y1="120" x2="477.204435" y2="120" stroke="#2a78d6" stroke-width="6"/>
+<line x1="380.61780999999996" y1="141" x2="480.42108999999994" y2="141" stroke="#eb6834" stroke-width="5"/>
+<circle cx="436.15400999999997" cy="120" r="7" fill="#2a78d6"/>
+<text x="229" y="228" text-anchor="end" font-family="Arial" font-size="16">FunAqua significant (26)</text>
+<line x1="358.81513" y1="212" x2="486.18487000000005" y2="212" stroke="#2a78d6" stroke-width="6"/>
+<line x1="354.23066" y1="233" x2="501.38881000000003" y2="233" stroke="#eb6834" stroke-width="5"/>
+<circle cx="422.5" cy="212" r="7" fill="#2a78d6"/>
+<text x="229" y="320" text-anchor="end" font-family="Arial" font-size="16">Draw stable (21)</text>
+<line x1="374.74042999999995" y1="304" x2="513.1315" y2="304" stroke="#2a78d6" stroke-width="6"/>
+<line x1="378.125" y1="325" x2="516.47063" y2="325" stroke="#eb6834" stroke-width="5"/>
+<circle cx="447.857295" cy="304" r="7" fill="#2a78d6"/>
+<text x="229" y="412" text-anchor="end" font-family="Arial" font-size="16">Significant in both (9)</text>
+<line x1="370.74171" y1="396" x2="557.19268" y2="396" stroke="#2a78d6" stroke-width="6"/>
+<line x1="245" y1="417" x2="549.285765" y2="417" stroke="#eb6834" stroke-width="5"/>
+<circle cx="481.666785" cy="396" r="7" fill="#2a78d6"/>
+<text x="430" y="533" font-family="Arial" font-size="19" text-anchor="middle">Direction agreement (%)</text>
+<line x1="270" x2="300" y1="559" y2="559" stroke="#2a78d6" stroke-width="6"/><text x="310" y="564" font-family="Arial" font-size="14">95% Wilson CI</text><line x1="426" x2="456" y1="559" y2="559" stroke="#eb6834" stroke-width="5"/><text x="466" y="564" font-family="Arial" font-size="14">95% phylum bootstrap</text>
+<line x1="728" y1="450" x2="1150" y2="450" stroke="#555" stroke-width="2"/><line x1="728" y1="95" x2="728" y2="450" stroke="#555" stroke-width="2"/>
+<text x="728" y="486" text-anchor="middle" font-family="Arial" font-size="17">60</text><line x1="728" x2="728" y1="450" y2="458" stroke="#444"/>
+<text x="833.5" y="486" text-anchor="middle" font-family="Arial" font-size="17">65</text><line x1="833.5" x2="833.5" y1="450" y2="458" stroke="#444"/>
+<text x="939" y="486" text-anchor="middle" font-family="Arial" font-size="17">70</text><line x1="939" x2="939" y1="450" y2="458" stroke="#444"/>
+<text x="1044.5" y="486" text-anchor="middle" font-family="Arial" font-size="17">75</text><line x1="1044.5" x2="1044.5" y1="450" y2="458" stroke="#444"/>
+<text x="1150" y="486" text-anchor="middle" font-family="Arial" font-size="17">80</text><line x1="1150" x2="1150" y1="450" y2="458" stroke="#444"/>
+<text x="718" y="455" text-anchor="end" font-family="Arial" font-size="17">0.0</text>
+<text x="718" y="384" text-anchor="end" font-family="Arial" font-size="17">0.2</text>
+<text x="718" y="313" text-anchor="end" font-family="Arial" font-size="17">0.4</text>
+<text x="718" y="241.99999999999997" text-anchor="end" font-family="Arial" font-size="17">0.6</text>
+<text x="718" y="171" text-anchor="end" font-family="Arial" font-size="17">0.8</text>
+<text x="718" y="100" text-anchor="end" font-family="Arial" font-size="17">1.0</text>
+<line x1="728" x2="1150" y1="166" y2="166" stroke="#888" stroke-width="2" stroke-dasharray="8 7"/><text x="737" y="157" fill="#777" font-size="15" font-family="Arial">80% power</text>
+<polyline points="728,406.61616 833.5,357.796915 939,286.52321 1044.5,206.76997500000002 1150,141.60830500000003" fill="none" stroke="#2a78d6" stroke-width="4"/>
+<circle cx="728" cy="406.61616" r="7" fill="#2a78d6"/>
+<circle cx="833.5" cy="357.796915" r="7" fill="#2a78d6"/>
+<circle cx="939" cy="286.52321" r="7" fill="#2a78d6"/>
+<circle cx="1044.5" cy="206.76997500000002" r="7" fill="#2a78d6"/>
+<circle cx="1150" cy="141.60830500000003" r="7" fill="#2a78d6"/>
+<line x1="1003.9225899999999" x2="1003.9225899999999" y1="95" y2="450" stroke="#2a78d6" stroke-width="3" stroke-dasharray="4 6"/>
+<polyline points="728,323.94873 833.5,208.94399499999997 939,126.93438000000003 1044.5,99.02712000000002 1150,95.16436499999998" fill="none" stroke="#eb6834" stroke-width="4"/>
+<rect x="721" y="316.94873" width="14" height="14" fill="#eb6834"/>
+<rect x="826.5" y="201.94399499999997" width="14" height="14" fill="#eb6834"/>
+<rect x="932" y="119.93438000000003" width="14" height="14" fill="#eb6834"/>
+<rect x="1037.5" y="92.02712000000002" width="14" height="14" fill="#eb6834"/>
+<rect x="1143" y="88.16436499999998" width="14" height="14" fill="#eb6834"/>
+<line x1="792.92259" x2="792.92259" y1="95" y2="450" stroke="#eb6834" stroke-width="3" stroke-dasharray="4 6"/>
+<text x="940" y="529" text-anchor="middle" font-family="Arial" font-size="19">True direction agreement (%)</text><text transform="translate(647,286) rotate(-90)" font-size="17" font-family="Arial" text-anchor="middle">Power, exact binomial</text>
+<text x="745" y="64" font-family="Arial" font-size="15" fill="#2a78d6">● Published endpoint (n=26)</text><text x="950" y="64" font-family="Arial" font-size="15" fill="#eb6834">■ All testable (n=65)</text></svg>

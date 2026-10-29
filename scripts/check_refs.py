@@ -4,17 +4,19 @@
 A reference list is wrong in two ways: a citation with no entry, and an entry
 nothing cites. Both are caught here so neither reaches a reviewer.
 """
-import pathlib
+import argparse
+from pathlib import Path
 import re
 import sys
 
-from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
-ROOT = REPO_ROOT
-t = (ROOT / "MANUSCRIPT.md").read_text()
-
-head, _, reflist = t.partition("## 6 References")
-assert reflist, "reference section heading not found"
-body, _, tail = reflist.partition("## Author's notes")
+parser = argparse.ArgumentParser(description="Check reference consistency in an external Markdown manuscript")
+parser.add_argument("manuscript", type=Path, help="Path to the author's local Markdown manuscript")
+args = parser.parse_args()
+t = args.manuscript.read_text(encoding="utf-8")
+m = re.search(r"^## (?:6 )?References\\s*$", t, re.MULTILINE)
+if not m:
+    parser.error("Reference heading not found (expected '## References' or '## 6 References')")
+head, body = t[:m.start()], t[m.end():]
 
 # Entries: a line starting with Surname, Initial.  or an institutional author.
 entries = {}

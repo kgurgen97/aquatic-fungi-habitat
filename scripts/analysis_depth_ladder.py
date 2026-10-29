@@ -27,10 +27,10 @@ P = REPO_ROOT
 R = P / "results"
 
 # ----------------------------------------------------------------- frozen plan
-PLAN = P / "DEPTH_LADDER_PLAN.md"
+PLAN = P / "plans/DEPTH_LADDER_PLAN.md"
 plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
 recorded = re.search(r"`DEPTH_LADDER_PLAN\.md` \| `([0-9a-f]{64})`",
-                     (P / "PLAN_HASHES.md").read_text())
+                     (P / "plans/PLAN_HASHES.md").read_text())
 assert recorded, "the plan's hash is not recorded in PLAN_HASHES.md"
 assert plan_sha == recorded.group(1), (
     f"DEPTH_LADDER_PLAN.md has changed since it was frozen:\n"
@@ -49,7 +49,7 @@ SEEDS = [20261023 + i for i in range(N_DRAWS)]   # same seeds at every rung
 # ours to restructure: its outputs are published and a sibling script once gave a
 # wrong answer because of a module-level RNG consumed across calls. So take only
 # its imports, constants and function definitions, and execute nothing else.
-src = (P / "analysis_neon_validation.py").read_text()
+src = (P / "scripts/analysis_neon_validation.py").read_text()
 tree = ast.parse(src)
 # Constants sit before the first function; every top-level assignment AFTER the
 # functions is the validation actually running (water = load(...), and so on), so

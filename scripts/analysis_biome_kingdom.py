@@ -14,7 +14,7 @@ P = Path.home() / "research/projects/funaqua-habitat"
 SEED, UN = 20261021, {".", "", "unidentified", "unassigned", "NA"}
 rng = np.random.default_rng(SEED)
 
-md = pd.read_csv(P / "metadata_clean.tsv", sep="\t", dtype=str, keep_default_na=False).set_index("sample_code")
+md = pd.read_csv(P / "results/metadata_clean.tsv", sep="\t", dtype=str, keep_default_na=False).set_index("sample_code")
 md["water"] = md.sample_source.str.lower().str.contains("water")
 
 def load(o_csv, t_csv):

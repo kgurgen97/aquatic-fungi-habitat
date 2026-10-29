@@ -22,9 +22,9 @@ from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_
 P = REPO_ROOT
 R = P / "results"
 
-PLAN = P / "PREVALENCE_PLAN.md"
+PLAN = P / "plans/PREVALENCE_PLAN.md"
 plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
-rec = re.search(r"`PREVALENCE_PLAN\.md` \| `([0-9a-f]{64})`", (P / "PLAN_HASHES.md").read_text())
+rec = re.search(r"`PREVALENCE_PLAN\.md` \| `([0-9a-f]{64})`", (P / "plans/PLAN_HASHES.md").read_text())
 assert rec and plan_sha == rec.group(1), "PREVALENCE_PLAN.md changed since freezing"
 print(f"plan verified: {plan_sha[:16]}…")
 
@@ -38,7 +38,7 @@ RATIO = 1.0   # no true habitat effect is imposed: the question is which taxa ar
 # ------------------------------------------------- borrow the frozen NEON loader
 # Same device as analysis_depth_ladder.py: take imports, constants and function
 # definitions only. Keeping every top-level Assign would run the validation itself.
-src = (P / "analysis_neon_validation.py").read_text()
+src = (P / "scripts/analysis_neon_validation.py").read_text()
 tree = ast.parse(src)
 first_def = next(i for i, n in enumerate(tree.body)
                  if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)))

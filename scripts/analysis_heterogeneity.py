@@ -26,7 +26,7 @@ from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
 import pathlib
-SUP = str(pathlib.Path(__file__).resolve().parent / "supplementary")
+SUP = str(pathlib.Path(__file__).resolve().parents[1] / "supplementary")
 
 
 def heterogeneity(s1, s7):

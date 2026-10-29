@@ -26,7 +26,7 @@ import pandas as pd
 from scipy import stats
 
 import pathlib
-SUP = str(pathlib.Path(__file__).resolve().parent / "supplementary")
+SUP = str(pathlib.Path(__file__).resolve().parents[1] / "supplementary")
 Z95, Z90 = 1.959963985, 1.6448536269
 
 

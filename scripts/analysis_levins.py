@@ -41,7 +41,7 @@ def load(otu_csv, tax_csv):
     return o, t
 
 
-md = pd.read_csv(P / "metadata_clean.tsv", sep="\t", dtype=str,
+md = pd.read_csv(P / "results/metadata_clean.tsv", sep="\t", dtype=str,
                  keep_default_na=False).set_index("sample_code")
 md["water"] = md.sample_source.str.lower().str.contains("water")
 

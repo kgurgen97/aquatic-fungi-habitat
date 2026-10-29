@@ -31,7 +31,7 @@ dt = {c: np.int32 for c in cols[1:]}; dt[cols[0]] = str
 otu = pd.read_csv(D / "FunAqua_fungi_otu.csv", index_col=0, dtype=dt)
 tax = pd.read_csv(D / "FunAqua_fungi_tax.csv", index_col=0, dtype=str,
                   keep_default_na=False).reindex(otu.index)
-md = pd.read_csv(P / "metadata_clean.tsv", sep="\t", dtype=str,
+md = pd.read_csv(P / "results/metadata_clean.tsv", sep="\t", dtype=str,
                  keep_default_na=False).set_index("sample_code").loc[otu.columns]
 md["water"] = md.sample_source.str.lower().str.contains("water")
 

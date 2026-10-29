@@ -29,9 +29,9 @@ from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_
 P = REPO_ROOT
 R = P / "results"
 
-PLAN = P / "OCCUPANCY_PLAN.md"
+PLAN = P / "plans/OCCUPANCY_PLAN.md"
 plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
-rec = re.search(r"`OCCUPANCY_PLAN\.md` \| `([0-9a-f]{64})`", (P / "PLAN_HASHES.md").read_text())
+rec = re.search(r"`OCCUPANCY_PLAN\.md` \| `([0-9a-f]{64})`", (P / "plans/PLAN_HASHES.md").read_text())
 assert rec and plan_sha == rec.group(1), "OCCUPANCY_PLAN.md changed since freezing"
 print(f"plan verified: {plan_sha[:16]}…")
 
@@ -47,13 +47,13 @@ def borrow(path, names):
     and the lookups below raising KeyError. Keeping the whole prelude also runs
     that script's own frozen-plan hash check, which is wanted.
     """
-    src = (P / path).read_text()
+    src = (P / 'scripts' / path).read_text()
     tree = ast.parse(src)
     fd = next(i for i, n in enumerate(tree.body)
               if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)))
     keep = [n for i, n in enumerate(tree.body)
             if i < fd or isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))]
-    ns = {"__name__": "borrowed", "__file__": str(P / path)}
+    ns = {"__name__": "borrowed", "__file__": str(P / 'scripts' / path)}
     exec(compile(ast.Module(body=keep, type_ignores=[]), f"<{path}>", "exec"), ns)
     missing = [k for k in names if k not in ns]
     assert not missing, f"{path} did not define {missing}"

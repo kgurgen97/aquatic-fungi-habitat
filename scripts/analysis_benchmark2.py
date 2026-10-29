@@ -32,23 +32,23 @@ from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_
 P = REPO_ROOT
 R = P / "results"
 
-PLAN = P / "BENCHMARK2_PLAN.md"
+PLAN = P / "plans/BENCHMARK2_PLAN.md"
 plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
-rec = re.search(r"`BENCHMARK2_PLAN\.md` \| `([0-9a-f]{64})`", (P / "PLAN_HASHES.md").read_text())
+rec = re.search(r"`BENCHMARK2_PLAN\.md` \| `([0-9a-f]{64})`", (P / "plans/PLAN_HASHES.md").read_text())
 assert rec and plan_sha == rec.group(1), "BENCHMARK2_PLAN.md changed since freezing"
 print(f"plan verified: {plan_sha[:16]}…")
 
 # Borrow the five estimators and the loaded abundance/occupancy from the first
 # benchmark, without running it: imports, pre-definition assignments and function
 # definitions only.
-src = (P / "analysis_benchmark.py").read_text()
+src = (P / "scripts/analysis_benchmark.py").read_text()
 tree = ast.parse(src)
 first_def = next(i for i, n in enumerate(tree.body)
                  if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)))
 keep = [n for i, n in enumerate(tree.body)
         if isinstance(n, (ast.Import, ast.ImportFrom, ast.FunctionDef, ast.AsyncFunctionDef))
         or (isinstance(n, ast.Assign) and i < first_def)]
-ns: dict = {"__name__": "benchmark_borrowed", "__file__": str(P / "analysis_benchmark.py")}
+ns: dict = {"__name__": "benchmark_borrowed", "__file__": str(P / "scripts/analysis_benchmark.py")}
 exec(compile(ast.Module(body=keep, type_ignores=[]), "<bench_io>", "exec"), ns)
 
 OCC, A_IF_PRESENT, T = ns["OCC"], ns["A_IF_PRESENT"], ns["T"]

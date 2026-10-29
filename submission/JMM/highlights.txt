@@ -1,5 +1,0 @@
-• Minimum-evidence thresholds alter the taxa eligible for statistical testing.
-• Testable sets at 100 and 10,000 reads share only 28% of their union.
-• Aggregate preference effects stay similar as the tested taxa change.
-• FunAqua and NEON differ for 26 of 69 shared testable fungal orders.
-• Estimator performance depends on the biological preference model.

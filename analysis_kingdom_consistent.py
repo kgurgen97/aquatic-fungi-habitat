@@ -20,8 +20,9 @@ from pathlib import Path
 import numpy as np, pandas as pd
 from scipy import stats
 
-D = Path.home() / "research/datasets/funaqua"
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = FUNAQUA_DIR
+P = REPO_ROOT
 UNASSIGNED = {".", "", "unidentified", "unassigned", "NA"}
 MIN_READS, MIN_DISC, SEED = 100, 20, 20261021
 

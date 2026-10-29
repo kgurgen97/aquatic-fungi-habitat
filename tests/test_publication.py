@@ -14,7 +14,8 @@ assert len(h) == 69 and int((h.q_het < 0.05).sum()) == 26
 assert int(a.loc[a.selection_set == "all orders testable in both", "n_orders"].iloc[0]) == 65
 for i in range(1, 20):
     assert (sup / f"Table_S{i}.tsv").is_file(), f"Missing Table S{i}"
-assert not (sup / "Table_S20.tsv").exists(), "Excluded unverified supplementary Table S20 should not be released"\nfor i, stem in enumerate(("draw_stability", "transfer_failure", "kingdoms", "depth_probe", "simulation", "mechanism_in_data"), 1):
+assert not (sup / "Table_S20.tsv").exists(), "Excluded unverified supplementary Table S20 should not be released"
+for i, stem in enumerate(("draw_stability", "transfer_failure", "kingdoms", "depth_probe", "simulation", "mechanism_in_data"), 1):
     for extension in ("pdf", "png"):
         assert (root / "figures" / f"fig{i}_{stem}.{extension}").is_file()
 for forbidden in ("MANUSCRIPT.md", "SUPPLEMENTARY.md", "SUBMISSION.md", "COVER_LETTER.md"):

@@ -61,4 +61,4 @@ The main plotting script uses committed derived results. The optional `scripts/m
 
 The 11 original preregistration files are preserved verbatim, with SHA-256 values and originating commits in `plans/PLAN_HASHES.md`. The integrity test only checks agreement with those recorded hashes. Historical negative and superseded analysis reports remain in `docs/analysis/` to preserve the scientific record.
 
-Table S20 shows scenario sensitivity under *assumed* intraclass correlations, not estimated site-level ICC. A complete independent raw-data reproduction and a separate independent audit of S20 remain outstanding.
+The unverified exploratory sensitivity calculation using assumed site-level ICC values has been excluded. A complete independent raw-data reproduction remains outstanding.

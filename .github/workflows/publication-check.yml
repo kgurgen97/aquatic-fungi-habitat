@@ -1,7 +1,7 @@
 name: Reproducibility checks
 on:
   push:
-    branches: [main, "submission/**"]
+    branches: [main, "publication/**"]
   pull_request:
 jobs:
   check:
@@ -12,9 +12,9 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install --upgrade pip && pip install -r requirements.txt
-      - run: python -m compileall -q .
-      - run: python verify_plan_hashes.py
-      - run: python analysis_heterogeneity.py
-      - run: python analysis_agreement_power.py
+      - run: python -m compileall -q scripts tests
+      - run: python scripts/verify_plan_hashes.py
+      - run: python scripts/analysis_heterogeneity.py
+      - run: python scripts/analysis_agreement_power.py
       - run: python tests/test_publication.py
       - run: git diff --exit-code -- supplementary/Table_S15.tsv supplementary/Table_S16.tsv supplementary/Table_S17.tsv supplementary/Table_S18.tsv supplementary/Table_S19.tsv

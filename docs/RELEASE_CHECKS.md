@@ -1,19 +1,20 @@
-# Public release and submission checks (29 October 2026)
+# Public code-and-data release checks
 
-## Checked
+Updated: 29 October 2026
 
-- The public-facing layout separates current manuscript files, frozen plans, analysis reports and historical drafts.
-- The six principal figure files are named consistently with the figure captions.
-- The new S15–S19 scripts were run against supplied supplementary inputs and their resulting TSV contents matched the supplied tables numerically and structurally.
-- The analysis scripts now use repository-relative project paths and configurable external dataset directories.
-- Frozen plan documents were not modified.
+## Verified in the automated checks
+- Original frozen plans have unchanged contents and match the SHA-256 manifest.
+- Python sources compile under the configured test environment.
+- Derived checks recover the recorded main counts: 49/100 FunAqua, 37/103 NEON and 26/69 heterogeneous shared orders.
+- The S15–S19 source tables reproduce byte-for-byte using committed inputs.
+- Main figure filenames and formats are present, along with all 20 supplementary tables.
 
-## Remaining author and data checks
+## Publication boundaries
+- The current branch does **not** contain the manuscript, author cover letter, editorial highlights or historical manuscript drafts.
+- Public Git history **may still contain earlier versions**. Removing a tracked file in a new commit does not expunge its previous commits or cached copies.
+- The full source-data pipeline has not been independently rerun from the original FunAqua and NEON files.
+- Table S20 is a scenario sensitivity exercise and has not been independently regenerated.
+- Figure rendering and visual comparison against a submission-ready manuscript still require the authors' final check.
+- Journal declarations, funding wording and both authors' approval are separate from this code repository.
 
-- A full clean-clone execution from raw FunAqua and NEON sequencing products has **not** been verified. Some upstream intermediate matrices are not distributed.
-- Table S20 evaluates assumed site-level ICC scenarios and is not a measured ICC analysis; there is no independently verified generator for S20 in this repository.
-- Review all declarations (grant support and funder roles, author contributions, competing interests, use of generative AI) and obtain both authors' approval before journal submission.
-- Verify the exact output of `make_figures.py` against the submitted images on a machine with complete derived results and supported fonts.
-- The submission PDF/Word files live in a separate local submission package, not in this GitHub source repository.
-
-Deleted or moved paths from a public branch remain in the Git history. Do not treat moving historical files as erasing their contents.
+Preserve frozen protocols, sources and negative analyses. Do not rewrite the git history without a separately planned provenance-preserving migration.

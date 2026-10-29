@@ -1,59 +1,59 @@
-# Sequencing depth and fungal habitat preferences
+# Aquatic metabarcoding: depth-dependent testability and habitat preference
 
-This repository contains the data products, code, analysis plans and manuscript for a methodological study of habitat-preference inference in aquatic metabarcoding surveys. The manuscript is being prepared for *Journal of Microbiological Methods*.
+**Public research code and data repository** for analyses of habitat-preference inference in aquatic fungal metabarcoding data.
 
 **Authors:** Gurgen Karapetyan and Astghik Z. Pepoyan.
 
-## Study summary
+The associated research article is being prepared for submission to *Journal of Microbiological Methods*. **The manuscript and editorial files are not distributed in the current repository tree.** The repository provides analysis code, frozen study plans, derived results, figures, and reproducibility information.
 
-A minimum discordant-pair threshold determines which taxonomic orders can be tested for water or sediment preference. In the FunAqua analysis, 49 of 100 testable orders were significant in the primary draw; the count varied from 43 to 57 across 200 rarefaction draws, and 35 orders were significant in at least 95% of draws.
+## Scientific scope
 
-In a controlled NEON sequencing-depth experiment using the same 102 pairs, the sets of testable orders at 100 and 10,000 reads overlapped by only 28.1% (Jaccard), while median absolute preference changed by 0.024. A post hoc count-based comparison found heterogeneity for 26 of 69 shared testable orders after BH correction. These datasets also differ in habitat definition and taxonomy, so depth alone cannot explain their between-study disagreement.
+In a FunAqua water–sediment analysis, 49 of 100 testable fungal orders were significant in the primary subsample, while repeated rarefaction yielded 43–57 significant orders across draws. In an independent NEON controlled depth ladder (102 paired observations), the Jaccard overlap between testable sets at 100 and 10,000 reads was 0.281. The median absolute preference effect changed by 0.024 over the same depth range. Count-based post hoc heterogeneity testing found differences for 26 of 69 comparable orders after BH correction.
 
-The study reports unsuccessful preregistered predictions and sensitivity analyses as well as positive findings.
+FunAqua and NEON differ in habitat definitions and taxonomic resolution; cross-dataset differences must not be attributed exclusively to sequencing depth. These are results of the accompanying analysis, not claims of biological causation.
 
-## Files
+## Repository map
 
-| Location | Contents |
+| Path | Description |
 |---|---|
-| [MANUSCRIPT.md](MANUSCRIPT.md) | Current scientific manuscript, including declarations |
-| [SUPPLEMENTARY.md](SUPPLEMENTARY.md) | Supplementary methods, figure captions and table index |
-| [figures/](figures/) | Six main figures, PDF and PNG |
-| [supplementary/](supplementary/) | Tables S1–S20, Figures S1–S3, generated Figure S4 |
-| [results/](results/) | Derived tabular and JSON results |
-| [docs/analysis/](docs/analysis/) | Individual analysis reports and negative findings |
-| [docs/history/](docs/history/) | Older drafts and editorial decisions, kept for provenance |
-| `*PLAN*.md`, [PLAN_HASHES.md](PLAN_HASHES.md) | Frozen plans and SHA-256 checks |
-| [submission/JMM/](submission/JMM/) | Cover letter, highlights and journal-specific notes |
+| [scripts/](scripts/) | Analysis, plotting and integrity-check code |
+| [plans/](plans/) | Original, unmodified preregistration plans and SHA-256 manifest |
+| [results/](results/) | Derived CSV/TSV/JSON and model outputs |
+| [figures/](figures/) | Six numbered main figures, PNG and vector PDF |
+| [supplementary/](supplementary/) | Tables S1–S20 and supplementary figures |
+| [docs/analysis/](docs/analysis/) | Detailed findings, unsuccessful tests and methodological decisions |
+| [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) | Required data, dependencies, commands and limitations |
+| [docs/RELEASE_CHECKS.md](docs/RELEASE_CHECKS.md) | What has and has not been independently verified |
+| [requirements.txt](requirements.txt) | Python dependencies |
 
-## Reproduce the analyses
+## Quick verification
 
-Python 3.11 or later is recommended.
+Use Python 3.11 or newer.
 
 ```bash
+git clone https://github.com/kgurgen97/aquatic-fungi-habitat.git
+cd aquatic-fungi-habitat
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python verify_plan_hashes.py
-python analysis_heterogeneity.py
-python analysis_agreement_power.py
+python scripts/verify_plan_hashes.py
+python scripts/analysis_heterogeneity.py
+python scripts/analysis_agreement_power.py
 python tests/test_publication.py
 ```
 
-The last two analyses use only the committed supplementary TSV files. Complete reprocessing of FunAqua and NEON requires the source datasets and the environment variables described in [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md). This repository does **not** include raw sequencing reads or every intermediate matrix.
+On Windows PowerShell activate with `.venv\Scripts\Activate.ps1`. The last three commands rely on committed supplementary input tables and do not need raw reads. Run `python scripts/make_figures.py` to regenerate the six primary figures from derived result files. Full source-data reprocessing requires the original FunAqua, NEON and related reference datasets, as detailed in the reproducibility guide.
 
-Regenerate the main figures from the committed derived results with `python make_figures.py`. Regenerate supplementary Figure S4 from the tables with `python analysis_agreement_power.py`.
+## Data provenance
 
-## Data sources
+- FunAqua: Prins et al. (2026), *Scientific Data*, [10.1038/s41597-026-07729-8](https://doi.org/10.1038/s41597-026-07729-8); archived dataset [10.5281/zenodo.17855266](https://doi.org/10.5281/zenodo.17855266).
+- NEON surface-water taxonomy: DP1.20141.002, [10.48443/4xwg-p967](https://doi.org/10.48443/4xwg-p967).
+- NEON benthic taxonomy: DP1.20086.002, [10.48443/fe8q-qh09](https://doi.org/10.48443/fe8q-qh09).
 
-- FunAqua: Prins et al., *Scientific Data* (2026), DOI [10.1038/s41597-026-07729-8](https://doi.org/10.1038/s41597-026-07729-8); dataset [10.5281/zenodo.17855266](https://doi.org/10.5281/zenodo.17855266).
-- NEON surface water microbial taxonomy: DP1.20141.002, [10.48443/4xwg-p967](https://doi.org/10.48443/4xwg-p967).
-- NEON benthic microbial taxonomy: DP1.20086.002, [10.48443/fe8q-qh09](https://doi.org/10.48443/fe8q-qh09).
+No raw sequence datasets are redistributed. Frozen analysis plans are retained byte-for-byte and can be checked using `scripts/verify_plan_hashes.py`.
 
-See the manuscript for the data-processing and eligibility rules. All eleven preregistration documents remain unchanged.
+## Citation and licence
 
-## Reuse and publication status
+Use [CITATION.cff](CITATION.cff) to cite the code. Cite the underlying datasets separately when using their data. The code is MIT licensed. Authored text, figures and derived tables are available under CC BY 4.0; the upstream datasets remain under their own terms.
 
-The repository is public, but the manuscript has not been accepted or published in a journal. The final version and submission declarations require approval from both authors. Details of the remaining verification scope appear in [docs/RELEASE_CHECKS.md](docs/RELEASE_CHECKS.md).
-
-Code is available under the MIT license. Original manuscript text, figures and derived tables are shared under CC BY 4.0; third-party input datasets retain their own terms.
+The accompanying journal article has not yet been peer-reviewed or published. The results here are provided to support inspection and reproducibility.

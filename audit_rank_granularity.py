@@ -9,7 +9,8 @@ import collections, re
 from pathlib import Path
 import pandas as pd
 
-D = Path.home() / "research/datasets/metapr2/extract"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+D = METAPR2_DIR
 asv = pd.read_excel(D / "asv.xlsx")
 RANKS = ["supergroup", "division", "subdivision", "class", "order", "family", "genus"]
 
@@ -44,7 +45,7 @@ print(f"\nclosest to parity: {best[0]}  (ratio {best[5]:.2f}, "
        f"{best[1]} fungal vs {best[3]} non-fungal labels)")
 
 print("\n=== what FunAqua offers at the comparable ranks, for reference")
-FD = Path.home() / "research/datasets/funaqua"
+FD = FUNAQUA_DIR
 ft = pd.read_csv(FD / "FunAqua_fungi_tax.csv", index_col=0, dtype=str, keep_default_na=False)
 et = pd.read_csv(FD / "FunAqua_euk_tax.csv", index_col=0, dtype=str, keep_default_na=False)
 et = et[et.Kingdom.str.strip() != "Fungi"]

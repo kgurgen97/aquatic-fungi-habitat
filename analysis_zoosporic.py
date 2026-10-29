@@ -11,7 +11,8 @@ from pathlib import Path
 import numpy as np, pandas as pd
 from scipy import stats
 
-P = Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 SEED = 20261021
 N_PERM = 10_000
 

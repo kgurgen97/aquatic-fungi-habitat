@@ -25,9 +25,9 @@ from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_
 P = REPO_ROOT
 R = P / "results"
 
-PLAN = P / "SWEEP_PLAN.md"
+PLAN = P / "plans/SWEEP_PLAN.md"
 plan_sha = hashlib.sha256(PLAN.read_bytes()).hexdigest()
-rec = re.search(r"`SWEEP_PLAN\.md` \| `([0-9a-f]{64})`", (P / "PLAN_HASHES.md").read_text())
+rec = re.search(r"`SWEEP_PLAN\.md` \| `([0-9a-f]{64})`", (P / "plans/PLAN_HASHES.md").read_text())
 assert rec, "the sweep plan's hash is not recorded in PLAN_HASHES.md"
 assert plan_sha == rec.group(1), (
     f"SWEEP_PLAN.md changed since freezing:\n  now      {plan_sha}\n"

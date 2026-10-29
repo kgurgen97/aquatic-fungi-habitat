@@ -16,5 +16,6 @@ jobs:
       - run: python scripts/verify_plan_hashes.py
       - run: python scripts/analysis_heterogeneity.py
       - run: python scripts/analysis_agreement_power.py
+      - run: python scripts/make_figures.py
       - run: python tests/test_publication.py
       - run: git diff --exit-code -- supplementary/Table_S15.tsv supplementary/Table_S16.tsv supplementary/Table_S17.tsv supplementary/Table_S18.tsv supplementary/Table_S19.tsv

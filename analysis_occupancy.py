@@ -25,7 +25,8 @@ from scipy import stats
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
-P = pathlib.Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+P = REPO_ROOT
 R = P / "results"
 
 PLAN = P / "OCCUPANCY_PLAN.md"

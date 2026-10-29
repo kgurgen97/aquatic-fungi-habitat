@@ -14,7 +14,8 @@ import urllib.request
 import pandas as pd
 
 API = "https://api.opentreeoflife.org/v3"
-ROOT = pathlib.Path.home() / "research/projects/funaqua-habitat"
+from project_paths import REPO_ROOT, FUNAQUA_DIR, NEON_DIR, TRAITS_DIR, METAPR2_DIR
+ROOT = REPO_ROOT
 
 
 def post(path, payload):

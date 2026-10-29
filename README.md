@@ -20,7 +20,7 @@ FunAqua and NEON differ in habitat definitions and taxonomic resolution; cross-d
 | [plans/](plans/) | Original, unmodified preregistration plans and SHA-256 manifest |
 | [results/](results/) | Derived CSV/TSV/JSON and model outputs |
 | [figures/](figures/) | Six numbered main figures, PNG and vector PDF |
-| [supplementary/](supplementary/) | Tables S1–S20 and supplementary figures |
+| [supplementary/](supplementary/) | Tables S1–S19 and supplementary figures |
 | [docs/analysis/](docs/analysis/) | Detailed findings, unsuccessful tests and methodological decisions |
 | [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md) | Required data, dependencies, commands and limitations |
 | [docs/RELEASE_CHECKS.md](docs/RELEASE_CHECKS.md) | What has and has not been independently verified |
